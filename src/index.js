@@ -1,5 +1,5 @@
 import React from 'react';
-import {StoreModule} from 'redux-assist'
+import {StoreModule} from '@iosio/redux-assist'
 import {MainComponent} from "./MainComponent";
 import {connect} from 'react-redux';
 import withStyles from 'react-jss';

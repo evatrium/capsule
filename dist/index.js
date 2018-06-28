@@ -1,8 +1,8 @@
 (function (global, factory) {
     if (typeof define === "function" && define.amd) {
-        define(['exports', 'react', 'redux-assist', './MainComponent', 'react-redux', 'react-jss'], factory);
+        define(['exports', 'react', '@iosio/redux-assist', './MainComponent', 'react-redux', 'react-jss'], factory);
     } else if (typeof exports !== "undefined") {
-        factory(exports, require('react'), require('redux-assist'), require('./MainComponent'), require('react-redux'), require('react-jss'));
+        factory(exports, require('react'), require('@iosio/redux-assist'), require('./MainComponent'), require('react-redux'), require('react-jss'));
     } else {
         var mod = {
             exports: {}
