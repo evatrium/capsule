@@ -1,6 +1,6 @@
 {
     "name": "@iosio/capsule",
-    "version": "0.0.0",
+    "version": "0.0.1",
     "description": "Opinionated mini framework for React. Handles state, styles and more...",
     "main": "dist/index.js",
     "license": "ISC",
