@@ -9,6 +9,7 @@ const {reduxAssist, store} = new StoreModule();
 let _provide_to_props = {};
 let _provide_to_logic = {};
 
+
 export const CapsuleProvider = ({provide_to_logic, provide_to_props, theme, global_styles}) => {
 
     _provide_to_props = provide_to_props;
