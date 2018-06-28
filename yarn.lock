@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@iosio/redux-assist@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@iosio/redux-assist/-/redux-assist-0.0.2.tgz#58ddd8709f7bbd5f7ad06c8734b2db2dbbb6a20c"
+"@iosio/redux-assist@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@iosio/redux-assist/-/redux-assist-0.0.3.tgz#ca988ae56a5e15049af3549aba33aca9898a275e"
   dependencies:
     redux-dynamic-reducer "^2.0.2"
 
