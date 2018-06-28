@@ -1,3 +1,5 @@
+import {getRandomName} from '@iosio/utils/rando'
+
 let log_this = '';
 const log = (it) => {
     let val;
@@ -16,6 +18,7 @@ export const tester = () => {
 
         console.log('working');
 
+            console.log(getRandomName());
 
         resolve()
     })

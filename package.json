@@ -2,7 +2,7 @@
     "name": "@iosio/capsule",
     "version": "0.0.2",
     "description": "Opinionated mini framework for React. Handles state, styles and more...",
-    "main": "dist/index.js",
+    "main": "lib/index.js",
     "license": "ISC",
     "author": "iosio",
     "repository": {
@@ -24,7 +24,7 @@
         "build:sandbox": "npm run clean:sandbox && npm run babel:sandbox",
         "sandbox": "npm-watch",
         "clean:build": "./node_modules/.bin/rimraf dist",
-        "babel": "cross-env BABEL_ENV=development babel src --out-dir dist",
+        "babel": "cross-env BABEL_ENV=development babel src --out-dir lib",
         "build": "npm run clean:build && npm run babel",
         "quicky": "node quicky.js"
     },
@@ -46,10 +46,14 @@
     },
     "dependencies": {
         "@iosio/redux-assist": "^0.0.2",
+        "@iosio/utils": "^1.0.39",
+        "history": "^4.7.2",
         "jss": "^9.8.7",
         "jss-preset-default": "^4.5.0",
+        "query-string": "^6.1.0",
         "react": "^16.4.1",
         "react-jss": "^8.6.0",
-        "react-redux": "^5.0.7"
+        "react-redux": "^5.0.7",
+        "react-router-dom": "^4.3.1"
     }
 }
