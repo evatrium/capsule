@@ -16,11 +16,11 @@ export const CapsuleProvider = ({provide_to_logic, provide_to_props, theme, glob
     _provide_to_logic = provide_to_logic;
 
     return (ComposedComponent) => {
-        console.log('returning Provider _provide_to_props: ', _provide_to_props, ' _provide_to_logic: ', _provide_to_logic)
+        // console.log('returning Provider _provide_to_props: ', _provide_to_props, ' _provide_to_logic: ', _provide_to_logic)
         return class WithProvider extends React.PureComponent {
             constructor(props) {
                 super(props);
-                console.log('provider being constructed')
+                // console.log('provider being constructed')
             }
             render() {
                 const props = this.props;
@@ -54,7 +54,7 @@ export const Capsule = ({styles, reducer_name, initial_state, logic, mapStateToP
             class WithCapsule extends React.Component {
                 constructor(){
                     super();
-                    console.log('capsule being constructed')
+                    // console.log('capsule being constructed')
                 }
                 render() {
                     const props = this.props;
