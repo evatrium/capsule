@@ -1,6 +1,8 @@
-import {Capsule} from "@iosio/capsule";
-import {routingLogic} from "@iosio/capsule/lib/routing";
+// import {Capsule} from "@iosio/capsule";
+// import {routingLogic} from "@iosio/capsule/lib/routing";
 
+import {Capsule} from "../../../@iosio/capsule";
+import {routingLogic} from "../../../@iosio/capsule/routing";
 
 export const DetailCapsule = Capsule({
     styles: (theme) => ({
@@ -22,10 +24,11 @@ export const DetailCapsule = Capsule({
     initial_state: {
         fetching: false
     },
-    logic: ({fakeApi, state}) => {
-
+    logic_name: 'detail_view',
+    logic: ({fakeApi, state, collective}) => {
+        console.log('collective logic in detail', Object.keys(collective()));
         const getTodo = (cb) => {
-            let params = routingLogic().getParams();
+            let params = routingLogic.getParams();
             if (params.id) {
                 state.current_todo.set.fetching(true);
                 //delay 1000ms
@@ -40,14 +43,14 @@ export const DetailCapsule = Capsule({
             state.current_todo.set.fetching(true);
             //delay 100ms
             fakeApi.updateByItemById(todo, 100).then((response) => {
-                routingLogic().transTo('/');
+                routingLogic.transTo('/');
             });
         };
         const destroyTodo = (todo) => {
             state.current_todo.set.fetching(true);
             //delay 100ms
             fakeApi.deleteItemById(todo.id, 100).then((response) => {
-                routingLogic().transTo('/');
+                routingLogic.transTo('/');
             });
         };
         return {

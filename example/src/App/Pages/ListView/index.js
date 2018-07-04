@@ -8,6 +8,7 @@ export default class ListView extends React.Component {
 
 
     componentDidMount() {
+        console.log('listview mounted. ... props',this.props);
         const {logic: {getTodos}} = this.props;
         getTodos();
     }

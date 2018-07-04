@@ -1,6 +1,7 @@
 import React from 'react';
 
-import {Capsule} from "@iosio/capsule";
+// import {Capsule} from "@iosio/capsule";
+import {Capsule} from "../../../@iosio/capsule";
 
 import {access_logic} from "../../access";
 import {Loading} from "../../components/Loading/index";
@@ -22,6 +23,9 @@ import {Btn} from "../../components/Btn";
 })
 export default class LoginPage extends React.Component {
 
+    componentDidMount(){
+        console.log('login page mounted')
+    }
     render() {
         const {classes, requesting_login, cx} = this.props;
 
@@ -39,7 +43,7 @@ export default class LoginPage extends React.Component {
                 </div>
                 <div style={{height: 500}}>
                   
-                    <Btn onClick={() => access_logic().requestLogin()}>
+                    <Btn onClick={() => access_logic.requestLogin()}>
                         Log Me In!!!
                     </Btn>
                 </div>

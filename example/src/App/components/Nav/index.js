@@ -1,5 +1,8 @@
 import React from 'react';
-import {Capsule} from "@iosio/capsule";
+// import {Capsule} from "@iosio/capsule";
+import {Capsule} from "../../../@iosio/capsule";
+
+
 import {access_logic} from "../../access";
 import {Btn} from "../Btn";
 
@@ -11,7 +14,10 @@ import {Btn} from "../Btn";
             position: 'fixed',
             top: 0,
             zIndex: 1000,
-            height: theme.nav.height
+            height: theme.nav.height,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
         },
     }),
 
@@ -22,7 +28,7 @@ export class Nav extends React.Component {
 
         return (
             <div className={cx(classes.root, className)} style={{...style }}>
-                <Btn onClick={()=>access_logic().logout()}>
+                <Btn onClick={()=>access_logic.logout()}>
                     Logout
                 </Btn>
             </div>

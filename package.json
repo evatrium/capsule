@@ -26,7 +26,8 @@
         "clean:build": "./node_modules/.bin/rimraf dist",
         "babel": "cross-env BABEL_ENV=development babel src --out-dir lib",
         "build": "npm run clean:build && npm run babel",
-        "quicky": "node quicky.js"
+        "quicky": "node quicky.js",
+        "copy_to_example": "cp -r src/ example/src/@iosio/capsule"
     },
     "devDependencies": {
         "babel-cli": "^6.26.0",
@@ -44,16 +45,34 @@
             "react-app"
         ]
     },
+    "peerDependencies": {
+        "react": "^16.4.1"
+    },
     "dependencies": {
-        "@iosio/redux-assist": "^0.0.4",
         "@iosio/utils": "^1.0.39",
+        "babel-jest": "^23.2.0",
         "history": "^4.7.2",
+        "jest": "^23.2.0",
         "jss": "^9.8.7",
         "jss-preset-default": "^4.5.0",
         "query-string": "5",
-        "react": "^16.4.1",
         "react-jss": "^8.6.0",
         "react-redux": "^5.0.7",
-        "react-router-dom": "^4.3.1"
+        "react-router-dom": "^4.3.1",
+        "redux": "^4.0.0",
+        "redux-dynamic-middlewares": "^0.4.0",
+        "regenerator-runtime": "^0.12.0"
+    },
+    "jest": {
+        "coverageDirectory": "./coverage",
+        "collectCoverageFrom": [
+            "src/**"
+        ],
+        "testPathIgnorePatterns": [
+            "/node_modules/",
+            "/sandbox/",
+            "/lib/",
+            "/coverage/"
+        ]
     }
 }

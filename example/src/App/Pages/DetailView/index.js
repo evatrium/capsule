@@ -18,6 +18,7 @@ export default class DetailView extends React.Component {
     }
 
     componentDidMount() {
+        console.log('detail view mounted')
         const {logic: {getTodo}} = this.props;
         getTodo((item) => {
             this.setState({...this.state, item});

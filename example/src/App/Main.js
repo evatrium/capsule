@@ -1,58 +1,41 @@
 import React from "react";
-import {Router, RouteFader, Route, Switch, Redirect} from "@iosio/capsule/lib/routing";
-import Loadable from 'react-loadable';
-
+// import {Router, RouteFader, Route, Switch, Redirect} from "@iosio/capsule/lib/routing";
 import {AppAccess} from "./access/index";
+import {Router, RouteFader, Route, Switch, Redirect} from "../@iosio/capsule/routing";
+import {asyncComponent} from "@iosio/components/lib/asyncComponent";
+import {Capsule} from '../@iosio/capsule';
+// import ListPage from './Pages/ListView';
+// import DetailPage from './Pages/DetailView';
+
+
 import {Nav} from "./components/Nav";
-
-/*
-    -------- LOGIN PAGE ------------
- */
-
-const LoginPage = Loadable({
-    loader: () => import('./Pages/LoginPage'),
-    loading() {
-        return <div>Loading...</div>
-    }
-});
-
-
-/*
-    -------- APP ROUTES ------------
- */
-
-const DetailView = Loadable({
-    loader: () => import('./Pages/DetailView'),
-    loading() {
-        return <div>Loading...</div>
-    }
-});
-
-const ListView = Loadable({
-    loader: () => import('./Pages/ListView'),
-    loading() {
-        return <div>Loading...</div>
-    }
-});
-
+import {Loading} from "./components/Loading";
 
 /*
     ----------- LOGGED IN APP ROUTER ------------
  */
 
+const ListPage = asyncComponent(() => import('./Pages/ListView'), Loading);
+const DetailPage = asyncComponent(() => import('./Pages/DetailView'), Loading);
+const LoginPage = asyncComponent(() => import('./Pages/LoginPage'), Loading);
 
 class AppRouter extends React.Component {
+
+    componentDidMount() {
+        console.log('app router mounted')
+    }
 
     render() {
         return (
             <React.Fragment>
                 <Nav/>
 
-                <RouteFader >
+                <RouteFader>
                     <Switch>
 
-                        <Route exact path={'/'} render={(props) => <ListView {...props}/>}/>
-                        <Route path={'/detail/:id?'} render={(props) => <DetailView {...props}/>}/>
+                        <Route exact path={'/'} component={ListPage}/>
+
+                        <Route path={'/detail/:id?'} component={DetailPage}/>
                         <Redirect to={'/'}/>
 
                     </Switch>
@@ -63,28 +46,38 @@ class AppRouter extends React.Component {
     }
 }
 
+@Capsule({
+    mapStateToProps: (state)=>({
+        logged_in: state.access.logged_in
+    })
+})
+export default class Main extends React.PureComponent{
 
+    componentDidMount() {
+        console.log('Main mounted')
+        console.log('main componenet logged in ', this.props.logged_in);
+    }
 
-export class Main extends React.Component {
     render() {
+        console.log('main componenet logged in ', this.props.logged_in);
 
         return (
 
-            <Router>
-                <Switch>
+                <Router>
+                    <Switch>
 
-                    <Route path={'/'} render={() =>
+                        <Route path={'/'} render={() =>
 
-                        <AppAccess
-                            App={<AppRouter/>}
-                            LoginPage={<LoginPage/>}/>
-                    }/>
+                            <AppAccess
+                                App={<AppRouter/>}
+                                LoginPage={<LoginPage/>}/>
+                        }/>
 
-                    {/*  perhaps a product page or about page could go here  */}
+                        {/*  perhaps a product page or about page could go here  */}
 
-                </Switch>
-            </Router>
-
+                    </Switch>
+                </Router>
         );
     }
 }
+

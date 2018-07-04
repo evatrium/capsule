@@ -1,5 +1,6 @@
 import React from 'react';
-import {Capsule} from "@iosio/capsule";
+// import {Capsule} from "@iosio/capsule";
+import {Capsule} from "../../../@iosio/capsule";
 
 export const Btn = Capsule({
     styles:(theme)=>({

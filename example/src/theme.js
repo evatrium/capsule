@@ -9,7 +9,7 @@ export const theme = {
         '#93ccdc',
         '#68accc',
         '#c49cc9',
-        '#252336',
+        '#57547d',
     ],
     nav:{
         height: 60
@@ -31,8 +31,7 @@ export const global_styles = () => ({
             MozOsxFontSmoothing: 'grayscale', // Antialiasing.
             touchAction: 'manipulation',
             fontFamily: '"Montserrat", "Helvetica", "Arial", sans-serif',
-            color: 'white',
-            background:theme.colors[3]
+            background:'white'
         },
         '#root': {
             height: '100%',
@@ -43,7 +42,7 @@ export const global_styles = () => ({
             padding: 0,
             height: '100%',
             width: '100%',
-            background:theme.colors[3]
+            background:'white'
         },
         '*': {
             boxSizing: 'border-box',
