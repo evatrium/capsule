@@ -1,6 +1,6 @@
 {
     "name": "@iosio/capsule",
-    "version": "0.0.12",
+    "version": "0.0.13",
     "description": "Opinionated mini framework for React. Handles state, styles and more...",
     "main": "lib/index.js",
     "license": "ISC",
@@ -68,7 +68,6 @@
         "react-router-dom": "^4.3.1",
         "redux": "^4.0.0",
         "redux-dynamic-reducer": "^2.0.2"
-
     },
     "jest": {
         "coverageDirectory": "./coverage",
