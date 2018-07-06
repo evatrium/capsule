@@ -3,7 +3,6 @@ import React from 'react';
 // import {routingLogic} from "@iosio/capsule/lib/routing";
 
 import {Capsule} from "../../../@iosio/capsule";
-import {routingLogic} from "../../../@iosio/capsule/routing";
 
 
 export const ListViewCapsule = Capsule({
@@ -22,9 +21,7 @@ export const ListViewCapsule = Capsule({
             margin: 10,
             cursor: 'pointer'
         }
-
     }),
-
     initial_state: {
         list: [],
         fetching_todos: false
@@ -32,7 +29,6 @@ export const ListViewCapsule = Capsule({
     logic_name: 'list_view',
     logic: ({fakeApi, state, collective}) => {
 
-        console.log('shared logic in listview', Object.keys(collective()))
         const getTodos = () => {
             state.todos.set.fetching_todos(true);
             //delay 1000ms
@@ -41,12 +37,9 @@ export const ListViewCapsule = Capsule({
                 state.todos.set.list(response.data);
             });
         };
-
         const editTodo = (id)=>{
-            routingLogic.transTo('/detail', {id});
+            collective().routing.transTo('/detail', {id});
         };
-
-
         return {
             getTodos,
             editTodo,

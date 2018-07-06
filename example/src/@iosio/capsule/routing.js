@@ -28,7 +28,7 @@ const routing = {
                     pathname: path
 
 
-                    
+
                 });
             } else if (path && !search) {
                 history.push({pathname: path});

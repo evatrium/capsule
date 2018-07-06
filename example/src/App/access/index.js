@@ -9,46 +9,45 @@ export const access_logic = Capsule({
         logged_in: false,
         requesting_login: false,
         user: false,
-        //.....other states for failed login attempt
+        request_login_fail: false,
     },
+
     logic_name: 'access',
-    logic: ({state, fakeApi, collective}) => {
+    logic: ({state, fakeApi, collective}) => ({
 
-        const requestLogin = (credentials) => {
+        requestLogin: (credentials) => {
 
-            const {routing} = collective();
-
-            state.access.set.requesting_login(true);
-
+            state.access.update((state) => ({
+                ...state,
+                requesting_login: true,
+                request_login_fail: false,
+            }));
 
             fakeApi.requestAccess()
                 .then((response) => {
-
                     state.access.set.requesting_login(false);
-
-                    if (response.data.granted) {
-
-
-                        setTimeout(() => {
-
+                    setTimeout(() => {
+                        if (response.data.granted) {
                             state.access.update((state) => ({
                                 ...state,
                                 logged_in: true,
                                 user: response.data.user
                             }));
+                        } else {
+                            state.access.update((state) => ({
+                                ...state,
+                                logged_in: false,
+                                user: false,
+                                request_login_fail: true,
+                            }));
+                        }
 
-                        }, 300)
-                    } else {
-
-                        // handle failed login logic
-                    }
-
+                    }, 300)
 
                 });
-        };
+        },
 
-        const logout = () => {
-
+        logout: () => {
             const {routing} = collective();
             routing.goTo('/');
             state.access.update((state) => ({
@@ -56,14 +55,9 @@ export const access_logic = Capsule({
                 logged_in: false,
                 user: false,
             }))
-        };
-
-        return {
-            requestLogin,
-            logout,
         }
+    })
 
-    }
 })();
 
 

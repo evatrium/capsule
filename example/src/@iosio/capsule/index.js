@@ -53,13 +53,13 @@ export const Capsule = ({styles, reducer_name, logic_name, initial_state, logic,
     // console.log(Object.keys(collective_logic));
 
 
-    return (ComposedComponent) => {
+    return (Component) => {
 
-        if (ComposedComponent && styles) {
+        if (Component && styles) {
             //wrap the component with jss styles
-            ComposedComponent = withStyles(styles)(ComposedComponent);
+            Component = withStyles(styles)(Component);
         }
-        if (ComposedComponent) {
+        if (Component) {
 
             class WithCapsule extends React.Component {
                 constructor() {
@@ -71,7 +71,7 @@ export const Capsule = ({styles, reducer_name, logic_name, initial_state, logic,
                     const props = this.props;
                     return (
                         //pass the logic and any other provided props
-                        <ComposedComponent
+                        <Component
                             {...props}
                             logic={return_logic}
                             {..._provide_to_props}

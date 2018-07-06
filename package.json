@@ -27,18 +27,27 @@
         "babel": "cross-env BABEL_ENV=development babel src --out-dir lib",
         "build": "npm run clean:build && npm run babel",
         "quicky": "node quicky.js",
-        "copy_to_example": "cp -r src/ example/src/@iosio/capsule"
+        "copy_to_example": "cp -r src/ example/src/@iosio/capsule",
+        "test": "jest",
+        "watch:test": "jest --watchAll",
+        "coverage": "jest --coverage"
     },
     "devDependencies": {
+        "jest": "^23.3.0",
+        "babel-jest": "^23.2.0",
         "babel-cli": "^6.26.0",
         "babel-core": "^6.26.3",
         "babel-plugin-transform-es2015-modules-umd": "^6.24.1",
         "babel-plugin-transform-object-assign": "^6.22.0",
+        "babel-preset-env": "^1.7.0",
+        "babel-preset-react": "^6.24.1",
         "babel-preset-react-app": "^3.1.1",
         "babel-runtime": "^6.26.0",
         "cross-env": "^5.1.6",
         "npm-watch": "^0.3.0",
-        "rimraf": "^2.6.2"
+        "react-test-renderer": "^16.4.1",
+        "rimraf": "^2.6.2",
+        "regenerator-runtime": "^0.12.0"
     },
     "babel": {
         "presets": [
@@ -49,10 +58,8 @@
         "react": "^16.4.1"
     },
     "dependencies": {
-        "@iosio/utils": "^1.0.39",
-        "babel-jest": "^23.2.0",
+        "@iosio/utils": "^1.0.43",
         "history": "^4.7.2",
-        "jest": "^23.2.0",
         "jss": "^9.8.7",
         "jss-preset-default": "^4.5.0",
         "query-string": "5",
@@ -60,8 +67,8 @@
         "react-redux": "^5.0.7",
         "react-router-dom": "^4.3.1",
         "redux": "^4.0.0",
-        "redux-dynamic-middlewares": "^0.4.0",
-        "regenerator-runtime": "^0.12.0"
+        "redux-dynamic-reducer": "^2.0.2"
+
     },
     "jest": {
         "coverageDirectory": "./coverage",
@@ -71,6 +78,7 @@
         "testPathIgnorePatterns": [
             "/node_modules/",
             "/sandbox/",
+            "/example/",
             "/lib/",
             "/coverage/"
         ]

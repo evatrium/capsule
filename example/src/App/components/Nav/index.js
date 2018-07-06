@@ -2,11 +2,10 @@ import React from 'react';
 // import {Capsule} from "@iosio/capsule";
 import {Capsule} from "../../../@iosio/capsule";
 
-
-import {access_logic} from "../../access";
 import {Btn} from "../Btn";
 
 @Capsule({
+    logic: ({collective}) => ({logout: () => collective().access.logout()}),
     styles: theme => ({
         root: {
             width: '100%',
@@ -24,11 +23,11 @@ import {Btn} from "../Btn";
 })
 export class Nav extends React.Component {
     render() {
-        const { classes, className, style,children, cx} = this.props;
+        const {classes, className, style, children, cx, logic: {logout}} = this.props;
 
         return (
-            <div className={cx(classes.root, className)} style={{...style }}>
-                <Btn onClick={()=>access_logic.logout()}>
+            <div className={cx(classes.root, className)} style={{...style}}>
+                <Btn onClick={logout}>
                     Logout
                 </Btn>
             </div>
