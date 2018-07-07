@@ -6,7 +6,6 @@ import JssProvider from 'react-jss/lib/JssProvider';
 
 const jss = create(preset());
 
-
 export class Jss extends React.PureComponent {
     render() {
         const {
@@ -14,11 +13,15 @@ export class Jss extends React.PureComponent {
             global_styles,
             theme
         } = this.props;
+
         let GlobalStylesWrapper = props => props.children;
-        let gs = global_styles ? global_styles : () => {
-            return {}
-        };
-        GlobalStylesWrapper = withStyles(global_styles)(GlobalStylesWrapper);
+
+        GlobalStylesWrapper = withStyles(
+            global_styles ? global_styles : () => {
+                return {}
+            }
+        )(GlobalStylesWrapper);
+
         return (
             <JssProvider jss={jss}>
                 <ThemeProvider theme={theme ? theme : {}}>
