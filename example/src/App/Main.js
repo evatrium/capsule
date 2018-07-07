@@ -17,7 +17,7 @@ import {Loading} from "./components/Loading";
 
 const ListPage = asyncComponent(() => import('./Pages/ListView'), Loading);
 const DetailPage = asyncComponent(() => import('./Pages/DetailView'), Loading);
-const LoginPage = asyncComponent(() => import('./Pages/LoginPage'), Loading);
+const LoginPage = asyncComponent(() => import('./Pages/LoginPage'), Loading, 0);
 
 class AppRouter extends React.Component {
 

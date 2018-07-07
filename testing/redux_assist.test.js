@@ -1,14 +1,10 @@
 //---- test helpers
-import {isFunction, isObject, typeOf} from '@iosio/utils/lib/type_checks';
+import {typeOf} from '@iosio/utils/lib/type_checks';
 import {isShape} from '@iosio/utils/lib/isShape';
-
-//---- deps
 
 
 //----- redux assist
 import {
-
-
     createSetActionName,
     createSetter,
     createGetter,
@@ -26,12 +22,15 @@ import {
     addStateControllers,
     createHandlers,
     createReducer,
-    createReduxAssist,
-
     storeCreator,
     StoreModule,
 } from "../src/redux-assist"
 
+
+/*
+    tests smaller functions
+    followed by more integrated tests towards the end of this pager
+ */
 
 describe('redux_assist', () => {
 
@@ -594,6 +593,8 @@ describe('redux_assist', () => {
                         'reduxAssist',
                         'store',
                         'state',
+                        'connect',
+                        'Provider'
                     ])
                 )
             });

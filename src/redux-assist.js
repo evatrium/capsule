@@ -1,5 +1,7 @@
 import {createStore} from 'redux-dynamic-reducer';
 import {applyMiddleware, combineReducers} from 'redux';
+import {connect, Provider} from 'react-redux';
+import React from 'react';
 
 /*
     --------------------- SETTERS ---------------------
@@ -264,6 +266,8 @@ export class StoreModule{
     constructor(initial_reducers_object = {}, initial_state = {}, middleware_array = []){
         this.store = storeCreator(initial_reducers_object, initial_state, middleware_array );
         this.state = {};
+        this.connect = connect;
+        this.Provider = (props)=><Provider store={this.store}>{props.children}</Provider>;
     }
 
     /**

@@ -16,7 +16,10 @@ const App = CapsuleProvider({
     theme,
     global_styles,
     loadApp: ()=>import('./App/Main'),
-    loadingComponent: Loading
+    loadingComponent: Loading,
+    loading_options: {
+        duration: 300
+    }
 });
 
 ReactDOM.render(<App/>, document.getElementById('root'));

@@ -6,7 +6,7 @@ import {Capsule} from "../../@iosio/capsule";
 export const access_logic = Capsule({
     reducer_name: 'access',
     initial_state: {
-        logged_in: false,
+        logged_in: true,
         requesting_login: false,
         user: false,
         request_login_fail: false,

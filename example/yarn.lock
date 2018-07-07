@@ -17,9 +17,9 @@
     react-redux "^5.0.7"
     react-router-dom "^4.3.1"
 
-"@iosio/components@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@iosio/components/-/components-0.0.3.tgz#0d136db770d90118a4d8a7da03c4cff7fef97ca8"
+"@iosio/components@^0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@iosio/components/-/components-0.0.5.tgz#8adf86d2f37096309ac2d215276c54e02690e088"
   dependencies:
     classnames "^2.2.6"
     jss "^9.8.7"

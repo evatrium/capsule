@@ -6,6 +6,7 @@ import {isEmpty} from "@iosio/utils/lib/empty_checks";
 import {deepClone} from "@iosio/utils/lib/misc";
 import {Capsule} from "./index";
 
+
 /*
     can negate the need to use redux with routing
     if utilizing the same history object when pushing new paths or search params.
@@ -26,7 +27,6 @@ const routing = {
                 history.push({
                     search: qs.stringify(search),
                     pathname: path
-
 
 
                 });
@@ -85,12 +85,21 @@ class routeFader extends React.PureComponent {
                     transitioning && !no_transition ? null : classes.show,
                     className
                 )}
-                style={{...style, transition: `opacity ${ms_delay ? (no_transition ? 0 : ms_delay ) : (no_transition ? 0 : 300)}ms ease-in-out`,}}>
+                style={{
+                    ...style,
+                    transition: `opacity ${
+                        ms_delay
+                            ?
+                            (no_transition ? 0 : ms_delay)
+                            :
+                            (no_transition ? 0 : 300)}ms ease-in-out`,
+                }}>
                 {children}
             </div>
         );
     }
 }
+
 const RouteFader = Capsule({
     styles: {
         root: {
