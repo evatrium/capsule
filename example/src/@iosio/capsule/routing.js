@@ -6,29 +6,24 @@ import {isEmpty} from "@iosio/utils/lib/empty_checks";
 import {deepClone} from "@iosio/utils/lib/misc";
 import {Capsule} from "./index";
 
-
 /*
     can negate the need to use redux with routing
-    if utilizing the same history object when pushing new paths or search params.
-    so instead of using BrowserRouter, just use Router and provide the same history
+    by utilizing the same history object when pushing new paths or search params.
+    so instead of using BrowserRouter,
+    just use Router and provide it the same history you use to navigate with
  */
-const history = createBrowserHistory();
+export const history = createBrowserHistory();
 
-const routing = {
+export const routingLogic = Capsule({
     reducer_name: 'routing',
-    initial_state: {
-        transitioning: false,
-    },
+    initial_state: {transitioning: false},
     logic_name: 'routing',
-    logic: ({state, collective}) => {
-        // console.log('collective logic in routing', Object.keys(collective()));
+    logic: ({state}) => {
         const goTo = (path, search) => {
             if (search && path) {
                 history.push({
                     search: qs.stringify(search),
                     pathname: path
-
-
                 });
             } else if (path && !search) {
                 history.push({pathname: path});
@@ -46,13 +41,11 @@ const routing = {
 
         const transTo = (path, search, time = 300) => {
             state.routing.set.transitioning(true);
-
             setTimeout(() => {
                 goTo(path, search);
                 state.routing.set.transitioning(false);
             }, time);
         };
-
         return {
             goTo,
             transTo,
@@ -60,60 +53,34 @@ const routing = {
             history,
         }
     }
+})();
+
+export const Router = (props) => <ReactRouter history={history} children={props.children}/>;
+
+const routeFader = (props) => {
+    const {className, no_transition, style, ms_delay, transitioning, children} = props;
+    return (
+        <div className={className}
+             style={{
+                 ...style,
+                 height: '100%',
+                 width: '100%',
+                 opacity: transitioning && !no_transition ? 0 : 1,
+                 transition: `opacity ${
+                     ms_delay || ms_delay === 0
+                         ? (no_transition ? 0 : ms_delay)
+                         : (no_transition ? 0 : 300)}ms ease-in-out`,
+             }}>
+            {children}
+        </div>
+    );
+
 };
 
-let routingLogic = Capsule(routing)();
-
-// console.log('&&&&&&&&&&&&&&&& routingLogic', routingLogic)
-class router extends React.PureComponent {
-    render() {
-        return (
-            <ReactRouter history={this.props.logic.history} children={this.props.children}/>
-        );
-    }
-}
-
-const Router = Capsule({logic: () => ({history: routingLogic.history})})(router);
-
-class routeFader extends React.PureComponent {
-    render() {
-        const {classes, className, no_transition, style, ms_delay, transitioning, children, cx} = this.props;
-        return (
-            <div
-                className={cx(
-                    classes.root,
-                    transitioning && !no_transition ? null : classes.show,
-                    className
-                )}
-                style={{
-                    ...style,
-                    transition: `opacity ${
-                        ms_delay
-                            ?
-                            (no_transition ? 0 : ms_delay)
-                            :
-                            (no_transition ? 0 : 300)}ms ease-in-out`,
-                }}>
-                {children}
-            </div>
-        );
-    }
-}
-
-const RouteFader = Capsule({
-    styles: {
-        root: {
-            height: '100%',
-            width: '100%',
-            opacity: 0,
-        },
-        show: {
-            opacity: 1,
-        },
-    },
+export const RouteFader = Capsule({
     mapStateToProps: (state) => ({
         transitioning: state.routing.transitioning
     })
 })(routeFader);
 
-export {Router, RouteFader, routingLogic, Route, Switch, Redirect};
+export { Route, Switch, Redirect};

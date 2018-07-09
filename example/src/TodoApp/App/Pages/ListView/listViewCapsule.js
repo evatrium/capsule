@@ -2,7 +2,7 @@ import React from 'react';
 // import {Capsule} from "@iosio/capsule";
 // import {routingLogic} from "@iosio/capsule/lib/routing";
 
-import {Capsule} from "../../../@iosio/capsule";
+import {Capsule} from "../../../../@iosio/capsule";
 
 
 export const ListViewCapsule = Capsule({
@@ -13,13 +13,14 @@ export const ListViewCapsule = Capsule({
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            flexDirection:'column'
+            flexDirection: 'column'
         },
-        todo:{
+        todo: {
             background: '#19121e',
             padding: 10,
             margin: 10,
-            cursor: 'pointer'
+            cursor: 'pointer',
+            color: 'white'
         }
     }),
     initial_state: {
@@ -27,27 +28,29 @@ export const ListViewCapsule = Capsule({
         fetching_todos: false
     },
     logic_name: 'list_view',
-    logic: ({fakeApi, state, collective}) => {
+    logic: ({fakeApi, state, collective}) => ({
 
-        const getTodos = () => {
+        getTodos: () => {
             state.todos.set.fetching_todos(true);
             //delay 1000ms
-            fakeApi.getData(1000).then((response) => {
+            collective().fakeApi.getData(1000).then((response) => {
                 state.todos.set.fetching_todos(false);
                 state.todos.set.list(response.data);
             });
-        };
-        const editTodo = (id)=>{
+        },
+        editTodo: (id) => {
             collective().routing.transTo('/detail', {id});
-        };
-        return {
-            getTodos,
-            editTodo,
         }
-    },
+
+    }),
     mapStateToProps: (state) => ({
         todos: state.todos.list,
         fetching: state.todos.fetching_todos
-    })
+    }),
+    mapLogicToProps:
+        (logic) => ({
+            getTodos: logic.list_view.getTodos,
+            editTodo: logic.list_view.editTodo
+        })
 
 });

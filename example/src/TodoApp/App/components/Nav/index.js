@@ -1,11 +1,13 @@
 import React from 'react';
 // import {Capsule} from "@iosio/capsule";
-import {Capsule} from "../../../@iosio/capsule";
+import {Capsule} from "../../../../@iosio/capsule";
 
 import {Btn} from "../Btn";
 
 @Capsule({
-    logic: ({collective}) => ({logout: () => collective().access.logout()}),
+    mapLogicToProps: (logic)=>({
+        logout: logic.access.logout
+    }),
     styles: theme => ({
         root: {
             width: '100%',
@@ -23,7 +25,7 @@ import {Btn} from "../Btn";
 })
 export class Nav extends React.Component {
     render() {
-        const {classes, className, style, children, cx, logic: {logout}} = this.props;
+        const {classes, className, style, children, cx, logout} = this.props;
 
         return (
             <div className={cx(classes.root, className)} style={{...style}}>

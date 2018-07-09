@@ -31,7 +31,8 @@ export const global_styles = () => ({
             MozOsxFontSmoothing: 'grayscale', // Antialiasing.
             touchAction: 'manipulation',
             fontFamily: '"Montserrat", "Helvetica", "Arial", sans-serif',
-            background:'white'
+            background:'white',
+            boxSizing: 'border-box',
         },
         '#root': {
             height: '100%',
@@ -44,8 +45,8 @@ export const global_styles = () => ({
             width: '100%',
             background:'white'
         },
-        '*': {
-            boxSizing: 'border-box',
+        '*, *::before, *::after': {
+            boxSizing: 'inherit',
         },
 
 

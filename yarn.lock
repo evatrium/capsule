@@ -16,10 +16,11 @@
     esutils "^2.0.2"
     js-tokens "^3.0.0"
 
-"@iosio/components@^0.0.5":
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/@iosio/components/-/components-0.0.5.tgz#8adf86d2f37096309ac2d215276c54e02690e088"
+"@iosio/components@^0.0.10":
+  version "0.0.10"
+  resolved "https://registry.yarnpkg.com/@iosio/components/-/components-0.0.10.tgz#06c6836df86fc0c6d49249f95f37c34d9d578e19"
   dependencies:
+    "@iosio/utils" "^1.0.43"
     classnames "^2.2.6"
     jss "^9.8.7"
     jss-preset-default "^4.5.0"
@@ -429,6 +430,13 @@ babel-plugin-dynamic-import-node@1.1.0:
     babel-plugin-syntax-dynamic-import "^6.18.0"
     babel-template "^6.26.0"
     babel-types "^6.26.0"
+
+babel-plugin-dynamic-import-node@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-dynamic-import-node/-/babel-plugin-dynamic-import-node-2.0.0.tgz#d6fc3f6c5e3bdc34e49c15faca7ce069755c0a57"
+  dependencies:
+    babel-plugin-syntax-dynamic-import "^6.18.0"
+    object.assign "^4.1.0"
 
 babel-plugin-istanbul@^4.1.6:
   version "4.1.6"

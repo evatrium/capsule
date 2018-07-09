@@ -1,8 +1,7 @@
 // import {Capsule} from "@iosio/capsule";
 // import {routingLogic} from "@iosio/capsule/lib/routing";
 
-import {Capsule} from "../../../@iosio/capsule";
-import {routingLogic} from "../../../@iosio/capsule/routing";
+import {Capsule} from "../../../../@iosio/capsule";
 
 export const DetailCapsule = Capsule({
     styles: (theme) => ({
@@ -25,43 +24,41 @@ export const DetailCapsule = Capsule({
         fetching: false
     },
     logic_name: 'detail_view',
-    logic: ({fakeApi, state, collective}) => {
-        console.log('collective logic in detail', Object.keys(collective()));
-        const getTodo = (cb) => {
-            let params = routingLogic.getParams();
+    logic: ({ state, collective}) => ({
+        getTodo: (cb) => {
+            let params = collective().routing.getParams();
             if (params.id) {
                 state.current_todo.set.fetching(true);
                 //delay 1000ms
-                fakeApi.getItemById(params.id, 1000).then((response) => {
+                collective().fakeApi.getItemById(params.id, 1000).then((response) => {
                     cb && cb(response.data);
                     state.current_todo.set.fetching(false);
                 });
             }
-        };
-
-        const saveTodo = (todo) => {
+        },
+        saveTodo: (todo) => {
             state.current_todo.set.fetching(true);
             //delay 100ms
-            fakeApi.updateByItemById(todo, 100).then((response) => {
-                routingLogic.transTo('/');
+            collective().fakeApi.updateByItemById(todo, 100).then((response) => {
+                collective().routing.transTo('/');
             });
-        };
-        const destroyTodo = (todo) => {
+        },
+        destroyTodo: (todo) => {
             state.current_todo.set.fetching(true);
             //delay 100ms
-            fakeApi.deleteItemById(todo.id, 100).then((response) => {
-                routingLogic.transTo('/');
+            collective().fakeApi.deleteItemById(todo.id, 100).then((response) => {
+                collective().routing.transTo('/');
             });
-        };
-        return {
-            getTodo,
-            saveTodo,
-            destroyTodo
         }
-    },
+    }),
     mapStateToProps: (state) => ({
         item: state.current_todo.item,
         fetching: state.current_todo.fetching
+    }),
+    mapLogicToProps: (logic) => ({
+        getTodo: logic.detail_view.getTodo,
+        saveTodo: logic.detail_view.saveTodo,
+        destroyTodo: logic.detail_view.destroyTodo,
     })
 
 });

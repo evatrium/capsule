@@ -9,19 +9,19 @@ export default class ListView extends React.Component {
 
     componentDidMount() {
         console.log('listview mounted. ... props',this.props);
-        const {logic: {getTodos}} = this.props;
+        const {getTodos} = this.props;
         getTodos();
     }
 
     navigate = (id) => {
-        const {logic: {editTodo}} = this.props;
+        const {editTodo} = this.props;
         editTodo(id);
     };
 
 
     render() {
 
-        const {classes, todos, fetching} = this.props;
+        const {classes, todos,fetching, cx} = this.props;
 
         return (
             <div className={classes.root}>
@@ -37,7 +37,7 @@ export default class ListView extends React.Component {
 
                     {todos && todos.length > 0 && !fetching && todos.map((t) => (
 
-                        <div className={classes.todo} key={t.id}
+                        <div className={cx(classes.todo)} key={t.id}
                              onClick={()=>this.navigate(t.id)}>
                             <div className={classes.title}>
                                 Title: {" "} {t.title}

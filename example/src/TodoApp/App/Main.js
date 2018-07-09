@@ -1,9 +1,9 @@
 import React from "react";
 // import {Router, RouteFader, Route, Switch, Redirect} from "@iosio/capsule/lib/routing";
 import {AppAccess} from "./access/index";
-import {Router, RouteFader, Route, Switch, Redirect} from "../@iosio/capsule/routing";
+import {Router, RouteFader, Route, Switch, Redirect} from "../../@iosio/capsule/routing";
 import {asyncComponent} from "@iosio/components/lib/asyncComponent";
-import {Capsule} from '../@iosio/capsule';
+import {Capsule} from '../../@iosio/capsule';
 // import ListPage from './Pages/ListView';
 // import DetailPage from './Pages/DetailView';
 
@@ -15,8 +15,8 @@ import {Loading} from "./components/Loading";
     ----------- LOGGED IN APP ROUTER ------------
  */
 
-const ListPage = asyncComponent(() => import('./Pages/ListView'), Loading);
-const DetailPage = asyncComponent(() => import('./Pages/DetailView'), Loading);
+const ListPage = asyncComponent(() => import('./Pages/ListView'), Loading, 200);
+const DetailPage = asyncComponent(() => import('./Pages/DetailView'), Loading, 200);
 const LoginPage = asyncComponent(() => import('./Pages/LoginPage'), Loading, 0);
 
 class AppRouter extends React.Component {

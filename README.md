@@ -12,3 +12,35 @@ or
 <pre>
 yarn add @iosio/capsule
 </pre>
+
+
+
+
+
+Provider
+- provide to logic
+- provide to props
+
+
+- collective logic
+
+
+Capsule
+
+- provide styles
+
+- create state controller
+- consume state controller in logic
+
+- consume collective logic in logic
+
+- provide logic to props
+- map state to props
+
+
+
+
+{
+    collective: true
+    
+}

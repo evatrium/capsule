@@ -1,9 +1,8 @@
 import React from 'react';
 
 // import {Capsule} from "@iosio/capsule";
-import {Capsule} from "../../../@iosio/capsule";
+import {Capsule} from "../../../../@iosio/capsule";
 
-import {access_logic} from "../../access";
 import {Loading} from "../../components/Loading/index";
 import {Btn} from "../../components/Btn";
 
@@ -19,6 +18,13 @@ import {Btn} from "../../components/Btn";
     }),
     mapStateToProps: (state) => ({
         requesting_login: state.access.requesting_login
+    }),
+
+    logic:()=>({collective })=>{
+
+    },
+    mapLogicToProps: (logic)=>({
+        requestLogin: logic.access.requestLogin
     })
 })
 export default class LoginPage extends React.Component {
@@ -27,7 +33,7 @@ export default class LoginPage extends React.Component {
         console.log('login page mounted')
     }
     render() {
-        const {classes, requesting_login, cx} = this.props;
+        const {classes, requesting_login, cx, requestLogin} = this.props;
 
 
         return (
@@ -43,7 +49,7 @@ export default class LoginPage extends React.Component {
                 </div>
                 <div style={{height: 500}}>
                   
-                    <Btn onClick={() => access_logic.requestLogin()}>
+                    <Btn onClick={() => requestLogin()}>
                         Log Me In!!!
                     </Btn>
                 </div>

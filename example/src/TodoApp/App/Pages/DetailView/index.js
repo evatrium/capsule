@@ -19,7 +19,7 @@ export default class DetailView extends React.Component {
 
     componentDidMount() {
         console.log('detail view mounted')
-        const {logic: {getTodo}} = this.props;
+        const {getTodo} = this.props;
         getTodo((item) => {
             this.setState({...this.state, item});
         });
@@ -35,13 +35,13 @@ export default class DetailView extends React.Component {
 
 
     save = () => {
-        const {logic: {saveTodo}} = this.props;
+        const {saveTodo} = this.props;
 
         saveTodo(this.state.item);
     };
 
     destroyIt = ()=>{
-        const {logic: {destroyTodo}} = this.props;
+        const {destroyTodo} = this.props;
         destroyTodo(this.state.item);
     };
 

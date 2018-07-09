@@ -28,6 +28,7 @@
         "build": "npm run clean:build && npm run babel",
         "quicky": "node quicky.js",
         "copy_to_example": "cp -r src/ example/src/@iosio/capsule",
+        "copy_to_router_testing": "cp -r src/ testing/router-testing/src/capsule",
         "test": "jest",
         "watch:test": "jest --watchAll",
         "coverage": "jest --coverage"
@@ -36,6 +37,7 @@
         "babel-cli": "^6.26.0",
         "babel-core": "^6.26.3",
         "babel-jest": "^23.2.0",
+        "babel-plugin-dynamic-import-node": "^2.0.0",
         "babel-plugin-transform-es2015-modules-umd": "^6.24.1",
         "babel-plugin-transform-object-assign": "^6.22.0",
         "babel-preset-env": "^1.7.0",
@@ -53,13 +55,9 @@
         "regenerator-runtime": "^0.12.0",
         "rimraf": "^2.6.2"
     },
-    "babel": {
-        "presets": [
-            "react-app"
-        ]
-    },
+
     "dependencies": {
-        "@iosio/components": "^0.0.5",
+        "@iosio/components": "^0.0.10",
         "@iosio/utils": "^1.0.43",
         "babel-plugin-transform-decorators-legacy": "^1.3.5",
         "enzyme-adapter-react-16": "^1.1.1",

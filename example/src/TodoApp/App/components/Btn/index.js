@@ -1,6 +1,6 @@
 import React from 'react';
 // import {Capsule} from "@iosio/capsule";
-import {Capsule} from "../../../@iosio/capsule";
+import {Capsule} from "../../../../@iosio/capsule";
 
 export const Btn = Capsule({
     styles:(theme)=>({
@@ -17,7 +17,7 @@ export const Btn = Capsule({
 
     })
 })((props) => (
-    <div className={props.classes.btn} onClick={props.onClick}>
+    <div className={props.cx(props.classes.btn)} onClick={props.onClick}>
         <div>
             {props.children}
         </div>
