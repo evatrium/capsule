@@ -31,6 +31,8 @@ export const routingLogic = Capsule({
                 history.push({search: qs.stringify(search)});
             }
         };
+        const getPathName = ()=> history.location.pathname;
+
         const getParams = (string) => {
             if (!string) {
                 string = history.location.search;
@@ -50,6 +52,7 @@ export const routingLogic = Capsule({
             goTo,
             transTo,
             getParams,
+            getPathName,
             history,
         }
     }
