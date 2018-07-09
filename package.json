@@ -1,6 +1,6 @@
 {
     "name": "@iosio/capsule",
-    "version": "0.0.15",
+    "version": "0.0.16",
     "description": "Opinionated mini framework for React. Handles state, styles and more...",
     "main": "lib/index.js",
     "license": "ISC",
@@ -55,7 +55,6 @@
         "regenerator-runtime": "^0.12.0",
         "rimraf": "^2.6.2"
     },
-
     "dependencies": {
         "@iosio/components": "^0.0.10",
         "@iosio/utils": "^1.0.43",
