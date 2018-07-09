@@ -20,28 +20,3 @@ const App = CapsuleProvider({
 render(<App/>, document.getElementById('root'));
 
 
-
-/*
-
-const App = CapsuleProvider({
-    provide_to_logic: {fakeApi},
-    provide_to_props: {cx},
-    theme,
-    global_styles,
-})(Main);
-
-render(App, document.getElementById('root'))
-
-
----- must access content provided to logic the following way:
-
-logic: ({provider}) =>({
-
-    requestLogin: (credentials)=>{
-        provider().fakeApi.requestAccess()
-    }
-
-})
-
-
-*/
