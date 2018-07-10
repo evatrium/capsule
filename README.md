@@ -1,5 +1,6 @@
 
 <h1>IOSIO capsule</h1>
+<img src="https://img.shields.io/circleci/project/github/iosio/capsule.svg" />
 <h4>installation</h4> 
 <pre>
 npm i -S @iosio/capsule
