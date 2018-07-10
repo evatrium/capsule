@@ -81,7 +81,8 @@
             "/sandbox/",
             "/example/",
             "/lib/",
-            "/coverage/"
+            "/coverage/",
+            "/testing/router-testing/"
         ]
     }
 }
