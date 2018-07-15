@@ -2,6 +2,7 @@ import React from 'react';
 
 import {ListViewCapsule} from "./listViewCapsule";
 import {Loading} from "../../components/Loading";
+import {Nested} from "./Nested";
 
 @ListViewCapsule
 export default class ListView extends React.Component {
@@ -28,6 +29,10 @@ export default class ListView extends React.Component {
 
                 <div>
                     <h1>TODOS</h1>
+                </div>
+                <div>
+
+                        <Nested/>
                 </div>
 
                 <div>

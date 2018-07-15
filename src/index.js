@@ -10,6 +10,7 @@ export class CapsuleModule {
 
         let _provide_to_props = {};
         let collective_logic = {};
+        let state = {};
 
         const CapsuleProvider = (config) => { //provide_to_props, provide_to_logic, theme, global_styles
             if (config && config.provide_to_props) {
@@ -54,7 +55,6 @@ export class CapsuleModule {
                 mapLogicToProps
             }) => {
 
-            let state;
 
             if (reducer_name && initial_state) {
                 state = reduxAssist(reducer_name, initial_state)

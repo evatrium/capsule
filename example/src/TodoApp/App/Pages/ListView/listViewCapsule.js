@@ -6,7 +6,7 @@ import {Capsule} from "../../../../@iosio/capsule";
 
 
 export const ListViewCapsule = Capsule({
-    reducer_name: 'todos',
+    reducer_name: 'list_view_state',
     styles: (theme) => ({
         root: {
             paddingTop: theme.nav.height,
@@ -27,15 +27,15 @@ export const ListViewCapsule = Capsule({
         list: [],
         fetching_todos: false
     },
-    logic_name: 'list_view',
+    logic_name: 'list_view_logic',
     logic: ({fakeApi, state, collective}) => ({
 
         getTodos: () => {
-            state.todos.set.fetching_todos(true);
+            state.list_view_state.set.fetching_todos(true);
             //delay 1000ms
             collective().fakeApi.getData(1000).then((response) => {
-                state.todos.set.fetching_todos(false);
-                state.todos.set.list(response.data);
+                state.list_view_state.set.fetching_todos(false);
+                state.list_view_state.set.list(response.data);
             });
         },
         editTodo: (id) => {
@@ -44,13 +44,13 @@ export const ListViewCapsule = Capsule({
 
     }),
     mapStateToProps: (state) => ({
-        todos: state.todos.list,
-        fetching: state.todos.fetching_todos
+        todos: state.list_view_state.list,
+        fetching: state.list_view_state.fetching_todos
     }),
     mapLogicToProps:
         (logic) => ({
-            getTodos: logic.list_view.getTodos,
-            editTodo: logic.list_view.editTodo
+            getTodos: logic.list_view_logic.getTodos,
+            editTodo: logic.list_view_logic.editTodo
         })
 
 });
