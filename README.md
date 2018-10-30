@@ -142,7 +142,7 @@ import React from 'react';
 import {Capsule} from '@iosio/capsule';
 /*
     capsules may be used solely as factories or services if you choose
-    without having to wrap a component
+    without having to wrap a component. In this example we will be accessing this capsule in the 'MyRootAppComponent'
  */
 export const myDataCapsule = Capsule({
 
