@@ -30,6 +30,7 @@ npm i -S @iosio/capsule
 
 Begin by configuring the CapsuleProvider at the most root level 
 of your application.
+(theme and global styles shown here for example )
 
 **index.js**
 ```js
