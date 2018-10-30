@@ -76,7 +76,6 @@ export const my_global_styles = () => ({
             height: '100%',
             width: '100%',
             WebkitFontSmoothing: 'antialiased', // Antialiasing.
-            MozOsxFontSmoothing: 'grayscale', // Antialiasing.
             fontFamily: '"Helvetica", "Arial", sans-serif',
             background: 'white',
             boxSizing: 'border-box',
