@@ -40,7 +40,7 @@ import ReactDOM from 'react-dom';
 
 import cx from 'classnames';// util to join classnames together
 
-import {MyService} from 'MyService';
+import {Client} from 'client';
 
 import {MyRootAppComponent} from './MyRootAppComponent';
 
@@ -105,7 +105,7 @@ export const my_global_styles = () => ({
     and inject the instance via the provider
 
  */
-const myService = new MyService();
+const client = new Client();
 
 
 const App = CapsuleProvider({
@@ -125,7 +125,7 @@ const App = CapsuleProvider({
             value here will be injected into the Capsule logic function 
             via the collective argument.
          */
-        myService
+        client
     }
 
 })(MyRootAppComponent); //wrap your root component here
@@ -200,7 +200,7 @@ export const myDataCapsule = Capsule({
 
             set.fetchingData(true); // set the state to indicate to the user that a request is being made
 
-            collective().myService.get('/someData')
+            collective().client.get('/someData')
                 .then((res) => {
 
                     /*
@@ -288,6 +288,7 @@ const MyButtonComponent = Capsule({
 
 /*
     many ways to use it...
+    just another example
  */
 const buttonStyleCapsule = Capsule({
     styles: (theme) => ({
@@ -305,8 +306,9 @@ const AnotherButtonComponent = (props) => {
 const MyButtonComponentWithStyles = buttonStyleCapsule(AnotherButtonComponent);
 
 
-
-
+/*
+    example using decorator
+ */
 @Capsule({
     styles: ({color}) => ({
         randomStylesForLoadingIndicator: {
