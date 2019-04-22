@@ -5,6 +5,8 @@ node_modules
 # testing
 /coverage
 
+# rando
+/scrap
 quicky
 quicky.js
 
@@ -19,3 +21,10 @@ quicky.js
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+#nwb
+/demo/dist
+/es
+/lib
+/umd
+

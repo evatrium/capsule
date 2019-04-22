@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CapsuleProvider 
+asynchronously loads the app without crashing.
+verify that:
+    theme is passed
+    classes are created
+    aliases are mapped accordingly.
+    toProps passes data to props
+    toLogic passes logic to logic
+     1`] = `
+Array [
+  <div
+    className="x0 x1 x2 x3 x4"
+  >
+    <button
+      className="x5"
+    >
+      loggin
+    </button>
+    {
+    "theme": {
+        "color": {
+            "primary": "red"
+        },
+        "mixins": {
+            "centerize": {
+                "display": "flex",
+                "alignItems": "center",
+                "justifyContent": "center"
+            },
+            "all100": {
+                "height": "100%",
+                "width": "100%"
+            }
+        }
+    },
+    "propsTest": "props from provider",
+    "classes": {
+        "app": "x0 x1",
+        "someOtherClass": "x2 x3 x4",
+        "loginButton": "x5"
+    }
+}
+  </div>,
+  " ",
+]
+`;
