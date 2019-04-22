@@ -1,0 +1,66 @@
+body, html {
+    font-family: Montserrat, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+    overflow-x: hidden;
+    margin: 0;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: transparent;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%
+}
+
+#demo, .outer, body, html {
+    width: 100%;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    min-height: 100vh
+}
+
+#demo {
+    -webkit-flex-grow: 1;
+    flex-grow: 1;
+    padding: 70px 20px 10px 20px ;
+    position: relative;
+}
+
+
+*, :after, :before {
+    box-sizing: border-box
+}
+
+.nav{
+    position: absolute;
+    top:0;
+    left: 0;
+    right: 0;
+    box-shadow: 0px 4px 16px 0px rgba(62, 76, 174, 0.17);
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.btn{
+    margin: 0 10px
+}
+
+.page{
+    height: 100%;
+    width: 100%;
+}
+
+.flexRow{
+    display: flex;
+    align-items: center;
+}
+
+.link{
+    margin: 10px;
+}
+.currPath{
+    color: #fe44ff;
+}

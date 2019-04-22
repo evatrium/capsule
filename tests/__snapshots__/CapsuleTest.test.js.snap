@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`
+provides the expected arguments to logic: actions, store, collective, events.
+
+routing actions and logic are provided to collective by default
+
+returns logic when nothing is passed to the second curried function call
+
+can map state, logic and actions to a component 
+
+component updates with the correct values when logic and action functions are fired 
+
+     1`] = `
+Array [
+  <div>
+    <div>
+      <button
+        id="setValue"
+        onClick={[Function]}
+      >
+        updated
+      </button>
+      <button
+        id="setCount"
+        onClick={[Function]}
+      >
+        2
+      </button>
+      {
+    "set": {},
+    "count": 2,
+    "value": "updated",
+    "theme": {},
+    "classes": null
+}
+    </div>
+    Hello
+  </div>,
+  " ",
+]
+`;
