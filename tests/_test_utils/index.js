@@ -1,5 +1,5 @@
 import React from 'react'
-import {render, fireEvent, cleanup, queryByAttribute} from 'react-testing-library';
+import { queryByAttribute} from 'react-testing-library';
 
 export const getById = queryByAttribute.bind(null, 'id');
 

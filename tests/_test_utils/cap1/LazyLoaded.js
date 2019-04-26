@@ -19,7 +19,7 @@ export default Capsule({
             events.emit('mounted', {...props, toLogicTest})
         }
     }),
-    mapLogicToProps: {app: 'onMount'}
+    mapLogic: {app: 'onMount'}
 })(class App extends React.Component {
 
     componentDidMount() {
@@ -27,9 +27,9 @@ export default Capsule({
     }
 
     render() {
-        const {cx, classes} = this.props;
+        const {cn, classes} = this.props;
         return (
-            <div className={cx(classes.app, classes.someOtherClass)}>
+            <div className={cn(classes.app, classes.someOtherClass)}>
                 <button className={classes.loginButton}>loggin</button>
                 {JSON.stringify(this.props, null, 4)}
             </div>

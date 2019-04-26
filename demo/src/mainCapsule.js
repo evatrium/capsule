@@ -1,4 +1,5 @@
-import {Capsule} from '../../src'
+import {Capsule} from '../../src';
+import {goTo} from '@iosio/routing';
 
 import {lsdb} from "@iosio/utils/lib/lsdb";
 
@@ -9,7 +10,7 @@ export const mainCapsule = Capsule({
         isAdmin: false,
         text: ''
     },
-    logic: ({actions: {main: {set, get,update, merge, toggle}}, collective})=>{
+    logic: ({actions: {main: {set, get,update, merge, toggle}}})=>{
 
         const login = ()=>{
             lsdb.set('loggedIn', true);
@@ -22,7 +23,7 @@ export const mainCapsule = Capsule({
         };
 
         const onSubmitText = ()=>{
-            collective().routing.goTo(get.text())
+            goTo(get.text());
             set.text('');
         };
 

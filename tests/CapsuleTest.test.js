@@ -59,26 +59,6 @@ component updates with the correct values when logic and action functions are fi
                         merge: expect.any(Function),
                         getState: expect.any(Function)
                     },
-                    routing: {
-                        set: {
-                            pathname: expect.any(Function),
-                            search: expect.any(Function),
-                            params: expect.any(Function),
-                        },
-                        get: {
-                            pathname: expect.any(Function),
-                            search: expect.any(Function),
-                            params: expect.any(Function),
-                        },
-                        toggle: {
-                            pathname: expect.any(Function),
-                            search: expect.any(Function),
-                            params: expect.any(Function),
-                        },
-                        update: expect.any(Function),
-                        merge: expect.any(Function),
-                        getState: expect.any(Function)
-                    }
                 },
                 store: {
                     setState: expect.any(Function),
@@ -97,17 +77,6 @@ component updates with the correct values when logic and action functions are fi
                 collective: expect.any(Function)
             });
 
-            const returnedFromCollective = logicArguments.collective();
-
-            expect(returnedFromCollective).toMatchObject({
-
-                routing: {
-                    goTo: expect.any(Function),
-                    getLoc: expect.any(Function),
-                    subscribe: expect.any(Function)
-                }
-
-            });
 
             return {
                 logicTest: (val) => {

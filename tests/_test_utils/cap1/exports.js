@@ -4,16 +4,12 @@ const {
     CapsuleProvider,
     Capsule,
     events,
-    lazyLoader,
-    routingCapsule,
-    Routing
+    lazyLoader
 } = CreateCapsule();
 
 export {
     CapsuleProvider,
     Capsule,
     events,
-    lazyLoader,
-    routingCapsule,
-    Routing
+    lazyLoader
 }

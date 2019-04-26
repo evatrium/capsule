@@ -1,7 +1,7 @@
 import React from 'react';
-import {Capsule, Routing} from '../../src';
+import {Capsule} from '../../src';
+import {Router, goTo, Link} from '@iosio/routing';
 
-const {goTo, Router, Link} = Routing;
 
 import {mainCapsule} from "./mainCapsule";
 
@@ -97,7 +97,6 @@ const App = Capsule({
                     )}/>
 
                     {renderLinks()}
-
 
                 </div>
 

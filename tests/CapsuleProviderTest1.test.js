@@ -42,17 +42,12 @@ verify that:
             theme,
             toProps: {propsTest: 'props from provider'},
             toLogic: {toLogicTest: 'logic from provider'},
-            aliases: {
-                cn: 'cx',
-                mapLogic: 'mapLogicToProps'
-            }
-
         })();
 
         const tree = renderer.create(<App/>);
 
         await till('mounted').then((data) => {
-            expect(data.cx).toBeDefined();
+            expect(data.cn).toBeDefined();
             expect(data.theme.color.primary).toBe('red');
             expect(data.propsTest).toBe('props from provider');
             expect(data.toLogicTest).toBe('logic from provider');

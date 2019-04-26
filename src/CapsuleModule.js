@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 
-
 class Root extends Component {
     render() {
         return (
@@ -11,27 +10,8 @@ class Root extends Component {
     }
 }
 
-let aliases = {
-    name: 'name',
-    styles: 'styles',
-    css: 'css',
-    initialState: 'initialState',
-    actionsName: 'actionsName',
-    mapState: 'mapState',
-
-    logicName: 'logicName',
-    logic: 'logic',
-    mapLogic: 'mapLogic',
-    mapActions: 'mapActions',
-
-    //logic arguments
-    actions: 'actions',
-    collective: 'collective',
-    cn: 'cn'
-};
-
-
 export const CapsuleModule = ({createStore, actionsCreator, classNames, asyncHOC, connect, Provider, jssProcessor, events}) => {
+
     const store = createStore();
     const cn = classNames;
     let collective = {};
@@ -39,19 +19,11 @@ export const CapsuleModule = ({createStore, actionsCreator, classNames, asyncHOC
     let theme = {};
     let propsFromProvider = {};
     let logicFromProvider = {};
-    let insertStyleSheet;
     let _jssProcessor = jssProcessor;
     let stylesHOC;
     let RootComponent;
 
-    let doAliasing = false;
-
-
     const CapsuleProvider = (config = {}) => {
-        if (config.aliases) {
-            doAliasing = true;
-            aliases = {...aliases, ...config.aliases};
-        }
 
         theme = config.theme || {};
         propsFromProvider = config.toProps || {};
@@ -60,7 +32,6 @@ export const CapsuleModule = ({createStore, actionsCreator, classNames, asyncHOC
         stylesHOC = config.stylesHOC;
         RootComponent = config.RootComponent || Root;
         collective = {...collective, ...config.toCollective};
-        insertStyleSheet = config.insertStyleSheet;
 
 
         return (Child = null) => {
@@ -93,7 +64,7 @@ export const CapsuleModule = ({createStore, actionsCreator, classNames, asyncHOC
         return logic({
             ...logicFromProvider,
             events,
-            [aliases.actions]: actions,
+            actions,
             store,
             collective: () => collective
         })
@@ -107,27 +78,9 @@ export const CapsuleModule = ({createStore, actionsCreator, classNames, asyncHOC
         }
     };
 
-    const withTheme = (source) => typeof source === 'function' ? source(theme) : source;
-
     const makeClassesFromStyles = (styles) => {
         if (!styles || !_jssProcessor) return null;
-        return _jssProcessor(withTheme(styles));
-    };
-
-    const makeCSS = (css) => {
-        if (insertStyleSheet && css) {
-            insertStyleSheet(withTheme(css));
-        }
-    };
-
-    const makeAliases = (c) => {
-        if (!doAliasing) return c;
-        const a = aliases;
-        let ali = {};
-        Object.keys(a).forEach(key => {
-            ali[key] = c[key] ? c[key] : c[a[key]]
-        });
-        return ali;
+        return _jssProcessor(typeof styles === 'function' ? styles(theme) : styles);
     };
 
     const Capsule = (c = {}) => {
@@ -135,7 +88,6 @@ export const CapsuleModule = ({createStore, actionsCreator, classNames, asyncHOC
         let {
             name,
             styles,
-            css,
             initialState,
             actionsName,
             mapState,
@@ -143,7 +95,7 @@ export const CapsuleModule = ({createStore, actionsCreator, classNames, asyncHOC
             logicName,
             logic,
             mapLogic,
-        } = makeAliases(c);
+        } = c;
 
         if (name) {
             if (!actionsName) actionsName = name;
@@ -158,8 +110,6 @@ export const CapsuleModule = ({createStore, actionsCreator, classNames, asyncHOC
 
         let classes = makeClassesFromStyles(styles);
 
-        makeCSS(css);
-
         return (Child) => {
             if (!Child) return returnLogic;
 
@@ -172,7 +122,7 @@ export const CapsuleModule = ({createStore, actionsCreator, classNames, asyncHOC
                 mapActions,
                 mapLogic,
                 additionalProps: {
-                    [aliases.cn]: cn,
+                    cn,
                     theme,
                     ...propsFromProvider,
                     classes
