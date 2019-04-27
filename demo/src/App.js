@@ -7,6 +7,8 @@ import {mainCapsule} from "./mainCapsule";
 
 
 
+
+
 const Page = (props) => {
     return (
         <div className={'page'}>

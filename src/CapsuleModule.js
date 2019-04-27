@@ -33,7 +33,6 @@ export const CapsuleModule = ({createStore, actionsCreator, classNames, asyncHOC
         RootComponent = config.RootComponent || Root;
         collective = {...collective, ...config.toCollective};
 
-
         return (Child = null) => {
 
             const AC = asyncHOC && config.loadApp ? asyncHOC(config.loadApp) : null;
@@ -66,7 +65,7 @@ export const CapsuleModule = ({createStore, actionsCreator, classNames, asyncHOC
             events,
             actions,
             store,
-            collective: () => collective
+            collective: () => collective,
         })
     };
 
@@ -137,3 +136,5 @@ export const CapsuleModule = ({createStore, actionsCreator, classNames, asyncHOC
     }
 
 };
+
+

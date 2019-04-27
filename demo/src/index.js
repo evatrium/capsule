@@ -5,7 +5,8 @@ import './styles.css';
 import {CapsuleProvider} from '../../src'
 
 const App = CapsuleProvider({
-    loadApp: ()=>import('./App')
+    experimentalMergeLogic: true,
+    loadApp: ()=>import('./WithRoutingCapsule')
 })();
 
 

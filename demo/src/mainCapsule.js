@@ -1,5 +1,4 @@
 import {Capsule} from '../../src';
-import {goTo} from '@iosio/routing';
 
 import {lsdb} from "@iosio/utils/lib/lsdb";
 
@@ -10,24 +9,28 @@ export const mainCapsule = Capsule({
         isAdmin: false,
         text: ''
     },
-    logic: ({actions: {main: {set, get,update, merge, toggle}}})=>{
+    logic: ({actions: {main: {set, get, update, merge, toggle}}, collective}) => {
 
-        const login = ()=>{
+        const {routing: r} = collective();
+
+        const login = () => {
             lsdb.set('loggedIn', true);
             set.loggedIn(true);
+            r.route('/authOnly')
         };
 
-        const logout = ()=>{
+        const logout = () => {
             lsdb.destroy('loggedIn');
             set.loggedIn(false);
+            r.route('/login');
         };
 
-        const onSubmitText = ()=>{
-            goTo(get.text());
+        const onSubmitText = () => {
+            r.route(get.text());
             set.text('');
         };
 
-        const setAdmin = ()=>{
+        const setAdmin = () => {
             toggle.isAdmin();
         };
 
