@@ -19,9 +19,9 @@ export const routing = Capsule({
 
         let {pathname, search, url} = history.getLocation();
 
-        let last_url = url;
-        let last_search = search;
-        let last_pathname = pathname;
+        let last_url = url,
+            last_search = search,
+            last_pathname = pathname;
 
         history.listen((loc) => {
             if (loc.url !== last_url) {
