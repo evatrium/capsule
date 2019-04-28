@@ -1,10 +1,8 @@
 import React from 'react';
-import {Capsule} from '../../src';
-import {routing} from "../../src/routing";
+import {Capsule, Router} from '../../src';
 
 import {mainCapsule} from "./mainCapsule";
 
-import {Router} from "../../src/routing";
 
 
 class Page extends React.Component {

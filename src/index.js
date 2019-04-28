@@ -2,5 +2,7 @@ export {
     CapsuleProvider,
     Capsule,
     events,
-    lazyLoader
+    lazyLoader,
+    routing,
+    Router
 } from './created';

@@ -1,10 +1,9 @@
 import React from 'react';
-import {Capsule} from './index';
 import {createHistory, getPathnameFromString as gpfs} from "@iosio/history";
 
 const history = createHistory();
 
-export const routing = Capsule({
+export const routingConfig = {
     name: 'routing',
     initialState: {
         ...history.getLocation(),
@@ -56,14 +55,15 @@ export const routing = Capsule({
         }
 
     }
-});
+};
 
-
-export const Router = Capsule({
+export const routerConfig = {
     mapLogic: {routing: 'setAccessibleRoutes,replace'},
     mapState: {routing: 'url,pathname,search,params,lastUrl'},
     mapActions: {routing: 'get'}
-})(class Router extends React.Component {
+};
+
+export class RouterComponent extends React.Component {
     constructor(props) {
         super(props);
         props.setAccessibleRoutes(props.accessibleRoutes);
@@ -95,4 +95,4 @@ export const Router = Capsule({
     render() {
         return this.getCheckedRoute()
     }
-});
+}

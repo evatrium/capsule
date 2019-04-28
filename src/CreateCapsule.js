@@ -4,6 +4,7 @@ import {lazyLoader } from "./lazyLoader";
 import {CapsuleModule} from "./CapsuleModule";
 import {JSS_nano} from "@iosio/jss_nano";
 import {Eventer} from '@iosio/utils/lib/eventer';
+import {routingConfig, routerConfig, RouterComponent} from "./routing";
 
 export const CreateCapsule = () => {
 
@@ -20,12 +21,16 @@ export const CreateCapsule = () => {
         events
     });
 
+    const routing = Capsule(routingConfig)();
+    const Router = Capsule(routerConfig)(RouterComponent);
 
     return {
         CapsuleProvider,
         Capsule,
         events,
         lazyLoader,
+        routing,
+        Router
     }
 
 };

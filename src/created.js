@@ -4,5 +4,7 @@ export const {
     CapsuleProvider,
     Capsule,
     events,
-    lazyLoader
+    lazyLoader,
+    Router,
+    routing
 } = CreateCapsule();
