@@ -3,7 +3,7 @@
 
 <br/>
 
-> Simple state, styles, and convenience tool for React.
+> Simple state, styles, routing and convenience tool for React.
  
 
 The features of this tool (collected from common patterns) reduce
