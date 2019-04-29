@@ -4,5 +4,6 @@ export {
     events,
     lazyLoader,
     routing,
-    Router
+    Router,
+    Linkage
 } from './created';

@@ -1,0 +1,99 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`routing with react test renderer renders without crashing 1`] = `
+Array [
+  <nav
+    className="nav"
+  >
+    <div
+      className="flexRow"
+    >
+      <a
+        className="link"
+        classes={null}
+        href="/"
+        id="home"
+        onClick={[Function]}
+        theme={Object {}}
+      >
+        <div
+          className="currPath"
+        >
+          home
+        </div>
+      </a>
+      <a
+        className="link"
+        classes={null}
+        href="/detail"
+        id="detail"
+        onClick={[Function]}
+        theme={Object {}}
+      >
+        <div
+          className={null}
+        >
+          detail
+        </div>
+      </a>
+      <a
+        className="link"
+        classes={null}
+        href="/authOnly"
+        id="authOnly"
+        onClick={[Function]}
+        theme={Object {}}
+      >
+        <div
+          className={null}
+        >
+          authOnly
+        </div>
+      </a>
+      <a
+        className="link"
+        classes={null}
+        href="/restricted"
+        id="restricted"
+        onClick={[Function]}
+        theme={Object {}}
+      >
+        <div
+          className={null}
+        >
+          restricted
+        </div>
+      </a>
+    </div>
+    <div
+      className="flexRow"
+    >
+      <button
+        className="btn"
+        id="login"
+        onClick={[Function]}
+      >
+        login
+      </button>
+      <button
+        className="btn"
+        id="toggleAdmin"
+        onClick={[Function]}
+      >
+        is Admin: 
+        false
+      </button>
+    </div>
+  </nav>,
+  <div
+    className="page"
+  >
+    {
+    "name": "Home",
+    "theme": {},
+    "classes": null
+}
+  </div>,
+  " ",
+]
+`;

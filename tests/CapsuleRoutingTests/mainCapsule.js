@@ -1,33 +1,23 @@
 import {Capsule} from '../../src';
 
-import {lsdb} from "@iosio/utils/lib/lsdb";
-
 export const mainCapsule = Capsule({
     name: 'main',
     initialState: {
-        loggedIn: lsdb.get('loggedIn'),
+        loggedIn: false,
         isAdmin: false,
-        text: ''
     },
-    logic: ({actions: {main: {set, get, update, merge, toggle}}, collective}) => {
+    logic: ({actions: {main: {set, get, update, merge, toggle, getState}}, collective}) => {
 
         const {routing: r} = collective();
 
         const login = () => {
-            lsdb.set('loggedIn', true);
             set.loggedIn(true);
             r.goTo('/authOnly')
         };
 
         const logout = () => {
-            lsdb.destroy('loggedIn');
             set.loggedIn(false);
             r.goTo('/login');
-        };
-
-        const onSubmitText = () => {
-            r.route(get.text());
-            set.text('');
         };
 
         const setAdmin = () => {
@@ -38,8 +28,8 @@ export const mainCapsule = Capsule({
             login,
             logout,
             setAdmin,
-            onSubmitText
+            getState
         }
     }
 
-})();
+});

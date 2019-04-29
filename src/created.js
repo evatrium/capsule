@@ -6,5 +6,6 @@ export const {
     events,
     lazyLoader,
     Router,
-    routing
+    routing,
+    Linkage
 } = CreateCapsule();

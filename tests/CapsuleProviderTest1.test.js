@@ -32,9 +32,9 @@ asynchronously loads the app without crashing.
 verify that:
     theme is passed
     classes are created
-    aliases are mapped accordingly.
     toProps passes data to props
     toLogic passes logic to logic
+    routing is available from collective in logic
     `, async () => {
 
         const App = CapsuleProvider({
@@ -51,6 +51,7 @@ verify that:
             expect(data.theme.color.primary).toBe('red');
             expect(data.propsTest).toBe('props from provider');
             expect(data.toLogicTest).toBe('logic from provider');
+            expect(data.routing).toBeInstanceOf(Object)
         });
 
         expect(tree).toMatchSnapshot();

@@ -1,22 +1,24 @@
 import React from 'react';
-import {Capsule, Router} from '../../src';
+import {Capsule, Router, Linkage} from '../../src';
 
 import {mainCapsule} from "./mainCapsule";
-
 
 
 class Page extends React.Component {
     componentDidMount() {
         console.log('mounted Home at this path: ', this.props.url);
     }
+
     componentWillUnmount() {
         console.log('unmounted page')
     }
 
+    getUrl = ()=>window.location.pathname;
+
     render() {
         return (
             <div className={'page'}>
-                <h1> you are here {this.props.url} </h1>
+                <h1> you are here {this.getUrl()} </h1>
             </div>
         )
     }
@@ -26,18 +28,35 @@ class Detail extends React.Component {
     componentDidMount() {
         console.log('mounted detail at this path: ', this.props.url);
     }
+
     componentWillUnmount() {
         console.log('unmounted page')
     }
 
+    getUrl = ()=>window.location.pathname;
+
     render() {
         return (
             <div className={'page'}>
-                <h1> you are here {this.props.url} </h1>
+                <h1> you are here {this.getUrl()} </h1>
             </div>
         )
     }
 }
+
+
+const Link = ({toPath, toParams, name}) => (
+    <Linkage toPath={toPath} toParams={toParams} className={'link'}>
+        {({pathname}) => {
+            const activeClass = toPath === pathname ? 'currPath' : null;
+            return (
+                <div className={activeClass}>
+                    {name}
+                </div>
+            );
+        }}
+    </Linkage>
+);
 
 
 const Nav = Capsule({
@@ -54,16 +73,13 @@ const Nav = Capsule({
                 onSubmitText();
             }}>
                 <input value={text} onChange={({target}) => set.text(target.value)}/>
+                <button className={'btn'} onClick={onSubmitText}> go</button>
             </form>
 
-            <button className={'btn'} onClick={onSubmitText}> go</button>
-
-            {/*<Link to={'/detail'} params={{id: 3, user: "Joe Dirt"}} render={({pathname}) => (*/}
-            {/*<span className={pathname === '/detail/' ? 'currPath' : null}>*/}
-            {/*go to detail with params*/}
-            {/*</span>*/}
-            {/*)}/>*/}
-
+            <Link toPath={'/'} name={'home'}/>
+            <Link toPath={'/detail'} name={'detail'}/>
+            <Link toPath={'/authOnly'} name={'authOnly'}/>
+            <Link toPath={'/restricted'} name={'restricted'}/>
 
         </div>
 
@@ -93,7 +109,7 @@ const WithRoutingCapsule = Capsule({
         const publicRouts = {
             '/': Page,
             '/detail': Detail,
-            '/login':Page,
+            '/login': Page,
 
         };
 

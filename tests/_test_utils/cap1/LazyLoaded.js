@@ -14,9 +14,10 @@ export default Capsule({
             background: color.primary
         }
     }),
-    logic: ({events, toLogicTest}) => ({
+    logic: ({events, toLogicTest, collective}) => ({
+
         onMount: (props) => {
-            events.emit('mounted', {...props, toLogicTest})
+            events.emit('mounted', {...props, toLogicTest, ...collective()})
         }
     }),
     mapLogic: {app: 'onMount'}
