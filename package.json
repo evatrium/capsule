@@ -1,6 +1,6 @@
 {
   "name": "@iosio/capsule",
-  "version": "2.1.6",
+  "version": "2.1.7",
   "description": "Opinionated mini framework for React. Handles state, styles, routing and more...",
   "main": "lib/index.js",
   "module": "es/index.js",
