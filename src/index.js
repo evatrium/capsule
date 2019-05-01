@@ -6,5 +6,6 @@ export {
     routing,
     Router,
     Linkage,
-    jss_nano
+    jss_nano,
+    cn
 } from './created';

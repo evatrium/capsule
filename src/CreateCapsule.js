@@ -39,7 +39,8 @@ export const CreateCapsule = () => {
         Router,
         Linkage,
         WithRouting,
-        jss_nano
+        jss_nano,
+        cn: classNames
     }
 
 };

@@ -8,5 +8,6 @@ export const {
     Router,
     routing,
     Linkage,
-    jss_nano
+    jss_nano,
+    cn
 } = CreateCapsule();
