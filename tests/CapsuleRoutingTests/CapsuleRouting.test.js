@@ -163,7 +163,7 @@ describe('it renders the correct component when the location is changed', () => 
                     resolve();
                     resolved = true;
                 }
-                events.off(callback);
+                events.off('mounted', callback);
             };
 
             events.on('mounted', callback);

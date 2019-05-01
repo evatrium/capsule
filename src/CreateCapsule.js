@@ -10,6 +10,8 @@ export const CreateCapsule = () => {
 
     const events = Eventer();
 
+    const jss_nano = JSS_nano(process.env.NODE_ENV === 'development');
+
     const {CapsuleProvider, Capsule} = CapsuleModule({
         createStore,
         connect,
@@ -17,7 +19,7 @@ export const CreateCapsule = () => {
         actionsCreator: createActions,
         classNames,
         asyncHOC: lazyLoader,
-        jssProcessor: JSS_nano(process.env.NODE_ENV === 'development'),
+        jssProcessor: jss_nano,
         events
     });
 
@@ -36,7 +38,8 @@ export const CreateCapsule = () => {
         routing,
         Router,
         Linkage,
-        WithRouting
+        WithRouting,
+        jss_nano
     }
 
 };

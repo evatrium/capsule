@@ -7,5 +7,6 @@ export const {
     lazyLoader,
     Router,
     routing,
-    Linkage
+    Linkage,
+    jss_nano
 } = CreateCapsule();

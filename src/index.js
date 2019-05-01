@@ -5,5 +5,6 @@ export {
     lazyLoader,
     routing,
     Router,
-    Linkage
+    Linkage,
+    jss_nano
 } from './created';
