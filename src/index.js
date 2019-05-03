@@ -1,11 +1,13 @@
-export {
+import {CreateCapsule} from "./CreateCapsule";
+
+export const {
     CapsuleProvider,
     Capsule,
     events,
     lazyLoader,
-    routing,
     Router,
+    routing,
     Linkage,
     jss_nano,
     cn
-} from './created';
+} = CreateCapsule();

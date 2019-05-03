@@ -227,8 +227,8 @@ describe('it renders the correct component when the location is changed', () => 
         });
 
     });
-
-
+    //
+    //
     // it('it allows a protected route to be accessible upon login', () => {
     //
     //     // expect.assertions(3);

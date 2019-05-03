@@ -97,8 +97,8 @@ export const createRouting = (Capsule) => {
         };
 
         componentDidUpdate(prevProps, prevState, snapshot) {
-            const { setAccessiblePaths, accessiblePaths, root} = this.props;
-            root && prevProps.accessiblePaths !== accessiblePaths
+            const {setAccessiblePaths, accessiblePaths} = this.props;
+            accessiblePaths && (prevProps.accessiblePaths !== accessiblePaths)
             && setAccessiblePaths(accessiblePaths);
         }
 
@@ -111,7 +111,7 @@ export const createRouting = (Capsule) => {
     const Linkage = Capsule({
         mapState: {routing: 'pathname,search,params,url'},
         mapLogic: {routing: 'route,goTo,canRoute'}
-    })(class WithRouting extends React.Component {
+    })(class Linkage extends React.Component {
         render() {
             const {
                 toPath, toParams, href, route, onClick,
