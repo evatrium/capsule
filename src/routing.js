@@ -9,7 +9,7 @@ export const createRouting = (Capsule) => {
         name: 'routing',
         initialState: {
             ...history.getLocation(),
-            accessible: {},
+            accessible: [],
             lastUrl: history.getLocation().url
         },
         logic: ({actions: {routing: {set, get, merge, getState}}, events}) => {
@@ -39,8 +39,10 @@ export const createRouting = (Capsule) => {
                 last_pathname = loc.pathname;
             });
 
-            const setAccessibleRoutes = (paths = {}) => set.accessible(paths);
-            const canRoute = (place) => !!get.accessible()[place];
+            const setAccessiblePaths = (paths) => set.accessible(paths);
+
+            const canRoute = (path) => !!get.accessible().includes(path);
+
             const route = (path = window.location.pathname, params) => {
                 setTimeout(() => {
                     canRoute(gpfs(path))
@@ -53,51 +55,55 @@ export const createRouting = (Capsule) => {
                 LOCATION_PARAMS_CHANGE,
                 LOCATION_PATHNAME_CHANGE,
                 LOCATION_CHANGE,
-                setAccessibleRoutes,
+                setAccessiblePaths,
                 route,
             }
         }
     })();
 
-
     const Router = Capsule({
-        mapLogic: {routing: 'setAccessibleRoutes,replace'},
+        mapLogic: {routing: 'setAccessiblePaths,replace'},
         mapState: {routing: 'url,pathname,search,params,lastUrl'},
         mapActions: {routing: 'get'}
     })(class RouterComponent extends React.Component {
         constructor(props) {
-            super(props);
-            props.setAccessibleRoutes(props.accessibleRoutes);
+            super();
+            const {setAccessiblePaths, accessiblePaths} = props;
+            accessiblePaths && setAccessiblePaths(accessiblePaths);
         }
 
-        getCheckedRoute = () => {
-            const {
-                accessibleRoutes: acc, pathname: pn, get,
-                noMatchRedirectTo: noMatch, replace
+        getChecked = () => {
+            let {
+                pathMap, pathname: pn, get,
+                noMatch, replace, root
             } = this.props;
             let C = null, url = get.url(), lastUrl = get.lastUrl(), r = false;
-            if (acc[pn]) {
-                C = acc[pn];
-            } else if (lastUrl !== url && acc[gpfs(lastUrl)]) {
-                r = lastUrl;
-                C = acc[gpfs(lastUrl)]
-            } else if (noMatch && acc[noMatch]) {
-                r = noMatch;
-                C = acc[noMatch]
+            if (root) {
+                let bp = '/' + gpfs(url).split('/')[1];
+                C = pathMap[bp] ? pathMap[bp] : pathMap[noMatch];
+            } else {
+                if (pathMap[pn]) {
+                    C = pathMap[pn];
+                } else if (lastUrl !== url && pathMap[gpfs(lastUrl)]) {
+                    r = lastUrl;
+                    C = pathMap[gpfs(lastUrl)]
+                } else if (noMatch && pathMap[noMatch]) {
+                    r = noMatch;
+                    C = pathMap[noMatch]
+                }
             }
             r && setTimeout(() => replace(r));
             return C ? <C/> : null;
         };
 
         componentDidUpdate(prevProps, prevState, snapshot) {
-            const {accessibleRoutes, setAccessibleRoutes} = this.props;
-            if (prevProps.accessibleRoutes !== accessibleRoutes) {
-                setAccessibleRoutes(accessibleRoutes);
-            }
+            const { setAccessiblePaths, accessiblePaths, root} = this.props;
+            root && prevProps.accessiblePaths !== accessiblePaths
+            && setAccessiblePaths(accessiblePaths);
         }
 
         render() {
-            return this.getCheckedRoute()
+            return this.getChecked()
         }
     });
 
@@ -108,7 +114,7 @@ export const createRouting = (Capsule) => {
     })(class WithRouting extends React.Component {
         render() {
             const {
-                toPath, toParams, href, route,
+                toPath, toParams, href, route, onClick,
                 //ignore
                 cn, pathname, goTo, search, params, url, canRoute, children,
                 ...rest
@@ -125,6 +131,7 @@ export const createRouting = (Capsule) => {
                            route(toPath, toParams);
                            e.preventDefault();
                        }
+                       onClick && onClick()
                    }} {...rest}>
 
                     {this.props.children({...this.props})}

@@ -62,5 +62,6 @@ body, html {
     margin: 10px;
 }
 .currPath{
-    color: #fe44ff;
+    color: #1fae76;
+    font-weight: bold;
 }

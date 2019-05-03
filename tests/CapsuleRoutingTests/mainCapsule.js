@@ -28,7 +28,8 @@ export const mainCapsule = Capsule({
             login,
             logout,
             setAdmin,
-            getState
+            getState,
+            getLoggedIn: ()=>get.loggedIn()
         }
     }
 
