@@ -8,7 +8,7 @@
 
 The features of this tool (collected from common patterns) reduce
 verbose boilerplate code and can be used to promote a common
-convention across your application. All for about ~7KB minified.
+convention across your application. All for about ~7KB minified + gzipped.
 
 
 #### Installation 
