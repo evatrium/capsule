@@ -1,5 +1,5 @@
 # IOSIO Capsule
-<img src="https://img.shields.io/circleci/project/github/iosio/capsule.svg?style=flat-square" /><img src="https://img.shields.io/npm/v/@iosio/capsule.svg?style=flat-square" />
+<img src="https://img.shields.io/circleci/project/github/iosio/capsule.svg?style=flat-square" /><img src="https://img.shields.io/npm/v/@iosio/capsule.svg?style=flat-square" /><img src="https://img.shields.io/bundlephobia/min/@iosio/capsule.svg?style=flat-square" /><img src="https://img.shields.io/bundlephobia/minzip/@iosio/capsule.svg?style=flat-square" />
 
 <br/>
 
@@ -8,7 +8,7 @@
 
 The features of this tool (collected from common patterns) reduce
 verbose boilerplate code and can be used to promote a common
-convention across your application.
+convention across your application. All for about ~7KB minified.
 
 
 #### Installation 

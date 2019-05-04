@@ -1,7 +1,7 @@
 {
   "name": "@iosio/capsule",
   "version": "2.1.9",
-  "description": "Opinionated mini framework for React. Handles state, styles, routing and more...",
+  "description": "Opinionated mini framework for React. Handles state, styles, routing and more for under ~7KB minified",
   "main": "lib/index.js",
   "module": "es/index.js",
   "files": [
