@@ -44,10 +44,13 @@ export const createRouting = (Capsule) => {
             const canRoute = (path) => !!get.accessible().includes(path);
 
             const route = (path = window.location.pathname, params) => {
+                const validPath = canRoute(gpfs(path));
+
                 setTimeout(() => {
-                    canRoute(gpfs(path))
-                    && history.setUrl(path, params ? (typeof params === 'object' ? stringifyParams(params) : params) : '');
+                    validPath &&
+                    history.setUrl(path, params ? (typeof params === 'object' ? stringifyParams(params) : params) : '');
                 });
+                return validPath;
             };
 
             return {
@@ -80,7 +83,7 @@ export const createRouting = (Capsule) => {
             let C = null, url = get.url(), lastUrl = get.lastUrl(), r = false;
             if (root) {
                 let bp = '/' + gpfs(url).split('/')[1];
-                C = pathMap[bp] ? pathMap[bp] : pathMap[noMatch];
+                C = pathMap[bp] || pathMap[noMatch];
             } else {
                 if (pathMap[pn]) {
                     C = pathMap[pn];
