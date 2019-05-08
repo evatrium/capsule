@@ -46,7 +46,7 @@ export const createRouting = (Capsule) => {
             const route = (path = window.location.pathname, params) => {
                 setTimeout(() => {
                     canRoute(gpfs(path))
-                    && history.setUrl(path, typeof params === 'object' ? stringifyParams(params) : params);
+                    && history.setUrl(path, params ? (typeof params === 'object' ? stringifyParams(params) : params) : '');
                 });
             };
 
