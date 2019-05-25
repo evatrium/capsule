@@ -115,13 +115,16 @@ export const createRouting = (Capsule) => {
         mapState: {routing: 'pathname,search,params,url'},
         mapLogic: {routing: 'route,goTo,canRoute'}
     })(class Linkage extends React.Component {
+
         render() {
+
             const {
                 toPath, toParams, href, route, onClick,
                 //ignore
                 cn, pathname, goTo, search, params, url, canRoute, children,
                 ...rest
             } = this.props;
+
 
             const place = toPath || href;
 
@@ -139,8 +142,7 @@ export const createRouting = (Capsule) => {
 
                     {this.props.children({...this.props})}
                 </a>
-
-            )
+            );
         }
     });
 

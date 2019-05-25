@@ -9,5 +9,6 @@ export const {
     routing,
     Linkage,
     jss_nano,
-    cn
+    cn,
+    ThemedClasses
 } = CreateCapsule();
