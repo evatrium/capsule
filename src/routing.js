@@ -60,6 +60,7 @@ export const createRouting = (Capsule) => {
                 LOCATION_CHANGE,
                 setAccessiblePaths,
                 route,
+                canRoute
             }
         }
     })();
