@@ -1,4 +1,4 @@
-import {createElement, useMemo,} from 'react';
+import React, {createElement, useMemo,} from 'react';
 import {createHistory} from "./createHistory/createHistory";
 
 
@@ -82,7 +82,6 @@ export const createRouting = (Capsule) => {
                 });
                 return {
                     ...hist,//{ setUrl, getLocation, listen, goBack, goForward, replace, getParams }
-                    route: hist.setUrl
                 }
             }
         })();
@@ -91,26 +90,26 @@ export const createRouting = (Capsule) => {
     return {
 
         pathSwitch,
+
         routing,
 
         Router: Capsule({
             mapLogic: {routing: 'replace'},
             mapState: {routing: 'pathname,lastPathname,lastUrl'},
             mapActions: {routing: 'set'}
-        })(({accessiblePaths: ap, set, ...rest}) => {
+        })((props) => {
             //run the props through the pathSwitch and pass the component
-            const C = pathSwitch(rest);
+            const C = pathSwitch(props);
             //only update the memo if the component changes
-            return useMemo(() => C ? C() : null, [C])
+            return useMemo(() => C ? <C/> : null, [C])
         }),
-
 
         Linkage: Capsule({
             mapState: {routing: 'pathname,search,params,url'},
-            mapLogic: {routing: 'route,goTo,canRoute'}
+            mapLogic: {routing: 'route'}
         })((props) => {
-            let {toPath, toParams, href, route, onClick, children, ...others} = props,
-                {pathname, goTo, search, params, url, canRoute, ...rest} = others,
+            let {toPath, toParams, href, onClick, children, ...others} = props,
+                {route, pathname, search, params, url, ...rest} = others,
                 //if only href is provided then it will be behave as a normal link <a/> element
                 linkProps = {
                     href: toPath || href,
@@ -125,10 +124,8 @@ export const createRouting = (Capsule) => {
                     },
                     ...rest
                 };
-
             return createElement('a', linkProps, children(props))
         })
-
     };
 };
 
