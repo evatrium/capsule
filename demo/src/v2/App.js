@@ -7,7 +7,7 @@ const PublicMain = lazyLoader(() => import('./PublicApp/Main'));
 const AdminApp = lazyLoader(() => import('./AdminApp/Main'));
 
 
-const Tester = ()=><h5>tester</h5>;
+const Tester = () => <h5>tester</h5>;
 
 
 const App = Capsule({
@@ -18,29 +18,24 @@ const App = Capsule({
 
         const {loggedIn, isAdmin} = this.props;
 
-        let accessiblePaths = ['/', '/detail', '/login', '/tester', '/todos'],
-            authenticatedPaths = ['/myProfile'],
-            adminPaths = ['/admin', '/admin/users', '/admin/analytics'];
+        let pathMap = {
+            '/': PublicMain,
+            '/tester': Tester
+        };
 
         if (loggedIn) {
-            accessiblePaths = [...accessiblePaths, ...authenticatedPaths];
-            if (isAdmin) {
-                accessiblePaths = [...accessiblePaths, ...adminPaths];
+            pathMap = {
+                ...pathMap,
+                '/admin': AdminApp,
             }
         }
 
-        const pathMap = {
-            '/':PublicMain,
-            '/admin':AdminApp,
-            '/tester':Tester
-        };
 
         return (
             <Router
                 root
                 noMatch={'/'}
                 pathMap={pathMap}
-                accessiblePaths={accessiblePaths}
             />
         );
     }
