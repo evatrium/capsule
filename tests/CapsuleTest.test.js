@@ -1,7 +1,9 @@
 import React from 'react';
-import {CreateCapsule} from "../src/CreateCapsule";
+import {createCapsule} from "../src/createCapsule";
+import {createRouting} from "../src/createRouting";
+
 import renderer from "react-test-renderer";
-import {render, fireEvent, cleanup, queryByAttribute} from 'react-testing-library';
+import {render, fireEvent, cleanup, queryByAttribute} from '@testing-library/react';
 
 import {getById} from "./_test_utils";
 import 'jest-dom/extend-expect'
@@ -29,7 +31,7 @@ component updates with the correct values when logic and action functions are fi
     `, () => {
 
 
-    const {Capsule, CapsuleProvider} = CreateCapsule();
+    const {Capsule, CapsuleProvider} = createCapsule();
 
 
     const myStateLogic = Capsule({
@@ -103,9 +105,6 @@ component updates with the correct values when logic and action functions are fi
             logicTest: expect.any(Function),
             count: expect.any(Number),
             value: expect.any(String),
-            cn: expect.any(Function),
-            theme: {},
-            classes: null
         });
 
         return (
@@ -137,15 +136,15 @@ component updates with the correct values when logic and action functions are fi
     })(MyComponent);
 
 
-    const App = CapsuleProvider()(({children}) => {
+    const App = () => {
 
         return (
-            <div>
+            <CapsuleProvider>
                 <MyStateLogicComponent/>
                 Hello
-            </div>
+            </CapsuleProvider>
         )
-    });
+    };
 
 
     const {container} = render(<App/>);

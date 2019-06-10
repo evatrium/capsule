@@ -1,26 +1,5 @@
-import {Capsule} from '../../src';
+import {Capsule} from '../../../src';
 import {lsdb} from "@iosio/utils/lib/lsdb";
-
-
-// const publicPaths = ['/', '/detail', '/login'];
-// const authenticatedPaths = ['/myProfile'];
-// const adminPaths = ['/admin', '/admin/users', '/admin/analytics'];
-//
-// const pathRegistry = [...adminPaths, ...authenticatedPaths, ...publicPaths];
-//
-// const hasLoggedIn = lsdb.get('loggedIn');
-// const hasBeenAdmin = lsdb.get('isAdmin');
-//
-// let initialAccessiblePaths = publicPaths;
-//
-// if(hasLoggedIn){
-//     initialAccessiblePaths = [...initialAccessiblePaths, ...authenticatedPaths];
-// }
-// if(hasBeenAdmin){
-//     initialAccessiblePaths = [...initialAccessiblePaths, ...adminPaths];
-// }
-//
-// console.log(pathRegistry)
 
 export const mainCapsule = Capsule({
     name: 'main',
@@ -28,6 +7,8 @@ export const mainCapsule = Capsule({
         loggedIn: lsdb.get('loggedIn'),
         isAdmin: lsdb.get('isAdmin'),
         text: '',
+        testObj: {},
+        testArr: {}
         // pathRegistry,
         // accessiblePaths: initialAccessiblePaths
     },
@@ -41,7 +22,7 @@ export const mainCapsule = Capsule({
                 loggedIn: true,
                 // accessiblePaths: [...publicPaths, ...authenticatedPaths]
             });
-            r.goTo('/myProfile')
+            r.route('/myProfile')
         };
 
         const logout = () => {
@@ -52,11 +33,11 @@ export const mainCapsule = Capsule({
                 loggedIn:false,
                 // accessiblePaths: publicPaths
             });
-            r.goTo('/login');
+            r.route('/login');
         };
 
         const onSubmitText = () => {
-            r.goTo(get.text());
+            r.route(get.text());
             set.text('');
         };
 
@@ -68,8 +49,14 @@ export const mainCapsule = Capsule({
                 loggedIn:true,
                 // accessiblePaths: pathRegistry
             });
-            r.goTo('/admin');
+            r.route('/admin');
         };
+
+        // setTimeout(()=>{
+            set.testObj({a:1, b:2});
+            set.testArr(['a','s','d','f']);
+        // },2000)
+
 
         return {
             login,

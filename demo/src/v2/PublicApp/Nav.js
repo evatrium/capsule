@@ -1,11 +1,5 @@
-import React from "react";
-import {Capsule, Router as PublicRouter, lazyLoader, Linkage} from '../../../src';
-
-const Home = lazyLoader(() => import('./Pages/Home'));
-const Detail = lazyLoader(() => import('./Pages/Detail'));
-const Login = lazyLoader(() => import('./Pages/Login'));
-const MyProfile = lazyLoader(() => import('./Pages/MyProfile'));
-
+import React, {useMemo} from 'react';
+import {Capsule, Linkage} from "../../../../src";
 
 const Link = ({toPath, toParams, name}) => (
     <Linkage toPath={toPath} toParams={toParams} className={'link'}>
@@ -20,27 +14,34 @@ const Link = ({toPath, toParams, name}) => (
     </Linkage>
 );
 
+const FormComponent = ({text, set, onSubmitText}) => {
+    return useMemo(() => (
+        <form onSubmit={(e) => {
+            e.preventDefault();
+            onSubmitText();
+        }}>
+            <input value={text} onChange={({target}) => set.text(target.value)}/>
+            <button className={'btn'} onClick={onSubmitText}> go</button>
+        </form>
+    ), [text])
+};
 
-const Nav = Capsule({
-    mapLogic: {main: 'onSubmitText,loginAsAdmin,logout,login'},
-    mapState: {main: 'loggedIn,isAdmin,text'},
-    mapActions: {main: 'set'}
-})(({onSubmitText, text, set, loggedIn, logout, loginAsAdmin, login, isAdmin}) => (
+const Form = Capsule({
+    mapActions: {main: 'set'},
+    mapLogic: {main: 'onSubmitText'},
+    mapState: {main: 'text'}
+})(FormComponent);
+
+const NavComponent = ({onSubmitText, text, set, loggedIn, logout, loginAsAdmin, login, isAdmin}) => (
     <nav className={'nav'}>
 
         <div className={'flexRow'}>
-
-            <form onSubmit={(e) => {
-                e.preventDefault();
-                onSubmitText();
-            }}>
-                <input value={text} onChange={({target}) => set.text(target.value)}/>
-                <button className={'btn'} onClick={onSubmitText}> go</button>
-            </form>
-
+            <Form/>
             <Link toPath={'/tester'} name={'go to special route *'}/>
             <Link toPath={'/'} name={'Home'}/>
-            <Link toPath={'/detail'} name={'Detail'}/>
+            <Link toPath={'/detail'} toParams={{id:3}} name={'Detail'}/>
+            <Link toPath={'/todos'} name={'Todos'}/>
+            <Link toPath={'/invalidPath'} name={'invalidPath'}/>
             {loggedIn && <Link toPath={'/myProfile'} name={'My Profile'}/>}
         </div>
 
@@ -67,30 +68,10 @@ const Nav = Capsule({
         </div>
 
     </nav>
-));
+);
 
 
-const PublicMain = Capsule({
+export const Nav = Capsule({
+    mapLogic: {main: 'loginAsAdmin,logout,login'},
     mapState: {main: 'loggedIn,isAdmin'},
-})(() => {
-
-    const pathMap = {
-        '/': Home,
-        '/detail': Detail,
-        '/login': Login,
-        '/myProfile': MyProfile
-    };
-
-    return (
-        <React.Fragment>
-
-            <Nav/>
-
-            <PublicRouter noMatch={'/'} pathMap={pathMap}/>
-
-        </React.Fragment>
-    )
-});
-
-
-export default PublicMain
+})(NavComponent);

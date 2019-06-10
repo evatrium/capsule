@@ -1,14 +1,31 @@
-import {CreateCapsule} from "./CreateCapsule";
+import {createCapsule} from "./createCapsule";
+import {createRouting} from "./createRouting";
 
-export const {
+const {
     CapsuleProvider,
     Capsule,
     events,
-    lazyLoader,
-    Router,
+    useCapsule,
+    connectCapsule
+} = createCapsule();
+
+const {
     routing,
+    Router,
     Linkage,
-    jss_nano,
-    cn,
-    ThemedClasses
-} = CreateCapsule();
+    pathSwitch
+} = createRouting(Capsule);
+
+export {
+    CapsuleProvider,
+    Capsule,
+    events,
+    useCapsule,
+    connectCapsule,
+    routing,
+    Router,
+    Linkage,
+    pathSwitch,
+
+};
+

@@ -1,5 +1,6 @@
-import {Capsule, Router, lazyLoader, Linkage} from '../../../src';
+import {Capsule, Router, Linkage} from '../../../../src';
 import React from "react";
+import {lazyLoader} from "../utils/lazyLoader";
 
 const AdminHome = lazyLoader(()=>import('./Pages/AdminHome'));
 const Analytics = lazyLoader(()=>import('./Pages/Analytics'));

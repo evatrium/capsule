@@ -1,6 +1,7 @@
 import React from 'react';
-import {Capsule, lazyLoader, Router} from '../../src';
-import {getPathnameFromString as gpfs} from "@iosio/history";
+import {Capsule, Router} from '../../../src';
+import {lazyLoader} from "./utils/lazyLoader";
+
 
 const PublicMain = lazyLoader(() => import('./PublicApp/Main'));
 const AdminApp = lazyLoader(() => import('./AdminApp/Main'));
@@ -9,16 +10,15 @@ const AdminApp = lazyLoader(() => import('./AdminApp/Main'));
 const Tester = ()=><h5>tester</h5>;
 
 
-const Main = Capsule({
+const App = Capsule({
     mapLogic: {main: 'login'},
     mapState: {main: 'loggedIn,isAdmin,accessiblePaths'},
-})(class WithRoutingCapsule extends React.Component {
-
+})(class App extends React.Component {
     render() {
 
         const {loggedIn, isAdmin} = this.props;
 
-        let accessiblePaths = ['/', '/detail', '/login', '/tester'],
+        let accessiblePaths = ['/', '/detail', '/login', '/tester', '/todos'],
             authenticatedPaths = ['/myProfile'],
             adminPaths = ['/admin', '/admin/users', '/admin/analytics'];
 
@@ -36,7 +36,6 @@ const Main = Capsule({
         };
 
         return (
-
             <Router
                 root
                 noMatch={'/'}
@@ -46,11 +45,4 @@ const Main = Capsule({
         );
     }
 });
-export default Main;
-
-/*
-  {(location) => {
-                        const Route = accessibleRoutes[location.pathname];
-                        return Route ? <Route url={location.url}/> : null;
-                    }}
- */
+export default App;

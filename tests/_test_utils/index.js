@@ -1,13 +1,13 @@
 import React from 'react'
-import { queryByAttribute} from 'react-testing-library';
+import { queryByAttribute} from '@testing-library/react';
 
 export const getById = queryByAttribute.bind(null, 'id');
 
 
-export const Till = (events) => (it_happened) => {
+export const Till = (events) => (it_happened, cb) => {
     return new Promise((resolve, reject) => {
         events.on(it_happened, (data) => {
-            data === 'fail' ? reject(it_happened + ' failed') : resolve(data);
+            cb(data, resolve);
         })
     });
 };

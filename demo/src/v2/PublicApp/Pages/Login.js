@@ -3,6 +3,11 @@ import React from "react";
 export default class Login extends React.Component {
     componentDidMount() {
         // console.log('mounted Home at this path: ', this.props.url);
+        console.log('login page mounted')
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log('login page updated')
     }
 
     componentWillUnmount() {
