@@ -1,5 +1,7 @@
 <p align="center">
+
 ![IOSIO_CAPSULE](https://raw.githubusercontent.com/iosio/capsule/master/capsuleLogo.svg?sanitize=true "IOSIO_CAPSULE")
+
 </p>
 
 <img src="https://img.shields.io/circleci/project/github/iosio/capsule.svg?style=flat-square" /><img src="https://img.shields.io/npm/v/@iosio/capsule.svg?style=flat-square" /><img src="https://img.shields.io/bundlephobia/minzip/@iosio/capsule.svg?style=flat-square" />
