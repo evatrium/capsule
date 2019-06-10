@@ -54,8 +54,7 @@ export const createCapsule = () => {
                 mapActions, //object or function used to map props to the component
                 mapLogic,//object or function used to map props to the component,
                 noAdditionalImmutability, // set to true if dealing with large data sets is
-                        //too expensive or unnecessary to copy every nested property.
-            } = config;
+            } = config;                  //too expensive or unnecessary to copy every nested property.
 
             //if there is a name and initial state
             // then attach the state to the namespace
