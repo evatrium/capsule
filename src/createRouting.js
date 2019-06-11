@@ -19,6 +19,7 @@ export const pathSwitch = ({root, pathMap, replace, pathname: pn, lastPathname: 
         const pathMap = { '/': HomePageComponent, '/profile': ProfilePageComponent };
     */
     pathMap = pathMap || {};  // object for backup
+    noMatch = noMatch || '/'; // very common to fallback to '/'
     /*
         if this is a root router
         use split('/').[1] to grab only base pathname -ex: "/home/detail" => "/home".
@@ -61,10 +62,13 @@ export const pathSwitch = ({root, pathMap, replace, pathname: pn, lastPathname: 
 export const createRouting = (Capsule) => {
 
     let hist = createHistory(),
+        initLoc = hist.getLocation();//{pathname,search,params,url}
 
-        initLoc = hist.getLocation(),//{pathname,search,params,url}
+    return {
 
-        routing = Capsule({
+        pathSwitch,
+
+        routing: Capsule({
             name: 'routing',
             initialState: {
                 ...initLoc,
@@ -72,26 +76,17 @@ export const createRouting = (Capsule) => {
                 lastUrl: initLoc.url,//use the initial as the last
                 lastPathname: initLoc.pathname//use the initial as the last
             },
-            logic: ({actions: {routing: {set, get, merge}}}) => {
+            logic: (logic) => {
                 let {url: lastUrl, pathname: lastPathname} = hist.getLocation();
                 hist.listen((loc) => {
                     //if the url has changed, then update the state
-                    if (loc.url !== lastUrl) merge({...loc, lastUrl, lastPathname});
+                    if (loc.url !== lastUrl) logic.actions.routing.merge({...loc, lastUrl, lastPathname});
                     lastUrl = loc.url;
                     lastPathname = loc.pathname;
                 });
-                return {
-                    ...hist,//{ setUrl, getLocation, listen, goBack, goForward, replace, getParams }
-                }
+                return hist //{ route, getLocation, listen, goBack, goForward, replace, getParams }
             }
-        })();
-
-
-    return {
-
-        pathSwitch,
-
-        routing,
+        })(),
 
         Router: Capsule({
             mapLogic: {routing: 'replace'},

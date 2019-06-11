@@ -57,7 +57,7 @@ export const createCapsule = () => {
             } = config;                  //too expensive or unnecessary to copy every nested property.
 
             //if there is a name and initial state
-            // then attach the state to the namespace
+            //then attach the state to the namespace
             //and create the actions:
             if (name && initialState) {
                 store.attachState({[name]: basicNestedCopy(initialState)});
@@ -68,13 +68,13 @@ export const createCapsule = () => {
             const logicCollection = {
                 actions,// access state namespaces and controls - logic: ({actions:{data:{set,get}}})=>
                 events,// the synthetic events instance
-                collective: () => collective,//experimental collective getter. to access logic made by other capsules
-                store//
+                collective: () => collective,//experimental collective getter. to access logic created by other capsules
+                store//for any reason one may need access to the entire app state at once, they may access it here
             };
 
             // if there is a name and logic function,
             // pass the logicCollection to logic
-            // and store the results on the collective logic namespace
+            // and store the results onto the collective logic namespace
             if (name && logic) collective[name] = logic(logicCollection);
 
             //if there is a child
