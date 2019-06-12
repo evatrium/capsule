@@ -86,33 +86,31 @@ import './logic'; // <- as in here, a dedicated capsule index, or the app index.
 import {Capsule} from '@iosio/capsule'
 import {LoadingIndicator} from './components/LoadingIndicator';
 
-class TodoList extends React.Component {
-    componentDidMount() {
-        this.props.getSetTodosList();
-    }
-    render() {
-        const {list, fetching} = this.props;
-        return (
-            <div>
-                {fetching ?
-                    <LoadingIndicator/> :
-                    <ul>
-                        {list.map((item) => (
-                            <li key={item.id}>{item.name}</li>
-                        ))}
-                    </ul>
-                }
-            </div>
-        )
-    }
-}
+const TodoList = ({list, fetching, getSetTodoList}) => (
+    <div>
+        <button onClick={getSetTodoList}>
+            GET MY TODOS!
+        </button>
+        <div>
+            {fetching ?
+                <LoadingIndicator/> :
+                <ul>
+                    {list.map((item) => (
+                        <li key={item.id}>{item.name}</li>
+                    ))}
+                </ul>
+            }
+        </div>
+    </div>
+);
+
 export const App = Capsule({
     // optionally pluck the values off of the namespace with comma separated values
     mapState: {myTodos: 'fetching,list'},
     // or map them with a function
     mapLogic: ({myTodos}) => ({
-        getSetTodosList: myTodos.getSetTodosList
+        getSetTodoList: myTodos.getSetTodoList
     })
 })(TodoList);
 ```
-For more info, check out the [docs](https://github.com/iosio/capsule/tree/master/docs)
+##### For more info, check out the [docs](https://github.com/iosio/capsule/tree/master/docs)
