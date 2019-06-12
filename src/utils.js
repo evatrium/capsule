@@ -23,3 +23,15 @@ export const basicNestedCopy = (value, disabled) => {
     return cop;
 };
 
+export const convertArguments = (...args) => {
+    if (!args || args.length === 0) return {};
+    if (typeOf(args[0]) === 'object') return args[0];
+    if (typeOf(args[0]) === 'string') return {
+        name: args[0], initialState: args[1], logic: args[2], mapState: args[3],
+        mapLogic: args[4], mapActions: args[5], options: args[6]
+    };
+    if (typeOf(args[0]) === 'array') {
+        let arr = args[0];
+        return {mapState: arr[0], mapLogic: arr[1], mapActions: arr[2], options: arr[3]}
+    }
+};

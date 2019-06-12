@@ -14,7 +14,6 @@ const Detail = Capsule({
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        // console.log('detail page updated')
     }
 
     componentWillUnmount() {

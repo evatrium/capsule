@@ -29,11 +29,6 @@ describe('createActions', () => {
                     count: expect.any(Function),
                     loggedIn: expect.any(Function)
                 },
-                toggle: {
-                    count: expect.any(Function),
-                    loggedIn: expect.any(Function)
-                },
-                update: expect.any(Function),
                 merge: expect.any(Function),
                 getState: expect.any(Function)
             }
@@ -58,7 +53,7 @@ describe('createActions state manipulation', () => {
 
     createActions(actionsName, initialState, store, actions);
 
-    const {set, get, merge, update, toggle, getState} = actions[actionsName];
+    const {set, get, merge, getState} = actions[actionsName];
 
     it('action namespace should have getState() which only returns that namespace', () => {
 
@@ -73,35 +68,25 @@ describe('createActions state manipulation', () => {
     });
 
     it('should .get() the value', () => {
-
         expect(get.count()).toBe(10);
         expect(get.loggedIn()).toBe(false);
     });
 
     it('should .merge() properties to the state', () => {
-
         merge({count: 1, loggedIn: true});
         expect(get.count()).toBe(1);
         expect(get.loggedIn()).toBe(true);
 
     });
 
-    it('should .update() the state', () => {
-        update(state => ({
+    it('should .merge the state with a callback', () => {
+        merge(state => ({
             ...state,
             count: 1,
             loggedIn: true
         }));
 
         expect(get.count()).toBe(1);
-        expect(get.loggedIn()).toBe(true);
-
-    });
-
-    it('should .toggle() the state', () => {
-        toggle.loggedIn();
-        expect(get.loggedIn()).toBe(false);
-        toggle.loggedIn();
         expect(get.loggedIn()).toBe(true);
     });
 
@@ -122,7 +107,7 @@ describe('ensure no mutations happen to the store state', () => {
 
     createActions(actionsName, initialState, store, actions);
 
-    const {set, get, merge, getState, update} = actions[actionsName];
+    const {set, get, merge, getState } = actions[actionsName];
 
     it('assigning a value to the initial state does not mutate the store state', () => {
 
@@ -232,7 +217,7 @@ describe('ensure no mutations happen to the store state', () => {
     });
 
 
-    it('mutating many variables previously updated on state does not mutate the original state', () => {
+    it('mutating many variables previously merged on state does not mutate the original state', () => {
 
 
         let _newNestedObj = {a: 'asdf', b: 2, c: {x: 'm', y: 'u', z: 't'}};
@@ -242,7 +227,7 @@ describe('ensure no mutations happen to the store state', () => {
         let loggedIn = true;
 
 
-        update(state =>({
+        merge(state =>({
             ...state,
             obj: _newNestedObj,
             count,

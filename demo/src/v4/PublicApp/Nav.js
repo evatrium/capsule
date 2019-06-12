@@ -1,5 +1,6 @@
 import React, {useMemo} from 'react';
-import {Capsule, Linkage} from "../../../../src";
+import {Capsule} from "../../../../src";
+import {Linkage} from "../../../../src/routing";
 
 const Link = ({toPath, toParams, name}) => (
     <Linkage toPath={toPath} toParams={toParams} className={'link'}>
@@ -14,32 +15,31 @@ const Link = ({toPath, toParams, name}) => (
     </Linkage>
 );
 
-const FormComponent = ({text, set, onSubmitText}) => {
+const FormComponent = ({text, updateNewURLText, onSubmitText, captureEnter}) => {
     return useMemo(() => (
-        <form onSubmit={(e) => {
-            e.preventDefault();
-            onSubmitText();
-        }}>
-            <input value={text} onChange={({target}) => set.text(target.value)}/>
+        <React.Fragment>
+            <input
+                placeholder={'go to a /pathname'}
+                onKeyPress={captureEnter}
+                value={text}
+                onChange={(e) => updateNewURLText(e)}/>
             <button className={'btn'} onClick={onSubmitText}> go</button>
-        </form>
+        </React.Fragment>
     ), [text])
 };
 
-const Form = Capsule({
-    mapActions: {main: 'set'},
-    mapLogic: {main: 'onSubmitText'},
-    mapState: {main: 'text'}
-})(FormComponent);
+const Form = Capsule([
+    {main: 'text'}, {main: 'onSubmitText,updateNewURLText,captureEnter'},
+])(FormComponent);
 
-const NavComponent = ({onSubmitText, text, set, loggedIn, logout, loginAsAdmin, login, isAdmin}) => (
+const NavComponent = ({ loggedIn, logout, loginAsAdmin, login, isAdmin}) => (
     <nav className={'nav'}>
 
         <div className={'flexRow'}>
             <Form/>
             <Link toPath={'/tester'} name={'go to special route *'}/>
             <Link toPath={'/'} name={'Home'}/>
-            <Link toPath={'/detail'} toParams={{id:3}} name={'Detail'}/>
+            <Link toPath={'/detail'} toParams={{id: 3}} name={'Detail'}/>
             <Link toPath={'/todos'} name={'Todos'}/>
             <Link toPath={'/invalidPath'} name={'invalidPath'}/>
             {loggedIn && <Link toPath={'/myProfile'} name={'My Profile'}/>}
@@ -61,7 +61,6 @@ const NavComponent = ({onSubmitText, text, set, loggedIn, logout, loginAsAdmin, 
             <button className={'btn'} onClick={() => loginAsAdmin()}>
                 Login as admin
             </button>
-
             <div>
                 <h6>is Admin: {isAdmin ? "true" : "false"}</h6>
             </div>
@@ -69,7 +68,6 @@ const NavComponent = ({onSubmitText, text, set, loggedIn, logout, loginAsAdmin, 
 
     </nav>
 );
-
 
 export const Nav = Capsule({
     mapLogic: {main: 'loginAsAdmin,logout,login'},

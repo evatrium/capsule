@@ -3,8 +3,6 @@
 exports[`
 provides the expected arguments to logic: actions, store, collective, events.
 
-routing actions and logic are provided to collective by default
-
 returns logic when nothing is passed to the second curried function call
 
 can map state, logic and actions to a component 
@@ -26,10 +24,16 @@ Array [
     >
       2
     </button>
+    <div
+      id="foobar"
+    >
+      baz
+    </div>
     {
     "set": {},
     "count": 2,
-    "value": "updated"
+    "value": "updated",
+    "foobar": "baz"
 }
   </div>,
   "Hello",

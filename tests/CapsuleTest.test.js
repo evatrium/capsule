@@ -1,6 +1,5 @@
 import React from 'react';
 import {createCapsule} from "../src/createCapsule";
-import {createRouting} from "../src/createRouting";
 
 import renderer from "react-test-renderer";
 import {render, fireEvent, cleanup, queryByAttribute} from '@testing-library/react';
@@ -8,19 +7,10 @@ import {render, fireEvent, cleanup, queryByAttribute} from '@testing-library/rea
 import {getById} from "./_test_utils";
 import 'jest-dom/extend-expect'
 
-const Printer = (props) => {
-    return (
-        <div>
-            {JSON.stringify(props, null, 4)}
-        </div>
-    );
-};
 
 
 it(`
 provides the expected arguments to logic: actions, store, collective, events.
-
-routing actions and logic are provided to collective by default
 
 returns logic when nothing is passed to the second curried function call
 
@@ -38,26 +28,39 @@ component updates with the correct values when logic and action functions are fi
         name: 'myCap1',
         initialState: {
             count: 0,
-            value: 'initial'
+            value: 'initial',
+            foobar: ''
         },
-        logic: (logicArguments) => {
+        logic: (this_actions, collection) => {
 
-            expect(logicArguments).toMatchObject({
+            expect(this_actions).toMatchObject({
+                set: {
+                    count: expect.any(Function),
+                    value: expect.any(Function),
+                    foobar: expect.any(Function),
+                },
+                get: {
+                    count: expect.any(Function),
+                    value: expect.any(Function),
+                    foobar: expect.any(Function),
+                },
+                merge: expect.any(Function),
+                getState: expect.any(Function)
+            });
+
+            expect(collection).toMatchObject({
                 actions: {
                     myCap1: {
                         set: {
                             count: expect.any(Function),
                             value: expect.any(Function),
+                            foobar: expect.any(Function),
                         },
                         get: {
                             count: expect.any(Function),
                             value: expect.any(Function),
+                            foobar: expect.any(Function),
                         },
-                        toggle: {
-                            count: expect.any(Function),
-                            value: expect.any(Function),
-                        },
-                        update: expect.any(Function),
                         merge: expect.any(Function),
                         getState: expect.any(Function)
                     },
@@ -79,10 +82,12 @@ component updates with the correct values when logic and action functions are fi
                 collective: expect.any(Function)
             });
 
-
             return {
+                componentReady: ()=>{
+                    this_actions.set.foobar('baz')
+                },
                 logicTest: (val) => {
-                    logicArguments.actions.myCap1.set.value(val)
+                    this_actions.set.value(val)
                 }
             }
 
@@ -95,42 +100,53 @@ component updates with the correct values when logic and action functions are fi
     });
 
 
-    const MyComponent = (props) => {
 
-        expect(props).toMatchObject({
-            set: {
-                count: expect.any(Function),
-                value: expect.any(Function)
-            },
-            logicTest: expect.any(Function),
-            count: expect.any(Number),
-            value: expect.any(String),
-        });
+    class MyComponent extends React.Component{
+        componentDidMount() {
+            this.props.componentReady();
+        }
 
-        return (
-            <div>
-                <button id={'setValue'} onClick={() => {
-                    props.logicTest('updated')
-                }}>
-                    {props.value}
-                </button>
+        render(){
+            const {props} = this;
+            expect(props).toMatchObject({
+                set: {
+                    count: expect.any(Function),
+                    value: expect.any(Function)
+                },
+                logicTest: expect.any(Function),
+                count: expect.any(Number),
+                value: expect.any(String),
+                foobar: expect.any(String)
+            });
 
-                <button id={'setCount'} onClick={() => {
-                    props.set.count(props.count + 1)
-                }}>
-                    {props.count}
-                </button>
+            return (
+                <div>
+                    <button id={'setValue'} onClick={() => {
+                        props.logicTest('updated')
+                    }}>
+                        {props.value}
+                    </button>
 
+                    <button id={'setCount'} onClick={() => {
+                        props.set.count(props.count + 1)
+                    }}>
+                        {props.count}
+                    </button>
 
-                {JSON.stringify(props, null, 4)}
-            </div>
-        );
-    };
+                    <div id={'foobar'}>
+                        {props.foobar}
+                    </div>
+
+                    {JSON.stringify(props, null, 4)}
+                </div>
+            );
+        }
+    }
 
 
     const MyStateLogicComponent = Capsule({
-        mapLogic: {myCap1: 'logicTest'},
-        mapState: {myCap1: 'count,value'},
+        mapState: {myCap1: 'count,value,foobar'},
+        mapLogic: {myCap1: 'logicTest,componentReady'},
         //or optionally use function
         mapActions: ({myCap1}) => ({set: myCap1.set})
     })(MyComponent);
@@ -151,6 +167,10 @@ component updates with the correct values when logic and action functions are fi
 
     const setValueBtn = () => getById(container, 'setValue');
     const setCountBtn = () => getById(container, 'setCount');
+
+    const foobar = () => getById(container, 'foobar');
+
+    expect(foobar()).toHaveTextContent('baz');
 
     expect(setValueBtn()).toHaveTextContent('initial');
 

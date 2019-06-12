@@ -2,9 +2,7 @@ import React, {useEffect} from 'react'
 import {createCapsule} from "../src/createCapsule";
 import {createRouting} from "../src/createRouting";
 
-
-import {render, fireEvent, queryByAttribute, Simulate} from '@testing-library/react';
-
+import {render, fireEvent, queryByAttribute} from '@testing-library/react';
 import ReactDom from 'react-dom/test-utils';
 
 
@@ -13,8 +11,7 @@ const {
     CapsuleProvider,
     Capsule,
     events,
-    useCapsule,
-    connectCapsule
+    connect
 } = createCapsule();
 
 const {
@@ -23,6 +20,11 @@ const {
     Linkage,
     pathSwitch,
 } = createRouting(Capsule);
+
+
+const getById = queryByAttribute.bind(null, 'id');
+
+const {getLocation} = routing;
 
 
 const Page = (props) => {
@@ -34,33 +36,27 @@ const Page = (props) => {
     )
 };
 
-
-const Home = () => (<Page data-testid={'home'}/>);
-const Detail = () => (<Page data-testid={'detail'}/>);
-const Login = () => (<Page data-testid={'login'}>hhhhhhhheeeellllllllllllloooooooo</Page>);
-const Admin = () => (<Page data-testid={'admin'}/>);
-const AdminSettings = () => (<Page data-testid={'adminSettings'}/>);
-
+const Home = () => (<Page data-testid={'home'}><h1>Home</h1></Page>);
+const Detail = () => (<Page data-testid={'detail'}><h1>Detail</h1></Page>);
+const Login = () => (<Page data-testid={'login'}><h1>login</h1></Page>);
+const Admin = () => (<Page data-testid={'admin'}><h1>Admin</h1></Page>);
+const AdminSettings = () => (<Page data-testid={'adminSettings'}><h1>Admin settings</h1></Page>);
 
 export const mainCapsule = Capsule({
     name: 'main',
     initialState: {
         loggedIn: false,
     },
-    logic: ({actions: {main: {set, get, update, merge, toggle, getState}}, collective}) => {
-
+    logic: ({set, merge, getState}, {collective}) => {
         const {routing: r} = collective();
-
         const login = () => {
-            set.loggedIn(true);
+            merge({loggedIn: true, admin: true});
             r.route('/admin')
         };
-
         const logout = () => {
             set.loggedIn(false);
             r.route('/login');
         };
-
         return {
             login,
             logout,
@@ -71,18 +67,13 @@ export const mainCapsule = Capsule({
 });
 
 
-const getById = queryByAttribute.bind(null, 'id');
-
-const {getLocation} = routing;
-
-
-const Link = ({toPath, toParams, name, id, ...rest}) => (
+const Link = ({toPath, toParams, children, id, ...rest}) => (
     <Linkage toPath={toPath} toParams={toParams} id={id} className={'link'} {...rest}>
         {({pathname}) => {
-            const activeClass = toPath === pathname ? 'currPath' : null;
+
             return (
-                <div className={activeClass}>
-                    {name}
+                <div style={{color: toPath === pathname ? 'red' : 'blue'}}>
+                    {children}
                 </div>
             );
         }}
@@ -91,19 +82,27 @@ const Link = ({toPath, toParams, name, id, ...rest}) => (
 
 
 const Nav = Capsule({
-    mapLogic: {main: 'setAdmin,logout,login'},
+    mapLogic: {main: 'logout,login'},
     mapState: {main: 'loggedIn,isAdmin'},
 })(({onSubmitText, text, loggedIn, logout, setAdmin, login, isAdmin}) => (
     <nav className={'nav'}>
 
-        <div className={'flexRow'}>
-
-            <Link toPath={'/'} data-testid={'homeLink'}/>
-            <Link toPath={'/detail'} data-testid={'detailLink'}/>
-            <Link toPath={'/login'} data-testid={'loginLink'}/>
-            <Link toPath={'/admin'} data-testid={'adminLink'}/>
-            <Link toPath={'/admin/settings'} data-testid={'adminSettingsLink'}/>
-
+        <div style={{display: 'flex', justifyContent: 'space-between', padding: 20}}>
+            <Link toPath={'/'} data-testid={'homeLink'}>
+                goHome
+            </Link>
+            <Link toPath={'/detail'} data-testid={'detailLink'}>
+                goDetail
+            </Link>
+            <Link toPath={'/login'} data-testid={'loginLink'}>
+                goLogin
+            </Link>
+            <Link toPath={'/admin'} data-testid={'adminLink'}>
+                goAdmin
+            </Link>
+            <Link toPath={'/admin/settings'} data-testid={'adminSettingsLink'}>
+                goAdminSetting
+            </Link>
         </div>
 
         <div className={'flexRow'}>
@@ -111,9 +110,8 @@ const Nav = Capsule({
                 <button className={'btn'} data-testid="logoutBtn" onClick={logout}>Logout</button>
                 : <button className={'btn'} data-testid="loginBtn" onClick={login}>login</button>
             }
-            <button data-testid="toggleAdmin" className={'btn'} onClick={() => setAdmin()}>
-                is Admin: {isAdmin ? "true" : "false"}
-            </button>
+
+            is Admin: {isAdmin ? "true" : "false"}
         </div>
 
     </nav>
@@ -121,75 +119,51 @@ const Nav = Capsule({
 
 
 const PublicApp = () => {
-
-    const pathMap = {
-        '/': Home,
-        '/detail': Detail,
-        '/login': Login,
-
-    };
-
-    return (
-        <Router
-            noMatch={'/'}
-            pathMap={pathMap}
-        />
-    )
+    const pathMap = {'/': Home, '/detail': Detail, '/login': Login,};
+    return (<Router noMatch={'/'} pathMap={pathMap}/>)
 };
 
 const AdminApp = () => {
-
-    const pathMap = {
-        '/admin': Admin,
-        '/admin/settings': AdminSettings,
-    };
-
-    return (
-        <Router
-            noMatch={'/admin'}
-            pathMap={pathMap}
-        />
-    )
+    const pathMap = {'/admin': Admin, '/admin/settings': AdminSettings,};
+    return (<Router noMatch={'/admin'} pathMap={pathMap}/>)
 };
 
 
 const App = Capsule({
-    mapLogic: {main: 'login'},
-    mapState: {main: 'loggedIn,isAdmin'},
-})(({login, loggedIn, isAdmin}) => {
+    mapState: {main: 'loggedIn'},
+})(class App extends React.Component{
+    render(){
+        const {loggedIn} = this.props;
 
+        let publicPathMap = {
+            '/': PublicApp,
+        };
 
-    let accessiblePaths = ['/', '/detail', '/login'];
-    let adminPaths = ['/admin', '/admin/settings'];
-
-    let pathMap = {
-        '/': PublicApp,
-    };
-
-    if (loggedIn) {
-        accessiblePaths = [...accessiblePaths, ...adminPaths];
-        pathMap = {
-            ...pathMap,
+        let loggedInPathMap =  {
+            ...publicPathMap,
             '/admin': AdminApp
+        };
+
+        let pathMap = {};
+
+        if (loggedIn) {
+            pathMap = loggedInPathMap
+        }else{
+            pathMap = publicPathMap;
         }
+
+        return (
+            <React.Fragment>
+                <Nav/>
+                <Router
+                    root
+                    noMatch={'/'}
+                    pathMap={{...pathMap}}/>
+
+            </React.Fragment>
+        );
     }
-
-    return (
-        <React.Fragment>
-
-            <Nav/>
-
-            <Router
-                root
-                accessiblePaths={accessiblePaths}
-                noMatch={'/'}
-                pathMap={pathMap}/>
-
-        </React.Fragment>
-    );
 });
-
-
 
 
 it('it renders the correct component when the location is changed by clicking Links and actions buttons', () => {

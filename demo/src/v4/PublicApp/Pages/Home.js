@@ -9,11 +9,10 @@ const Home = Capsule({
     })
 })(class Home extends React.Component {
     componentDidMount() {
-        // console.log('mounted Home at this path: ', this.props.url);
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        console.log('home page updated')
+        // console.log('home page updated')
     }
 
     componentWillUnmount() {

@@ -19,23 +19,28 @@ const makeTodos = () => {
 };
 const initialTodos = makeTodos();
 
-Capsule({
+export default Capsule({
     name: 'todos',
     initialState: {
         list: initialTodos,
         displayList: initialTodos,
         todoName: '',
         searchValue: '',
-        showCompleted: false,
+        testValue: ''
     },
-    logic: ({actions: {todos: {get, set, merge, getState}}}) => ({
-        removeTodo: (id) => {
+    logic: ({get, set, merge, getState}) => {
+
+        const removeTodo = (id) => {
+
             let list = get.list();
+
             let updatedList = removeItemFromObjArrById(list, 'id', id);
 
             let searchValue = get.searchValue();
 
-            let displayList = searchValue.length === 0 ? updatedList : filterObjArrByProp(updatedList, 'name', searchValue);
+            let displayList = searchValue.length === 0
+                ? updatedList
+                : filterObjArrByProp(updatedList, 'name', searchValue);
 
             merge({
                 list: updatedList,
@@ -43,14 +48,17 @@ Capsule({
             });
 
             set.list(updatedList);
-        },
-        setSearchValue: (value) => {
-            set.searchValue(value);
-            let list = get.list();
-            const update = filterObjArrByProp(list, 'name', value);
-            set.displayList(value.length === 0 ? get.list() : update);
-        },
-        addTodo: (e) => {
+        };
+
+        const setSearchValue = (value) => {
+            merge({
+                searchValue: value,
+                displayList: value.length === 0 ? get.list()
+                    : filterObjArrByProp(get.list(), 'name', value)
+            });
+        };
+
+        const addTodo = (e) => {
             e && e.preventDefault();
 
             const {list, todoName} = getState();
@@ -63,36 +71,43 @@ Capsule({
                 todoName: '',
                 displayList: list,
             });
+        };
+
+        const captureEnter = (e) => {
+            let code = e.keyCode ? e.keyCode : e.which;
+            if (code === 13) {
+                addTodo()
+            }
+        };
+
+        return {
+            removeTodo,
+            setSearchValue,
+            captureEnter,
+            addTodo
         }
 
-    }),
-});
+    },
+    mapState: {todos: 'displayList,todoName,searchValue,testValue'},
+    mapLogic: {todos: 'addTodo,removeTodo,setSearchValue,captureEnter'},
+    mapActions: {todos: 'set'},
+})(({displayList, todoName, addTodo, removeTodo, setSearchValue, set, searchValue, captureEnter}) => {
 
-export default () => {
-    /**
-     *  when using "useCapsule" versus "Capsule",
-     *  mapping all the state and props will happen every time the component mounts.
-     *
-     *  Ideally, mappings will be created once, prior to the component mounting when using Capsule.
-     */
-    const [{displayList, searchValue, todoName}, {setSearchValue, removeTodo, addTodo, set}] = useCapsule({
-        mapState: {todos: 'displayList,todoName,showCompleted'},
-        mapLogic: {todos: 'addTodo,removeTodo,setSearchValue'},
-        mapActions: {todos: 'set'}
-    });
 
     return (
         <div style={{width: '100%', height: '100%', padding: 40, display: 'flex', flexDirection: 'column'}}>
 
+
             <Row>
-                <form onSubmit={addTodo}>
-                    <input placeholder="todo name" value={todoName} onChange={(e) => set.todoName(e.target.value)}/>
-                    <button onClick={addTodo}>Add todo</button>
-                </form>
+                <input onKeyPress={captureEnter} placeholder="todo name" value={todoName}
+                       onChange={(e) => set.todoName(e.target.value)}/>
+
+                <button onClick={addTodo}>Add todo</button>
+
 
                 <input style={{marginLeft: 20}}
-                       placeholder="search todos" value={searchValue} onChange={(e) => setSearchValue(e.target.value)}/>
-
+                       placeholder="search todos" value={searchValue}
+                       onChange={(e) => setSearchValue(e.target.value)}/>
             </Row>
 
             {displayList.map((todo) => (
@@ -105,4 +120,5 @@ export default () => {
 
         </div>
     )
-}
+});
+

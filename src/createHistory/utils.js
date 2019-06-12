@@ -1,19 +1,9 @@
+
+/*
+    slim query-string
+ */
+
 import {typeOf} from "@iosio/utils/lib/typeOf";
-
-/**
- * gets the pathname from a pathname+search string. ex: '/some/path/with?a=search&value=something' => /some/path/with
- * @param url
- * @returns {String | boolean} - returns a string if used correctly
- */
-// export const getPathnameFromString = (url) =>typeof url === 'string' ? url.replace(/\?.+$/, '') : false;
-
-
-/**
- * gets the search query from a url like string, ex: '/some/path/with?a=search&value=something' => a=search&value=something'
- * @param {String} url
- * @returns {any}
- */
-// export const getSearchFromString = (url) => typeof url === 'string' ? url.split("?")[1] : false;
 
 
 /**
@@ -153,20 +143,16 @@ export const getParams = (search) => {
     return parsed;
 };
 
-
-// /**
-//  * some hacky stuff from https://gist.github.com/jlong/2428561#gistcomment-306549
-//  * @param {String} url - the string to parse - ex: '/some/path/with?a=search&value=something' => /some/path/with
-//  * @param {boolean} actualUrl -
-//  * @returns {Object} - returns pathname, search and other stuff
-//  */
-// export const parseURL = (url, actualUrl) =>{
-//     let div = document.createElement('div');
-//     div.innerHTML = "<a></a>";
-//     div.firstChild.href = actualUrl ? url : 'https://www.google.com' + url;
-//     div.innerHTML = div.innerHTML;
-//     let out = {};
-//     var e = div.firstChild;
-//     for(var i in e) if(""+e[i]===e[i]) out[i] = e[i];
-//     return out;
-// };
+//- dont really need these but here for keepsake
+/**
+ * gets the pathname from a pathname+search string. ex: '/some/path/with?a=search&value=something' => /some/path/with
+ * @param url
+ * @returns {String | boolean} - returns a string if used correctly
+ */
+// export const getPathnameFromString = (url) =>typeof url === 'string' ? url.replace(/\?.+$/, '') : false;
+/**
+ * gets the search query from a url like string, ex: '/some/path/with?a=search&value=something' => a=search&value=something'
+ * @param {String} url
+ * @returns {any}
+ */
+// export const getSearchFromString = (url) => typeof url === 'string' ? url.split("?")[1] : false;
