@@ -18,6 +18,8 @@
 - Easy api to access and manipulate state (via: get, set, merge, getState).
 - As a bonus, capsule exports a simple, ultra light, 1-2 level nested Router component, Link component and a slim navigation API for an extra 1.28KB
 
+## Inspiration
+After a year of writing redux reducers, I sought out alternatives ways to reduce all that boilerplate code. With a little inspiration I decided to create an alternative solution and put my own twist on things in the most developer-experience-freindly way.
 
 ## Installation 
 
@@ -79,6 +81,7 @@ export const myTodoLogic = Capsule({
 ##### And use Capsule to connect state and logic to your components.
 
 ```js
+//App.js
 import React from 'react';
 //make sure your isolated logic capsules 
 //are in scope somewhere near the root of your app
@@ -86,7 +89,7 @@ import './logic'; // <- as in here, a dedicated capsule index, or the app index.
 import {Capsule} from '@iosio/capsule'
 import {LoadingIndicator} from './components/LoadingIndicator';
 
-class AppComponent extends React.Component {
+class TodoList extends React.Component {
     componentDidMount() {
         this.props.getSetTodosList();
     }
@@ -113,5 +116,5 @@ export const App = Capsule({
     mapLogic: ({myTodos}) => ({
         getSetTodosList: myTodos.getSetTodosList
     })
-})(AppComponent);
+})(TodoList);
 ```
