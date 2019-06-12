@@ -11,13 +11,6 @@
 
 > Simple global state and convenience tool for React.
 
-
-<br/>
-
-The features of this tool (collected from common patterns) reduce
-verbose boilerplate code and can be used to promote a common
-convention across your application. All for about ~2.35KB minified + gzipped.
-
 ## Key Features
 
 - Shared centralized state and logic. 
