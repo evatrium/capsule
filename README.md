@@ -113,4 +113,4 @@ export const App = Capsule({
     })
 })(TodoList);
 ```
-##### For more info, check out the [docs](https://github.com/iosio/capsule/tree/master/docs)
+### For more info, check out the [docs](https://github.com/iosio/capsule/tree/master/docs)
