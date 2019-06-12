@@ -13,13 +13,11 @@
 
 ## Key Features
 
-- Shared centralized state and logic. 
+- Shared centralized state and logic.
+- 2KB minified + gzipped.
 - No dispatching and no reducers! Uses familiar provider and select-connect pattern.
 - Easy api to access and manipulate state (via: get, set, merge, getState).
-- As a bonus, capsule exports a simple, ultra light, 1-2 level nested Router component, Link component and a slim navigation API for an extra 1.28KB
-
-## Inspiration
-After a year of writing redux reducers, I sought out alternatives ways to reduce all that boilerplate code. With a little inspiration I decided to create an alternative solution and put my own twist on things in the most developer-experience-freindly way.
+- As a bonus, capsule exports a simple, ultra light, 1-2 level nested Router component, Link component and a slim navigation API for an extra 1.28KB.
 
 ## Installation 
 
@@ -118,3 +116,8 @@ export const App = Capsule({
     })
 })(TodoList);
 ```
+
+For more info, check out the [docs](https://github.com/iosio/capsule/tree/master/docs)
+
+
+
