@@ -1,6 +1,6 @@
 {
   "name": "@iosio/capsule",
-  "version": "3.1.6",
+  "version": "4.0.0",
   "description": "Simple global state, routing and convenience tool for React.",
   "main": "lib/index.js",
   "module": "es/index.js",
