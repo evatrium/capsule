@@ -15,7 +15,7 @@
 
 - Shared centralized state and logic. 
 - No dispatching and no reducers! Uses familiar provider and select-connect pattern.
-- Easy api to access and manipulate state (via: get, set, merge, getState) with (opt-out) immutability*.
+- Easy api to access and manipulate state (via: get, set, merge, getState).
 - As a bonus, capsule exports a simple, ultra light, 1-2 level nested Router component, Link component and a slim navigation API for an extra 1.28KB
 
 
