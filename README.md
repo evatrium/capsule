@@ -26,7 +26,7 @@ npm install @iosio/capsule --save
 
 ## Basic Usage
 
-##### (For more info, check out the [docs](https://github.com/iosio/capsule/tree/master/docs))
+##### ( For more info, check out the [docs](https://github.com/iosio/capsule/tree/master/docs) )
 
 ##### Start by including the CapsuleProvider at the root of your app
 
