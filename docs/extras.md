@@ -45,14 +45,31 @@ Capsule({
 ### events
 'events' is a synthetic event handler. Can simply be used as another way to communicate between capsules. Inspired by [mitt](https://github.com/developit/mitt/blob/master/src/index.js). You can check out my version of it [here](https://github.com/iosio/utils/blob/master/src/eventer.js) and read the comments for more info.
 ```js
+
 Capsule({
-    name: 'overlay',
-    initialState: {active: false},
-    logic: (selfActions, {actions:{someOtherNamespace}) => { 
+    name: 'data',
+    initialState: {list: []}
+    logic: ({set}, {events) => { 
+        events.on('USER_STATE_CHANGE',(loggedIn)=>{
+            loggedIn && client.getData()
+                .then((data)=>{
+                    set.list(data);
+                })
+        });
+    },
+    ...
+  }); 
+  
+// ---- another capsule
+
+Capsule({
+    name: 'user',
+    initialState: {loggedIn: false},
+    logic: (selfActions, {events}) => { 
     
         const signIn = () => {
             selfActions.set.loggedIn(true)
-            someOtherNamespace.set.status('ONLINE');
+            events.emit('USER_STATE_CHANGE', true);
         };
         
         return { 
