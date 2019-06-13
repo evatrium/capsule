@@ -94,5 +94,24 @@ Capsule({
     },
     ...
 ``` 
-
+### collective 
+'collective' is a function that returns logic from all namespaces. I figured since state is shared, why not share a collection of logic from other capsules. **The caveat** is that the availability of the logic you are trying to access is dependent on the invocation order of your capsules.  
+```js
+Capsule({
+    name: 'user',
+    initialState: {loggedIn: false},
+    logic: ({set}, {collective}) => { 
+    
+        const signIn = () => {
+            set.loggedIn(true)
+            
+        };
+        
+        return { 
+            signIn,
+            //...
+        };
+    },
+    ...
+``` 
 ## use with caution
