@@ -5,12 +5,45 @@ Capsule provides a super simple and easy to use router that works for most page 
 
 ```js
 //index.js
-import React from 'react';
 import '@iosio/capsule/lib/routing; // <---------------- import from /lib/routing
+import React from 'react';
 import {CapsuleProvider} from '@iosio/capsule';
 import {render} from 'react-dom'
-import {App} from './App';
+import {Root} from './Root';
+
+ const App = () => (
+    <CapsuleProvider>
+        <Root/>
+    </CapsuleProvider>
+);
 
 render(<App/>, document.querySelector('#root'));
 
 ```
+
+Routes are simply defined by a pathMap. It will automatically match to the pathname that you assign to in the key. When the user goes to a pathname that is not defined in the pathmap, it will replace history to the last visited route. If the last visited route is also invalid, it will then fall back to '/' or whatever you pass to the noMatch prop.
+
+```js
+//Root.js
+import React from 'react';
+import {CapsuleProvider} from '@iosio/capsule';
+import {Router} from '@iosio/capsule/lib/routing';
+
+import {HomePage} from './Home';
+import {ProfilePage} from './Profile';
+import {SettingsPage from './Settings';
+
+const pathMap = {
+  '/': HomePage,
+  '/profile': ProfilePage,
+  '/settings: SettingsPage
+}
+
+export const Root = () =>{
+   <Router
+      noMatch={'/'}
+      pathMap={pathMap}/>
+};
+
+```
+
