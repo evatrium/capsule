@@ -126,4 +126,4 @@ Capsule({
 ---
 
 
-## See [Connect](https://github.com/iosio/capsule/blob/master/docs/basics/connect.md) to conenct state logic and actions to your components
+## See [Connect](https://github.com/iosio/capsule/blob/master/docs/basics/connect.md) to connect state logic and actions to your components
