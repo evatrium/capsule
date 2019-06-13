@@ -1,1 +1,2 @@
 Start with the basics: [capsule_basics](https://github.com/iosio/capsule/tree/master/docs/basics) 
+Check out the [routing](https://github.com/iosio/capsule/tree/master/docs/routing)
