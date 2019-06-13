@@ -172,7 +172,8 @@ export const userLogic = Capsule({
             //...
         };
     },
- ...
+})(); //<-- this will return your logic
+
 
 
 //foo.js
@@ -198,5 +199,6 @@ const fooLogic = Capsule({
             //...
         };
     },
-    ...
+})();
+ 
 ``` 
