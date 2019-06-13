@@ -5,7 +5,7 @@ Capsule provides a super simple and easy to use router that works for most page 
 
 ```js
 //index.js
-import '@iosio/capsule/lib/routing; // <---------------- import from /lib/routing
+import '@iosio/capsule/lib/routing;
 import React from 'react';
 import {CapsuleProvider} from '@iosio/capsule';
 import {render} from 'react-dom'
