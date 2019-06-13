@@ -34,3 +34,4 @@ const {route, getParams, getLocation, listen, goBack, goForward, replace} = rout
 route('/detail', {id:3});
 
 ```
+Read the [doc](https://github.com/iosio/capsule/blob/master/docs/routing/routing_api.md) for more detail.
