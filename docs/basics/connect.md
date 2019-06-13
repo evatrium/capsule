@@ -6,9 +6,15 @@ Connect the state, logic, and actions you've [configured](https://github.com/ios
 Your app would eventually suffer from poor performance if it were re-rendering everytime some state changed. Therefore, you can select which state updates you want your component to listen to. In addition to state, Capsule connects your shared logic and actions the same way.
 
 ## Making Selections
-You can select by using an object with comma separated values, where the properties of the object are the namespaces of the capsules, and the comma separated values are the properties on the state that you want.
-
-Or you may use a callback where the entire state object is returned so that you can map them to a return object. 
+You can select by using an object with comma separated values, where the keys of the object are the namespaces of the capsules, and the comma separated values are the properties on the collection that you want.
+```js
+ ...
+ mapState: {
+    access: 'username,password'
+},
+...
+```
+Or you may use a callback where the entire collection object is passed to the argument so that you can map them to a return object. 
 ```js
  ...
  //as always, you can use destructuring to simplify the selections
@@ -52,7 +58,7 @@ Selects which actions you want to use from a capsule.
 },
 ...
 ```
-
+## Connecting to the Component
 If you arn't sure how involved this segment of your app is going to be yet, you can connect your component right along with your configuration. Just pass your component into the second curried function call.
 ```js
 //foobar.js
@@ -69,13 +75,12 @@ Capsule({
    
 })(MyAwesomeComponent);// <------ pass a component variable, functional component or even a React class
 
-//--------- or this -----------
-
+//--------- example using an anonymous functional component -----------
 const MyAwesomeComponent = Capsule({
     mapState: {...},
     mapLogic: {...},
     mapActions: {...}
-})((props)=>{ //using an anonymous functional component
+})((props)=>{ 
     return(
       <div>
          Hello awesome component...
@@ -85,7 +90,7 @@ const MyAwesomeComponent = Capsule({
 
 ```
 
-The following example may be achieved by using react hooks instead, however, it's just a simple example. As the number of state values increase, the need for better robust state management comes into play. You may also be in favor of separating your logic from the view. 
+Conect example
 
 ```js
 //MyAwesomeComponent.js
