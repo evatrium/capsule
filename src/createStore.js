@@ -1,5 +1,6 @@
 /**
  * creates a store to store state, get and set state, attach new state properties and subscribe to updates
+ * inspiration: https://github.com/developit/unistore/blob/master/src/index.js
  * @param {undefined|Object} state - the state object to hold all the namespaced state
  * @returns {{attachState: attachState, getState: (function(): *), unsubscribe: unsubscribe, subscribe: (function(*=): function(): void), setState: setState}}
  */
@@ -28,6 +29,14 @@ export const createStore = (state) => {
     };
 
     return {
+        /**
+         * attaches new state to the state object without triggering an update
+         * @param {object} new_state - stage object to be merged to existing state
+         * @returns {undefined} - returns nothing
+         */
+        attachState: (new_state) =>
+            state = {...state, ...new_state},
+
         unsubscribe,
         /**
          * gets the entire state object
@@ -55,12 +64,5 @@ export const createStore = (state) => {
             subs.push(sub);
             return () => unsubscribe(sub);
         },
-        /**
-         * attaches new state to the state object without triggering an update
-         * @param {object} new_state - stage object to be merged to existing state
-         * @returns {undefined} - returns nothing
-         */
-        attachState: (new_state) =>
-            state = {...state, ...new_state},
     }
 };

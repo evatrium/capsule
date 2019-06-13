@@ -21,7 +21,7 @@ const pathMap = {
     '/todos': Todos,
 };
 
-const PublicMainComponent = () => (
+export default () => (
     //<>
     <React.Fragment>
         <Nav/>
@@ -29,7 +29,3 @@ const PublicMainComponent = () => (
     </React.Fragment>
     //</>
 );
-
-export default Capsule([
-    {main: 'loggedIn,isAdmin'}
-])(PublicMainComponent);

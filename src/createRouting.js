@@ -41,13 +41,12 @@ export const pathSwitch = ({root, pathMap, replace, pathname: pn, lastPathname: 
 };
 
 
-
-
 /**@param Capsule - inject capsule to inject routing into the same instance of its collective
  * @returns {{routing: function, Linkage: function, pathSwitch: function, Router: function}}*/
 export const createRouting = (Capsule) => {
     let hist = createHistory(),
         initLoc = hist.getLocation();//{pathname,search,params,url}
+
     return {
         pathSwitch,
         routing: Capsule('routing',
@@ -114,14 +113,15 @@ export const createRouting = (Capsule) => {
          */
         Linkage: Capsule([
             {routing: 'pathname,search,params,url'},
-            {routing: 'route'}
+            {routing: 'route,getSearch'}
         ])((props) => {
-            let {route, toPath, toParams, href, onClick, children, ...others} = props,
+            let {route, getSearch, toPath, toParams, href, onClick, children, ...others} = props,
                 //ignore these and spread the rest
                 {pathname, search, params, url, ...rest} = others,
-                //if only href is provided then it will be behave as a normal link <a/> element
+                //if only href is provided then it will be behave as a normal link < a /> element
                 linkProps = {
-                    href: toPath || href,
+                    // if there are params, make sure to stringify them if its an object
+                    href: toPath + (toParams ? getSearch(toParams) : '') || href,
                     onClick: (e) => {
                         if (toPath) {
                             if (e.stopImmediatePropagation) e.stopImmediatePropagation();

@@ -88,7 +88,8 @@ export const createHistory = () => {
     window.addEventListener("popstate", notifySubs);
 
     return {
-        setUrl, route,
+        setUrl,
+        route,
         getLocation: getLoc,
         push: route,
         goTo: route,
@@ -97,5 +98,6 @@ export const createHistory = () => {
         goForward: () => h.go(1),
         replace: (path, search) => route(path, search, 'replace'),
         getParams,
+        getSearch
     }
 };

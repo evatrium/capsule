@@ -7,7 +7,8 @@ import {basicNestedCopy} from "./utils";
 import {convertArguments} from "./utils";
 
 /** factory function to create capsule instances for testing
- * @returns {{Capsule: (function(Object): function(*=): *), CapsuleProvider: (function(*): (React.DetailedReactHTMLElement<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> | React.DetailedReactHTMLElement<{value: {getCollective: (function()), getActions: (function()), store: {attachState, getState, unsubscribe, subscribe, setState}}}, HTMLElement> | React.ReactSVGElement | React.DOMElement<{value: {getCollective: (function()), getActions: (function()), store: {attachState, getState, unsubscribe, subscribe, setState}}}, Element> | React.SFCElement<{value: {getCollective: (function()), getActions: (function()), store: {attachState, getState, unsubscribe, subscribe, setState}}}> | React.CElement<React.ProviderProps<any>, React.ClassicComponent<React.ProviderProps<any>, React.ComponentState>> | React.CElement<React.ProviderProps<any>, React.Component<React.ProviderProps<any>, React.ComponentState>> | React.ReactElement<React.ProviderProps<any>>)), events: {on: on, off: off, emit: emit}, connect: *}}*/
+ * @returns {{Capsule: (function(Object): function(*=): *), CapsuleProvider: (function(*): (React.DetailedReactHTMLElement<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> | React.DetailedReactHTMLElement<{value: {getCollective: (function()), getActions: (function()), store: {attachState, getState, unsubscribe, subscribe, setState}}}, HTMLElement> | React.ReactSVGElement | React.DOMElement<{value: {getCollective: (function()), getActions: (function()), store: {attachState, getState, unsubscribe, subscribe, setState}}}, Element> | React.SFCElement<{value: {getCollective: (function()), getActions: (function()), store: {attachState, getState, unsubscribe, subscribe, setState}}}> | React.CElement<React.ProviderProps<any>, React.ClassicComponent<React.ProviderProps<any>, React.ComponentState>> | React.CElement<React.ProviderProps<any>, React.Component<React.ProviderProps<any>, React.ComponentState>> | React.ReactElement<React.ProviderProps<any>>)), events: {on: on, off: off, emit: emit}, connect: *}}
+ */
 export const createCapsule = () => {
 
     let store = createStore(),
@@ -68,4 +69,3 @@ export const createCapsule = () => {
         },
     }
 };
-
