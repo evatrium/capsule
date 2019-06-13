@@ -1,6 +1,7 @@
 
 # Connect
 Connect the state, logic, and actions you've configured with capsule.
+
 ---
 Your app would eventually suffer from poor performance if it were re-rendering everytime some state changed. Therefore, you can select which state updates you want your component to listen to. In addition to state, capsule offers ways to connect your shared logic and actions the same way.
 
