@@ -35,7 +35,7 @@ const Link = (props) =>(
   <Linkage {...props} style={{...myLinkStyles, ...props.style}}>
       {({url, pathname, search, params})=>(
            <span className={pathname === props.toPath ? 'active' : null}>
-             Selection 3
+              {props.children}
            </span>
       )}
   </Linkage>
