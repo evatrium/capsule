@@ -1,4 +1,4 @@
-## Capsule API
+## Basics
 ### Overview
 The Capsule function is used to configure and connect state and logic.
 ```js
