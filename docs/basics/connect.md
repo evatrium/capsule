@@ -69,9 +69,9 @@ Capsule({
     //logic,
    //----- connect -----
    
-    mapState,
-    mapLogic,
-    mapActions
+    mapState: {...},
+    mapLogic: {...},
+    mapActions: {...}
    
 })(MyAwesomeComponent);// <------ pass a component variable, functional component or even a React class
 
