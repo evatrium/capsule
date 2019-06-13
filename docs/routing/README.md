@@ -37,18 +37,29 @@ Use 'route' to change the url pathname and search.
 ```js
 // use in multiple ways
 
+
 // pass a pathname string
+
 route('/list'); 
 
+
 // pass a pathname string with a search query
+
 route('/detail?id=3');  
 
+
 // or pass the search query parameters as an object.
+
 route('/detail', {id:3}); // navigates to: '/detail?id=3'
 
+
 // pass an object like so
+
 route({pathname: '/detail', search: '?id=3'});
+
+
 // or optionally pass an object to search as well
+
 route({pathname: '/detail', search: {id:3} });
 ```
 #### getParams
@@ -82,7 +93,7 @@ console.log(paramsObject);
 const unlisten = listen((location)=>{
       console.log(location); // logs the results from 'getLocation'
   });
-unlisten(); //unsubscribes from 
+unlisten(); //unsubscribes 
 ```
 
 
