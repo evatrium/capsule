@@ -1,15 +1,12 @@
 # Routing
+Capsule exports a minimal HTML5 pushState routing api and Two components: Router, Linkage for all your basic navigation needs.
 ```js
-import {Router, Linkage, routing} from '@iosio/capsule/lib/routing';
+import {routing, Router, Linkage} from '@iosio/capsule/lib/routing';
 ```
-Capsule exports a minimal HTML5 pushState routing api and Two components: Router, Linkage.
-
 **Note:** *Hash routing is not supported*
 
-### Setup
+## Setup
 By including routing into your app, a 'routing' namespace will be injected and made available in Capsule. Make sure to import routing before any other capsules that depend on it (to be safe, in your entry file (index.js));
-
-
 
 ```js
 //index.js
@@ -28,3 +25,13 @@ import {Root} from './Root';
 render(<App/>, document.querySelector('#root'));
 
 ```
+
+## routing
+```js
+import {routing} from '@iosio/capsule/lib/routing';
+
+const {route, getLocation, listen, goBack, goForward, replace, getParams} = routing;
+
+```
+*routing* shares a similar api as the npm module 'history' but with a slimmer bundle size and includes aditional helpers like what you'd get from 'query-string';
+#### route
