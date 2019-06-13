@@ -105,7 +105,7 @@ export const Root = () => {
 };
 
 ```
-What happens behind the scenes with the root Router is that it only extracts and checks against the base pathname or first segment of the pathname in the url (ex: '/admin/settings' => '/admin) and renders the coresponding component for '/admin', then the router for 'AdminApp' will make the next route decission accordingly. 
+What happens behind the scenes with the root Router is that it only extracts and checks against the base pathname or first segment of the pathname in the url (ex: '/admin/settings' => '/admin') and renders the coresponding component for '/admin', then the router for 'AdminApp' will make the next route decission accordingly. 
 
 
 
