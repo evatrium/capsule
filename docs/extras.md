@@ -1,5 +1,5 @@
 # Extras
-As referenced to in the [configure](https://github.com/iosio/capsule/blob/master/docs/basics/configure.md) doc, the 'extras' argument in the logic function provides some extra goodies. Some are experimental and you should *[use with caution](#use-with-caution)*, some quite useful.
+As referenced to in the [configure](https://github.com/iosio/capsule/blob/master/docs/basics/configure.md) doc, the 'extras' argument in the logic function provides some extra goodies. Some are experimental and you should *[use with caution](#use-with-caution)* however, they may be handy to you.
 
 ```js
 Capsule({
@@ -22,5 +22,7 @@ Capsule({
     logic: (selfActions, { actions, events, collective, store }) => { 
     ...
 ``` 
+## actions
+
 
 ### use with caution
