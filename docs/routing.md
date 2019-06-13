@@ -46,4 +46,41 @@ export const Root = () =>{
 };
 
 ```
+If you would like to have parent/child routs, include the 'root' prop onto the parent router to get the desired behavior.
+
+
+```js
+//Root.js
+import React from 'react';
+import {CapsuleProvider} from '@iosio/capsule';
+import {Router} from '@iosio/capsule/lib/routing';
+
+import {PublicApp} from './devisions/PublicApp';
+import {AdminApp} from './devisions/AdminApp';
+
+const pathMap = {
+  '/': PublicApp,
+  '/admin': AdminApp
+}
+
+export const Root = () =>{
+   <Router
+      noMatch={'/'}
+      pathMap={pathMap}/>
+};
+
+```
+
+...docs to be continued
+
+
+
+
+
+
+
+
+
+
+
 
