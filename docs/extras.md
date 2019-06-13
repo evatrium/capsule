@@ -104,7 +104,7 @@ Capsule({
         // collective().user.doSomethingElse(); // this wont work because user hasn't been created yet
         
         const xyz = ()=>{
-            // this will work because xyz is returned and can only be invoked after 
+            // this will work after user has been created 
             collective().user.doSomethingElse(); 
         }
         
@@ -125,12 +125,20 @@ Capsule({
     initialState: {loggedIn: false},
     logic: ({set}, {collective}) => { 
    
+        collective().foo.doSomething() // this will work because foo exists in collective
+        
         const signIn = () => {
             set.loggedIn(true)
-            collective().foo.doSomething() // this will work
+           
         };
+        
+        const doSomethingElse = ()=> {
+            console.log('asdf');
+        };
+        
         return { 
             signIn,
+            doSomethingElse
             //...
         };
     },
@@ -140,3 +148,55 @@ Capsule({
 
 The **caveat** is that the availability of the logic (or any other collection) you are trying to access is dependent on the invocation order of your capsules. Like I mentioned in the beginning of the doc, its experimental (... probably not that useful), but it can work if your capsules are invoked in a hierarchical order that insures that the predecessor can provide dependencies to the successor.
  
+## **OR DON'T MAKE THINGS COMPLICATED**
+**and just call the second curried function. This will store the logic into a variable that you can import like any other regular function**
+
+```js
+//user.js
+
+export const userLogic = Capsule({
+    name: 'user',
+    initialState: {loggedIn: false},
+    logic: ({set}) => { 
+
+        const signIn = () => {
+            set.loggedIn(true)
+        };
+          
+        const doSomethingElse = ()=> {
+            console.log('asdf');
+        };
+        
+        return { 
+            signIn,
+            //...
+        };
+    },
+ ...
+
+
+//foo.js
+...
+import {userLogic} from './user';
+
+const fooLogic = Capsule({
+    name: 'foo',
+    logic: () => { 
+    
+        const xyz = ()=>{
+         
+            userLogic.doSomethingElse(); 
+        }
+        
+        const doSomething = () => {
+            ...
+        };
+        
+        return { 
+            doSomething,
+            xyz
+            //...
+        };
+    },
+    ...
+``` 
