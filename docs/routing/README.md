@@ -56,3 +56,15 @@ export const Root = () => (
 );
 ```
 Read the [doc](https://github.com/iosio/capsule/blob/master/docs/routing/Router.md) for more details.
+
+### Linkage
+Wraps a component with routing capabilities. 
+```js
+ <Linkage toPath='/' toParams={{id:3}}>
+    {({params})=>(
+         <span className={params && params.id === 3 ? 'active' : null}>
+           Selection 3
+         </span>
+    )}
+ </Linkage>
+```
