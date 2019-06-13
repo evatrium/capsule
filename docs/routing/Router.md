@@ -13,12 +13,12 @@ import {Router} from '@iosio/capsule/lib/routing';
 
 import {HomePage} from './Home';
 import {ProfilePage} from './Profile';
-import {SettingsPage from './Settings';
+import {SettingsPage} from './Settings';
 
 const pathMap = {
   '/': HomePage,           // www.myApp.com
   '/profile': ProfilePage, // www.myApp.com/profile
-  '/profile/settings: SettingsPage // www.myApp.com/profile/settings
+  '/profile/settings': SettingsPage // www.myApp.com/profile/settings
 }
 
 export const Root = () =>(
@@ -41,12 +41,12 @@ Lets start by defining our Public App
 ...
 import {HomePage} from './pages/Home';
 import {ProfilePage} from './pages/Profile';
-import {SettingsPage from './pages/Settings';
+import {SettingsPage} from './pages/Settings';
 
 const pathMap = {
   '/': HomePage,                
   '/profile': ProfilePage, 
-  '/profile/settings: SettingsPage
+  '/profile/settings': SettingsPage
 }
 
 export const PublicApp = () =>(
