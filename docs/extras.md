@@ -23,6 +23,45 @@ Capsule({
     ...
 ``` 
 ### actions
+'actions' is the collection of actions from all capsules. You can use them to manipulate state defined in other capsules.
+```js
+Capsule({
+    name: 'user',
+    initialState: {loggedIn: false},
+    logic: (selfActions, {actions:{someOtherNamespace}) => { 
+    
+        const signIn = () => {
+            selfActions.set.loggedIn(true)
+            someOtherNamespace.set.status('ONLINE');
+        };
+        
+        return { 
+            signIn,
+            //...
+        };
+    },
+    ...
+``` 
+### events
+'events' is a synthetic event handler. Can simply be used as another way to communicate between capsules. Inspired by [mitt](https://github.com/developit/mitt/blob/master/src/index.js). You can check out my version of it [here](https://github.com/iosio/utils/blob/master/src/eventer.js) and read the comments for more info.
+```js
+Capsule({
+    name: 'overlay',
+    initialState: {active: false},
+    logic: (selfActions, {actions:{someOtherNamespace}) => { 
+    
+        const signIn = () => {
+            selfActions.set.loggedIn(true)
+            someOtherNamespace.set.status('ONLINE');
+        };
+        
+        return { 
+            signIn,
+            //...
+        };
+    },
+    ...
+``` 
 
 
 ## use with caution
