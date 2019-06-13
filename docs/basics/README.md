@@ -25,5 +25,6 @@ Capsule({
     
 })(Component); // optional component - depending on use case
 ```
-- [Configure](https://github.com/iosio/capsule/blob/master/docs/basics/configure.md)
-- [Connect](https://github.com/iosio/capsule/blob/master/docs/basics/connect.md)
+
+- How to [configure](https://github.com/iosio/capsule/blob/master/docs/basics/configure.md)
+- How to [connect](https://github.com/iosio/capsule/blob/master/docs/basics/connect.md)
