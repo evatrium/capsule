@@ -1,7 +1,8 @@
 
 # Router 
 Capsule provides a super simple and easy to use Router that works for basic page-per-route apps.
-In order to maintain simplicity, **this Router is location.pathname based only**, meaning that location.search (ex: ?id=3) changes in the url are ignored. However, you may still utilize location.search for other means.
+
+In order to maintain simplicity and small bundle size, **this Router is location.pathname based only**, meaning that location.search (ex: ?id=3) changes in the url are ignored. However, you may still utilize location.search for other means.
 
 Routes are simply defined by a key:value pathMap object, where the key is a string pathname and the value is the Component to render. It will automatically match the Component to the pathname in the url. When the user goes to a pathname that is not defined in the pathmap, it will replace history to the last visited url. If the last visited pathname is not a valid key in the pathMap, it will then fall back to '/' (default) or whatever you pass to the noMatch prop.
 
