@@ -34,7 +34,7 @@ const {route, getParams, getLocation, listen, goBack, goForward, replace} = rout
 route('/detail', {id:3});
 
 ```
-Read the [routing](https://github.com/iosio/capsule/blob/master/docs/routing/routing_api.md) doc for more details.
+**Read the [routing](https://github.com/iosio/capsule/blob/master/docs/routing/routing_api.md) doc for more details.**
 
 ### Router
 Capsule provides a super simple and easy to use Router that works for basic page-per-route apps.
@@ -55,7 +55,7 @@ export const Root = () => (
 </CapsuleProvider>
 );
 ```
-Read the [Router](https://github.com/iosio/capsule/blob/master/docs/routing/Router.md) doc for more details.
+**Read the [Router](https://github.com/iosio/capsule/blob/master/docs/routing/Router.md) doc for more details.**
 
 ### Linkage
 Wraps a component with routing capabilities. 
@@ -68,4 +68,4 @@ Wraps a component with routing capabilities.
     )}
  </Linkage>
 ```
-Read the [Linkage](https://github.com/iosio/capsule/blob/master/docs/routing/Linkage.md) doc for more details.
+**Read the [Linkage](https://github.com/iosio/capsule/blob/master/docs/routing/Linkage.md) doc for more details.**
