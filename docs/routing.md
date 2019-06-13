@@ -115,6 +115,10 @@ import {Router} from '@iosio/capsule/lib/routing';
 import {PublicApp} from './devisions/PublicApp';
 import {AdminApp} from './devisions/AdminApp';
 
+const pathMap = {
+  '/': PublicApp,
+  '/admin': AdminApp,
+}
 
 export const Root = () => {
  return (
@@ -126,8 +130,7 @@ export const Root = () => {
 };
 
 ```
-
-
+What happens behind the scenes with the root Router is that it only extracts and checks against the base pathname or first segment of the pathname in the url (ex: '/foobar/settings/accounts' => '/foobar) and renders the coresponding component for '/foobar', then the router for 'FoobarApp' will make the next route decission accordingly. 
 
 
 
