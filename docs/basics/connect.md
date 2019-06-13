@@ -3,7 +3,7 @@
 Connect the state, logic, and actions you've configured with capsule.
 
 ---
-Your app would eventually suffer from poor performance if it were re-rendering everytime some state changed. Therefore, you can select which state updates you want your component to listen to. In addition to state, capsule offers ways to connect your shared logic and actions the same way.
+Your app would eventually suffer from poor performance if it were re-rendering everytime some state changed. Therefore, you can select which state updates you want your component to listen to. In addition to state, Capsule connects your shared logic and actions the same way.
 
 # Making Selections
 You can select by using an object with comma separated values, where the properties of the object are the namespaces of the capsules, and the comma separated values are the properties on the state that you want.
