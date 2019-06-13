@@ -35,3 +35,22 @@ route('/detail', {id:3});
 
 ```
 Read the [doc](https://github.com/iosio/capsule/blob/master/docs/routing/routing_api.md) for more detail.
+
+### Router
+```js
+...
+import {Router} from '@iosio/capsule/lib/routing';
+
+const pathMap = {
+  '/': ListPageComponent,          
+  '/detail': DetailPageComponent
+}
+
+export const Root = () =>(
+<CapsuleProvider>
+   <Router
+      noMatch={'/'}
+      pathMap={pathMap}/>
+</CapsuleProvider>
+);
+```
