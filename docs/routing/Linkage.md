@@ -32,7 +32,7 @@ the url you would like to pass to the default behaving <a> tag
  **Reusable example**
  ```js
 const Link = (props) =>(
-  <Linkage {...props} style={myLinkStyles}>
+  <Linkage {...props} style={{...myLinkStyles, ...props.style}}>
       {({url, pathname, search, params})=>(
            <span className={pathname === props.toPath ? 'active' : null}>
              Selection 3
