@@ -1,5 +1,56 @@
 
-## Connect
+# Connect
+Connect the state, logic, and actions you've configured with capsule.
+---
+Your app would eventually suffer from poor performance if it were re-rendering everytime some state changed. Therefore, you can select which state updates you want your component to listen to. In addition to state, capsule offers ways to connect your shared logic and actions the same way.
+
+# Making Selections
+You can select by using an object with comma separated values, where the properties of the object are the namespaces of the capsules, and the comma separated values are the properties on the state that you want.
+
+Or you may use a callback where the entire state object is returned so that you can map them to a return object. 
+```js
+ ...
+ //as always, you can use destructuring to simplify the selections
+ mapState: ({access})=>({
+    username: access.username,
+    password: access.password
+ }),
+...
+```
+Or optionally pass everything from a namespace
+```js
+ ...
+ mapState: ({access})=>({...access}),
+...
+```
+##### mapState
+Selects which properties of the state you want to pass to your component
+```js
+ ...
+ mapState: {
+    access: 'username,password'
+},
+...
+```
+##### mapLogic
+Selects which logic functions you want to use from a capsule 
+```js
+ ...
+ mapLogic: {
+    access: 'login,logout,setUsername,setPassword',
+    routing: 'route'
+},
+...
+```
+##### mapActions
+Selects which actions you want to use from a capsule. 
+```js
+ ...
+ mapActions: {
+    onboardingForm: 'set',
+},
+...
+```
 
 If you arn't sure how involved this segment of your app is going to be yet, you can connect your component right along with your configuration. Just pass your component into the second curried function call.
 ```js
@@ -73,51 +124,4 @@ export const MyAwesomeComponent = Capsule({
         </div>
     );
 });
-```
-### Making Selections
-You can select by using an object with comma separated values, where the properties of the object are the namespaces of the capsules, and the comma separated values are the properties on the state that you want.
-
-Or you may use a callback where the entire state object is returned so that you can map them to a return object. 
-```js
- ...
- //as always, you can use destructuring to simplify the selections
- mapState: ({access})=>({
-    username: access.username,
-    password: access.password
- }),
-...
-```
-Or optionally pass everything from a namespace
-```js
- ...
- mapState: ({access})=>({...access}),
-...
-```
-##### mapState
-Selects which properties of the state you want to pass to your component
-```js
- ...
- mapState: {
-    access: 'username,password'
-},
-...
-```
-##### mapLogic
-Selects which logic functions you want to use from a capsule 
-```js
- ...
- mapLogic: {
-    access: 'login,logout,setUsername,setPassword',
-    routing: 'route'
-},
-...
-```
-##### mapActions
-Selects which actions you want to use from a capsule. 
-```js
- ...
- mapActions: {
-    onboardingForm: 'set',
-},
-...
 ```
