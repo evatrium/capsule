@@ -1,12 +1,12 @@
 ## Basics
 ### Overview
 
-Capsule keeps a global store of 3 collection objects. 
+Capsule keeps a shared store of 3 collection objects. 
 - state
 - logic
 - actions
 
-When the Capsule function is called, it **configure**s a new namespace on each store, and allows you to **connect** to each store.
+When the Capsule function is called, it **configure**s a new namespace on each store, and allows you to **connect** to each collection.
 ```js
 //foobar.js
 Capsule({
