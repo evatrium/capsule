@@ -30,9 +30,25 @@ render(<App/>, document.querySelector('#root'));
 *routing* shares a similar api as the npm module 'history' but with a slimmer bundle size and includes aditional helpers like what you'd get from 'query-string';
 ```js
 import {routing} from '@iosio/capsule/lib/routing';
-
 const {route, getLocation, listen, goBack, goForward, replace, getParams} = routing;
-
 ```
 
 #### route
+Use route to change the url pathname and search. 
+```js
+// use in multiple ways
+
+// pass a pathname string
+route('/list'); 
+
+// pass a pathname string with a search query
+route('/detail?id=3');  
+
+// or pass the search query parameters as an object.
+route('/detail', {id:3}); // navigates to: '/detail?id=3'
+
+// pass an object like so
+route({pathname: '/detail', search: '?id=3'});
+// or optionally pass an object to search as well
+route({pathname: '/detail', search: {id:3} });
+```
