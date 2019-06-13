@@ -22,7 +22,7 @@ Capsule({
     logic: (selfActions, { actions, events, collective, store }) => { 
     ...
 ``` 
-## actions
+### actions
 
 
-### use with caution
+## use with caution
