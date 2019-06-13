@@ -23,18 +23,17 @@ import {Root} from './Root';
 );
 
 render(<App/>, document.querySelector('#root'));
-
 ```
 
 ### routing
-*routing* shares a similar api as the npm module 'history' but with a slimmer bundle size and includes aditional helpers like what you'd get from 'query-string';
+*routing* shares a similar api as the npm module 'history' but with a slimmer bundle size and a few extra helpers;
 ```js
 import {routing} from '@iosio/capsule/lib/routing';
-const {route, getLocation, listen, goBack, goForward, replace, getParams} = routing;
+const {route, getParams, getLocation, listen, goBack, goForward, replace} = routing;
 ```
 
 #### route
-Use route to change the url pathname and search. 
+Use 'route' to change the url pathname and search. 
 ```js
 // use in multiple ways
 
@@ -52,3 +51,38 @@ route({pathname: '/detail', search: '?id=3'});
 // or optionally pass an object to search as well
 route({pathname: '/detail', search: {id:3} });
 ```
+#### getParams
+Use 'getParams' to get the search/query string as an object. Returns false if non exist or it can't parse the string.
+```js
+//calling with no args grabs the current location.search from the url
+
+const paramsObject = getParams(); 
+console.log(paramsObject); 
+//logs {id:3}
+
+//you may also pass a query string
+const paramsObject = getParams('?id=3'); 
+console.log(paramsObject); 
+//logs {id:3}
+```
+#### getLocation
+'getLocation' is a helper that just returns the current location with additional props;
+```js
+//current url: '/detail?id=3
+{
+ pathname: '/detail',
+ search: '?id=3', 
+ params: {id:3}, //returned from 'getParams'
+ url: '/detail?id=3'
+}
+```
+#### listen
+'listen' subscribes to url changes and triggers a callback function with 'getLocation' data. Returns a function to unlisten.
+```js
+const unlisten = listen((location)=>{
+      console.log(location); // logs the results from 'getLocation'
+  });
+unlisten(); //unsubscribes from 
+```
+
+
