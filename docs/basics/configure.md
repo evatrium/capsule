@@ -34,7 +34,7 @@ For example, the initialState example above will be used to generate the followi
 }
 ```
 ## logic
-The 'logic' property is a function that is invoked immediately, injecting your newly created actions (based on what you defined on the initialState) via the selfActions argument. Here, you can conveniently orchestrate state manipulations, wrap them in functions and return them for shared use. More on the 'extras' argument in the extras.md doc.
+The 'logic' property is a function that is invoked immediately, injecting your newly created actions (based on what you defined on the initialState) via the selfActions argument. Here, you can conveniently orchestrate state manipulations, wrap them in functions and return them for shared use. More on the 'extras' argument in the [extras](https://github.com/iosio/capsule/blob/master/docs/extras.md) doc.
 ```js
 Capsule({
     ...
