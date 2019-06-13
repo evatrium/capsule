@@ -104,7 +104,7 @@ Capsule({
         // collective().user.doSomethingElse(); // this wont work because user hasn't been created yet
         
         const xyz = ()=>{
-            // this will work because it has been returned already
+            // this will work because xyz is returned and can only be invoked after 
             collective().user.doSomethingElse(); 
         }
         
