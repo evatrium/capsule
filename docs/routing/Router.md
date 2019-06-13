@@ -1,6 +1,5 @@
 
 # Router 
-Capsule provides a super simple and easy to use Router that works for basic page-per-route apps.
 
 In order to maintain simplicity and small bundle size, **this Router is location.pathname based only**, meaning that location.search (ex: ?id=3) changes in the url are ignored. However, you may still utilize location.search for other means.
 
