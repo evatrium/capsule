@@ -1,5 +1,5 @@
 # Routing
-Capsule exports a minimal HTML5 pushState routing api and Two components: Router, Linkage for all your basic navigation needs.
+Capsule exports a minimal HTML5 pushState routing api and two components (Router, Linkage) for all your basic navigation needs.
 ```js
 import {routing, Router, Linkage} from '@iosio/capsule/lib/routing';
 ```
