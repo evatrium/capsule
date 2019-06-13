@@ -63,7 +63,11 @@ unlisten(); //unsubscribes
 ```
 #### goBack
 Goes to the previous url (just like back button in the browser)
+```js
+goBack();
+```
 #### goForward
 Goes to the next url in history (just like forward button in the browser)
-
-
+```js
+goForward();
+```
