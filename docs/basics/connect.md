@@ -1,6 +1,6 @@
 
 # Connect
-Connect the state, logic, and actions you've configured with capsule.
+Connect the state, logic, and actions you've [configured](https://github.com/iosio/capsule/blob/master/docs/basics/configure.md) with capsule.
 
 ---
 Your app would eventually suffer from poor performance if it were re-rendering everytime some state changed. Therefore, you can select which state updates you want your component to listen to. In addition to state, Capsule connects your shared logic and actions the same way.
