@@ -5,7 +5,7 @@ import {routing, Router, Linkage} from '@iosio/capsule/lib/routing';
 ```
 **Note:** *Hash routing is not supported*
 
-## Setup
+### Setup
 By including routing into your app, a 'routing' namespace will be injected and made available in Capsule. Make sure to import routing before any other capsules that depend on it (to be safe, in your entry file (index.js));
 
 ```js
@@ -26,12 +26,13 @@ render(<App/>, document.querySelector('#root'));
 
 ```
 
-## routing
+### routing
+*routing* shares a similar api as the npm module 'history' but with a slimmer bundle size and includes aditional helpers like what you'd get from 'query-string';
 ```js
 import {routing} from '@iosio/capsule/lib/routing';
 
 const {route, getLocation, listen, goBack, goForward, replace, getParams} = routing;
 
 ```
-*routing* shares a similar api as the npm module 'history' but with a slimmer bundle size and includes aditional helpers like what you'd get from 'query-string';
+
 #### route
