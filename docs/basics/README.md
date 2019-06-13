@@ -8,28 +8,18 @@ Capsule keeps a global store of 3 collection objects.
 
 When a capsule is configured, it allocates a namespace on each store;
 ```js
-state = {
-    foo: {/*foo state*/},
-    bar: {/*bar state*/},
-};
-logic = { //also refered to as collective
-    foo: {/* foo logic},
-    bar: {/* bar logic}
-}
-actions = {
-    foo: {/* foo actions */},
-    bar: {/* bar actions */},
-}
+state = {foo: {/*foo state*/}};
+logic = {foo: {/* foo logic}} //also refered to as collective
+actions = {foo: {/* foo actions */},}
 ```
-
-The Capsule function is used to configure and connect state, logic and actions.
+When the Capsule function is called, it configures a new namespace on each store, and allows you to connect to each store.
 ```js
 //foobar.js
 Capsule({
 
     //----- configure -----
     
-    name, // string
+    name, // namespace string
     initialState, // object
     logic, // function
     
