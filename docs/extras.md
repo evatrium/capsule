@@ -136,6 +136,7 @@ Capsule({
     },
     ...
 ``` 
-##### use with caution
+### use with caution
+
 The **caveat** is that the availability of the logic (or any other collection) you are trying to access is dependent on the invocation order of your capsules. Like I mentioned in the beginning of the doc, its experimental (... probably not that useful), but it can work if your capsules are invoked in a hierarchical order that insures that the predecessor can provide dependencies to the successor.
  
