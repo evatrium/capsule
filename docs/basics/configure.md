@@ -108,13 +108,13 @@ Capsule({
    console.log(getState()) 
    // logs: {loggedIn:true, password: 'xyz', username: 'joe', fizbuz: 'baz'}
    
-   /* or use a function
+   /* or use a function */
     
     merge(state => ({
         count: state.count + 1
-    })
+    });
    
-   */
+   
 ```
 ### getState
 'getState' as shown in previous examples.. returns the state object from the namespace 
