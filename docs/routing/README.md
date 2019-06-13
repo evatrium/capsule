@@ -34,9 +34,10 @@ const {route, getParams, getLocation, listen, goBack, goForward, replace} = rout
 route('/detail', {id:3});
 
 ```
-Read the [doc](https://github.com/iosio/capsule/blob/master/docs/routing/routing_api.md) for more detail.
+Read the [doc](https://github.com/iosio/capsule/blob/master/docs/routing/routing_api.md) for more details.
 
 ### Router
+Capsule provides a super simple and easy to use Router that works for basic page-per-route apps.
 ```js
 ...
 import {Router} from '@iosio/capsule/lib/routing';
@@ -46,11 +47,12 @@ const pathMap = {
   '/detail': DetailPageComponent
 }
 
-export const Root = () =>(
-<CapsuleProvider>
+export const Root = () => (
+<CapsuleProvide>  //make sure there is a single provider at the most root level of your app
    <Router
       noMatch={'/'}
       pathMap={pathMap}/>
 </CapsuleProvider>
 );
 ```
+Read the [doc](https://github.com/iosio/capsule/blob/master/docs/routing/Router.md) for more details.
