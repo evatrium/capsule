@@ -9,8 +9,8 @@ Capsule keeps a global store of 3 collection objects.
 When a capsule is configured, it allocates a namespace on each store;
 ```js
 state = {foo: {/*foo state*/}};
-logic = {foo: {/* foo logic}} //also refered to as collective
-actions = {foo: {/* foo actions */},}
+logic = {foo: {/*foo logic*/}}; //also refered to as collective
+actions = {foo: {/*foo actions*/},}
 ```
 When the Capsule function is called, it configures a new namespace on each store, and allows you to connect to each store.
 ```js
