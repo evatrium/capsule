@@ -19,7 +19,7 @@ Capsule({
 *destructured*
 ```js
     ...
-    logic: (selfActions, { actions, events, collective, store }) => { 
+    logic: (selfActions, { actions, events, store, collective }) => { 
     ...
 ``` 
 ### actions
@@ -81,7 +81,7 @@ Capsule({
 ``` 
 ### store
 'store' is the most root level accessor of state.
-inpired by another one of developit's micro libraries [unistore](https://github.com/developit/unistore/blob/master/src/index.js). You can view my only slightly differnt implementation of it [Here](https://github.com/iosio/capsule/blob/master/src/createStore.js) for more info in the comments. 
+inpired by another one of developit's micro libraries [unistore](https://github.com/developit/unistore/blob/master/src/index.js). You can view my, only slightly, differnt implementation of it [Here](https://github.com/iosio/capsule/blob/master/src/createStore.js) for more info in the comments. 
 
 ```js
 Capsule({
