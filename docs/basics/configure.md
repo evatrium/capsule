@@ -122,3 +122,6 @@ Capsule({
    console.log(getState()) 
    // logs: {loggedIn:true, password: 'xyz', username: 'skeezyJ', fizbuz: 'asdf'}
 ```
+
+
+#### See [Connect](https://github.com/iosio/capsule/blob/master/docs/basics/connect.md) to conenct your components
