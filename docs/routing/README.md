@@ -68,3 +68,4 @@ Wraps a component with routing capabilities.
     )}
  </Linkage>
 ```
+Read the [doc](https://github.com/iosio/capsule/blob/master/docs/routing/Linkage.md) for more details.
