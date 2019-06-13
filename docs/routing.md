@@ -39,11 +39,11 @@ const pathMap = {
   '/settings: SettingsPage
 }
 
-export const Root = () =>{
+export const Root = () =>(
    <Router
       noMatch={'/'}
       pathMap={pathMap}/>
-};
+);
 
 ```
 If you would like to have parent/child routs, include the 'root' prop onto the parent router to get the desired behavior.
@@ -63,11 +63,11 @@ const pathMap = {
   '/admin': AdminApp
 }
 
-export const Root = () =>{
+export const Root = () =>(
    <Router
       noMatch={'/'}
       pathMap={pathMap}/>
-};
+);
 
 ```
 
