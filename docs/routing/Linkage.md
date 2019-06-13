@@ -1,7 +1,7 @@
 # Linkage
-Wraps a component with an <a> tag, routing capabilities and provides render props of location data.
+Wraps a component with an anchor tag, routing capabilities and provides render props of location data.
   
-If niether of the props 'toPath' or 'toParams' are provided, it will default to the 'href' prop and behave as a normal <a> tag. 
+If niether of the props 'toPath' or 'toParams' are provided, it will default to the 'href' prop and behave as a normal anchor tag. 
   
 If 'toPath' or 'toProps' is provided, the default behavior of the <a> tag is prevented (no browser refresh).
 
