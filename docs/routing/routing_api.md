@@ -2,7 +2,6 @@
 
 ```js
 import {routing} from '@iosio/capsule/lib/routing';
-const {route, getParams, getLocation, listen, goBack, goForward, replace} = routing;
 
 route('/detail', {id:3});
 ```
