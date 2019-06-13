@@ -2,7 +2,7 @@
 
 
 ### Setup
-By including routing into your app, a 'routing' namespace will be injected and made available in Capsule. Make sure to import routing before any other capsules that depend on it, to be safe, your entry file (index.js);
+By including routing into your app, a 'routing' namespace will be injected and made available in Capsule. Make sure to import routing before any other capsules that depend on it (to be safe, in your entry file (index.js));
 
  **Note:** *Uses HTML5 pushstate. Hash routing is not supported*
 
