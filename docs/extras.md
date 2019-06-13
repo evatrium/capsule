@@ -28,7 +28,7 @@ Capsule({
 Capsule({
     name: 'user',
     initialState: {loggedIn: false},
-    logic: (selfActions, {actions:{someOtherNamespace}) => { 
+    logic: (selfActions, {actions:{someOtherNamespace}}) => { 
     
         const signIn = () => {
             selfActions.set.loggedIn(true)
@@ -79,6 +79,20 @@ Capsule({
     },
     ...
 ``` 
+### store
+'store' is the most root level accessor of state.
+inpired by another one of developit's micro libraries [unistore](https://github.com/developit/unistore/blob/master/src/index.js). [Here](https://github.com/iosio/capsule/blob/master/src/createStore.js) is my only slightly differnt implementation for more info. 
 
+```js
+Capsule({
+    ...
+    logic: (selfActions, {store}) => { 
+        const consoleLogMyAppState = () => {
+            console.log(store.getState())
+        };
+        ...
+    },
+    ...
+``` 
 
 ## use with caution
