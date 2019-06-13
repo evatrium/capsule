@@ -95,18 +95,40 @@ Capsule({
     ...
 ``` 
 ### collective 
-'collective' is a function that returns logic from all namespaces. I figured since state is shared, why not share a collection of logic from other capsules. **The caveat** is that the availability of the logic you are trying to access is dependent on the invocation order of your capsules.  
+'collective' is a function that returns logic from all namespaces. I figured since state is shared, why not share a collection of logic from other capsules. 
 ```js
+Capsule({
+    name: 'foo',
+    logic: (selfActions, {collective}) => { 
+    
+        // collective().user.doSomethingElse(); // this wont work because user hasn't been created yet
+        
+        const xyz = ()=>{
+            // this will work because it has been returned already
+            collective().user.doSomethingElse(); 
+        }
+        
+        const doSomething = () => {
+            ...
+        };
+        
+        return { 
+            doSomething,
+            xyz
+            //...
+        };
+    },
+    ...
+
 Capsule({
     name: 'user',
     initialState: {loggedIn: false},
     logic: ({set}, {collective}) => { 
-    
+   
         const signIn = () => {
             set.loggedIn(true)
-            
+            collective().foo.doSomething() // this will work
         };
-        
         return { 
             signIn,
             //...
@@ -114,4 +136,6 @@ Capsule({
     },
     ...
 ``` 
-## use with caution
+##### use with caution
+The **caveat** is that the availability of the logic (or any other collection) you are trying to access is dependent on the invocation order of your capsules. Like I mentioned in the beginning of the doc, its experimental (... probably not that useful), but it can work if your capsules are invoked in a hierarchical order that insures that the predecessor can provide dependencies to the successor.
+ 
