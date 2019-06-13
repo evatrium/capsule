@@ -25,7 +25,7 @@ import {Root} from './Root';
 render(<App/>, document.querySelector('#root'));
 ```
 
-### routing
+### routing api
 *routing* shares a similar api as the npm module 'history' but with a slimmer bundle size and a few extra helpers;
 ```js
 import {routing} from '@iosio/capsule/lib/routing';
