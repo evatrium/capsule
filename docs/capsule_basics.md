@@ -59,7 +59,7 @@ The 'logic' property is a function that is invoked immediately, injecting your n
 ```js
 Capsule({
     ...
-    logic: (selfActions, collections) => {
+    logic: (selfActions, extras) => {
         const signIn = () => {
             selfActions.set.loggedIn(true)
         };
