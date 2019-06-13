@@ -163,13 +163,13 @@ export const userLogic = Capsule({
             set.loggedIn(true)
         };
           
-        const doSomethingElse = ()=> {
+        const doIt = ()=> {
             console.log('asdf');
         };
         
         return { 
             signIn,
-            //...
+            doIt
         };
     },
 })(); //<-- this will return your logic
@@ -177,26 +177,25 @@ export const userLogic = Capsule({
 
 
 //foo.js
-...
+
 import {userLogic} from './user';
 
 const fooLogic = Capsule({
     name: 'foo',
     logic: () => { 
     
-        const xyz = ()=>{
-         
-            userLogic.doSomethingElse(); 
-        }
-        
         const doSomething = () => {
             ...
         };
         
+        const xyz = ()=>{
+            doSomething();
+            userLogic.doIt(); //<- bam
+        }
+        
         return { 
             doSomething,
             xyz
-            //...
         };
     },
 })();
