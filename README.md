@@ -16,7 +16,7 @@
 - Shared centralized state and logic.
 - 2KB minified + gzipped.
 - No dispatching and no reducers!
-- As a bonus, capsule exports a simple, ultra light, 1-2 level nested Router component, Link component and a slim routing API for an extra 1.28KB. See the [docs](https://github.com/iosio/capsule/blob/master/docs/routing/README.md).
+- As a bonus, capsule exports a simple, ultra light, 1-2 level nested Router component, Link component and a slim routing API for an extra 1.28KB. See the [routing docs](https://github.com/iosio/capsule/blob/master/docs/routing/README.md).
 
 ## Installation 
 
