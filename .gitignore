@@ -8,6 +8,7 @@ node_modules
 # rando
 quicky
 quicky.js
+scrap.txt
 
 # misc
 .idea
@@ -26,5 +27,6 @@ yarn-error.log*
 /es
 /lib
 /umd
+
 
 
