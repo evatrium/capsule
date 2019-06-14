@@ -66,28 +66,7 @@ export const createCapsule = () => {
             return (Child) => Child // then connect the child and return the component
                 ? connect([mapState, mapLogic, mapActions])(Child)
                 // if logic return the collective namespace else return the actions namespace
-                : (logic
-                        ? collective[name]
-                        : actions[name]);
+                : (logic ? collective[name] : actions[name]);
         },
     }
-};
-
-const cap = (...config) => {
-    let {name, initialState} = convertArguments(...config);
-    const someValues = {hello: 123};
-
-    const connectFunc = (mapState) => {
-        return Child => {
-            return Child;
-        }
-    };
-
-    function connector(Child) {
-        this.someValues = someValues;
-        return connectFunc([])
-    }
-
-    return
-
 };
