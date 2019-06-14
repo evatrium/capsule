@@ -44,13 +44,17 @@ Capsule(
   [{foobar: 'count'}, {foobar:'increment'}, {foobar: 'set'}]
 )(MyComponent);
 ```
-And the order is important as you should pass a falsy value in place if omitting an argument.
+Remember to pass a falsy value in place if omitting an argument.
 ```js
+
 Capsule(
   [{foobar: 'count'}, null , {foobar: 'set'}]
 )(MyComponent);
+
 //or if just connecting state
+
 Capsule([{foobar: 'count'}])(MyComponent);
+
 ```
 
 
