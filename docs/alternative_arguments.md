@@ -32,7 +32,7 @@ Not every argument is required. Especially if you are just configuring. But the 
 ```js
 Capsule('foobar', 
   { count: 0, asdf: 'xyz' },
-  ({merge})=>({ increment: merge(state=>({ count: state.count+1 }) }), 
+  ({ merge })=>({ increment: merge(state=>({ count: state.count+1 }) }), 
 )(MyComponent); 
 ```
 
