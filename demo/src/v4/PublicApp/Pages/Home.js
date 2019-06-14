@@ -1,13 +1,7 @@
 import React from "react";
 import {Capsule} from "../../../../../src";
 
-
-const Home = Capsule({
-    mapState:({main})=>({
-        testObj: main.testObj,
-        testArr: main.testArr
-    })
-})(class Home extends React.Component {
+class HomeComponent extends React.Component {
     componentDidMount() {
     }
 
@@ -38,7 +32,17 @@ const Home = Capsule({
             </div>
         )
     }
-});
+}
+
+
+const Home = Capsule({
+    mapState:({main})=>({
+        testObj: main.testObj,
+        testArr: main.testArr
+    })
+})(HomeComponent);
+
+
 
 
 export default Home

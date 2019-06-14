@@ -6,7 +6,7 @@ import {render, fireEvent, cleanup, queryByAttribute} from '@testing-library/rea
 
 import {getById} from "./_test_utils";
 import 'jest-dom/extend-expect'
-
+import {Capsule} from "../src";
 
 
 it(`
@@ -83,7 +83,7 @@ component updates with the correct values when logic and action functions are fi
             });
 
             return {
-                componentReady: ()=>{
+                componentReady: () => {
                     this_actions.set.foobar('baz')
                 },
                 logicTest: (val) => {
@@ -100,13 +100,12 @@ component updates with the correct values when logic and action functions are fi
     });
 
 
-
-    class MyComponent extends React.Component{
+    class MyComponent extends React.Component {
         componentDidMount() {
             this.props.componentReady();
         }
 
-        render(){
+        render() {
             const {props} = this;
             expect(props).toMatchObject({
                 set: {
@@ -194,5 +193,33 @@ component updates with the correct values when logic and action functions are fi
     const tree = renderer.create(<App/>);
 
     expect(tree).toMatchSnapshot()
+
+});
+
+it('returns actions if only name and initial state is provided', () => {
+
+    const {Capsule} = createCapsule();
+
+
+    const userActions = Capsule('user', {
+        active: false,
+        first_name: '',
+        last_name: '',
+    })();
+
+    expect(userActions).toMatchObject({
+        set: {
+            active: expect.any(Function),
+            first_name: expect.any(Function),
+            last_name: expect.any(Function),
+        },
+        get: {
+            active: expect.any(Function),
+            first_name: expect.any(Function),
+            last_name: expect.any(Function),
+        },
+        merge: expect.any(Function),
+        getState: expect.any(Function)
+    });
 
 });

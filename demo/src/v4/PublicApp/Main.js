@@ -21,6 +21,8 @@ const pathMap = {
     '/todos': Todos,
 };
 
+console.log(typeof Nav)
+
 export default () => (
     //<>
     <React.Fragment>
