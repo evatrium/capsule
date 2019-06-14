@@ -49,7 +49,7 @@ Capsule({
     mapState: {...},
     mapLogic: {...},
     mapActions: {...}
-})(MyAwesomeComponent);// <------ pass a component variable, functional component or even a React class
+})(MyAwesomeComponent);// <- pass a component variable, functional component or even a React class
 
 ```
 
