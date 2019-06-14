@@ -17,9 +17,8 @@ Capsule({
 Alternatively, you may choose to pass each property value as its own argument. 
 
 Capsule will see that the first argument is of type string 
-and then will assume each following argument to be in the required order as stated above
+and then will assume each following argument to be in the required order as its defined above
 
-In this case the
 ```js
 Capsule('foobar', //name
   { count: 0, asdf: 'xyz' }, //initial state
@@ -31,9 +30,9 @@ Capsule('foobar', //name
 ```
 Not every argument is required. Especially if you are just configuring. But the order is still crucial
 ```js
-Capsule('foobar', //name
-  { count: 0, asdf: 'xyz' }, //initial state
-  ({merge})=>({ increment: merge(state=>({ count: state.count+1 }) }), //logic
+Capsule('foobar', 
+  { count: 0, asdf: 'xyz' },
+  ({merge})=>({ increment: merge(state=>({ count: state.count+1 }) }), 
 )(MyComponent); 
 ```
 
@@ -45,5 +44,14 @@ Capsule(
   [{foobar: 'count'}, {foobar:'increment'}, {foobar: 'set'}]
 )(MyComponent);
 ```
+And the order is important as you should pass a falsy value in place if omitting an argument.
+```js
+Capsule(
+  [{foobar: 'count'}, null , {foobar: 'set'}]
+)(MyComponent);
+//or if just connecting state
+Capsule([{foobar: 'count'}])(MyComponent);
+```
+
 
 
