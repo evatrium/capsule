@@ -67,7 +67,7 @@ export const myTodoLogic = Capsule({
             merge({fetching: false, list});
         }
     })
-})();//<- second curried function returns logic to variable
+})();//<-optionally call curried function to store logic to variable
 ```
 
 ##### And use Capsule to connect state and logic to your components.
