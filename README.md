@@ -103,6 +103,24 @@ export const App = Capsule({
 ));
 ```
 
+##### Capsule if flexible 
+```js
+//demonstrating returned actions if logic is omitted
+const myTodoActions = Capsule({
+    name: 'myTodos',
+    initialState: {
+        fetching: false,
+        list: [],
+    }
+})();
+
+const getSetTodos = async () => {
+  const {set, merge} = myTodoActions;
+  set.fetching(true);
+  const list = await client.getTodos();
+  merge({fetching: false, list});
+}
+```
 
 ### License
 
