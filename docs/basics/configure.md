@@ -20,19 +20,6 @@ Capsule({
     }, 
     ...
 ```
-For example, the initialState example above will be used to generate the following actions object on the 'foobar' namespace:
-```js
-/*generated actions*/
-{
-    foobar: { 
-        get, // { username, password, loggedIn, fizbuz, } functions
-        set, // { username, password, loggedIn, fizbuz } functions
-// We will cover how each of these can be used to retrieve and manipulate the state in more detail.
-        merge, 
-        getState 
-    }
-}
-```
 ## logic
 The 'logic' property is a function that is invoked immediately, injecting your newly created actions (based on what you defined on the initialState) via the selfActions argument. Here, you can conveniently orchestrate state manipulations, wrap them in functions and return them for shared use. More on the 'extras' argument in the [extras](https://github.com/iosio/capsule/blob/master/docs/extras.md) doc.
 ```js
@@ -54,7 +41,7 @@ Destructuring works nicely here:
 ```js
 Capsule({
     ...
-    logic: ({set, get}) => {
+    logic: ({set, get}, extras) => {
         const signIn = () => {
             set.loggedIn(true)
         };
