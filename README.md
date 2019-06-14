@@ -60,18 +60,13 @@ export const myTodoLogic = Capsule({
         fetching: false,
         list: [],
     },
-    logic: ({set, merge}) => {
-        const getSetTodoList = () => {
+    logic: ({set, merge}) => ({
+        getSetTodoList: async () => {
             set.fetching(true);
-            client.getTodos()
-                .then((list) =>
-                    merge({
-                        list,
-                        fetching: false
-                    }));
-        };
-        return {getSetTodoList};
-    }
+            const list = await client.getTodos();
+            merge({fetching: false, list});
+        }
+    })
 })();//<- optionally call the second curried function  
      // if youd like to use the returned logic manually 
      // console.log(myTodoLogic} //logs: {getSetTodoList}
@@ -88,12 +83,14 @@ import './logic'; // <- as in here, a dedicated capsule index, or the app index.
 import {Capsule} from '@iosio/capsule'
 import {LoadingIndicator} from './components/LoadingIndicator';
 
-const TodoList = ({list, fetching, getSetTodoList}) => (
+export const App = Capsule({
+    mapState: {myTodos: 'fetching,list'}, // select by using comma separated values
+    mapLogic: ({myTodos}) => ({ // or map with a function
+        getSetTodoList: myTodos.getSetTodoList
+    })
+})(({list, fetching, getSetTodoList}) => (
     <div>
-        <button onClick={getSetTodoList}>
-            GET MY TODOS!
-        </button>
-        <div>
+        <Button onClick={getSetTodoList} text={'GET MY TODOS!'}/>
             {fetching ?
                 <LoadingIndicator/> :
                 <ul>
@@ -102,18 +99,8 @@ const TodoList = ({list, fetching, getSetTodoList}) => (
                     ))}
                 </ul>
             }
-        </div>
     </div>
-);
-
-export const App = Capsule({
-    // optionally pluck the values off of the namespace with comma separated values
-    mapState: {myTodos: 'fetching,list'},
-    // or map them with a function
-    mapLogic: ({myTodos}) => ({
-        getSetTodoList: myTodos.getSetTodoList
-    })
-})(TodoList);
+));
 ```
 
 
