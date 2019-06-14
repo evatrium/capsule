@@ -61,7 +61,7 @@ export const myTodoLogic = Capsule({
         list: [],
     },
     logic: ({set, merge}) => ({
-        getSetTodoList: async () => {
+        getSetTodos: async () => {
             set.fetching(true);
             const list = await client.getTodos();
             merge({fetching: false, list});
@@ -83,14 +83,13 @@ import './logic'; // <- as in here, a dedicated capsule index, or the app index.
 import {Capsule} from '@iosio/capsule'
 import {LoadingIndicator} from './components/LoadingIndicator';
 
+// make selections by using comma separated values or functions
 export const App = Capsule({
-    mapState: {myTodos: 'fetching,list'}, // select by using comma separated values
-    mapLogic: ({myTodos}) => ({ // or map with a function
-        getSetTodoList: myTodos.getSetTodoList
-    })
-})(({list, fetching, getSetTodoList}) => (
+    mapState: {myTodos: 'fetching,list'}, 
+    mapLogic: ({myTodos}) => ({ getSetTodos: myTodos.getSetTodos })
+})(({list, fetching, getSetTodos}) => (
     <div>
-        <Button onClick={getSetTodoList} text={'GET MY TODOS!'}/>
+        <Button onClick={getSetTodos} text={'GET MY TODOS!'}/>
             {fetching ?
                 <LoadingIndicator/> :
                 <ul>
@@ -127,7 +126,7 @@ See [Alternative Arguments](https://github.com/iosio/capsule/blob/master/docs/al
 export const myTodoLogic = Capsule('myTodos',
     {fetching: false, list: []},
     ({set, merge}) => ({
-        getSetTodoList: async () => {
+        getSetTodos: async () => {
             set.fetching(true);
             const list = await client.getTodos();
             merge({fetching: false, list});
