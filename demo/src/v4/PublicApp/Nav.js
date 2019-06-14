@@ -1,6 +1,5 @@
 import React, {useMemo} from 'react';
-import {Capsule} from "../../../../src";
-import {Linkage} from "../../../../src/routing";
+import {Capsule, Linkage} from "../../../../src";
 
 const Link = ({toPath, toParams, name}) => (
     <Linkage toPath={toPath} toParams={toParams} className={'link'}>

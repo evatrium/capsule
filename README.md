@@ -7,16 +7,16 @@
 
 # @iosio/capsule
 
-<img src="https://img.shields.io/circleci/project/github/iosio/capsule.svg?style=flat-square" /><img src="https://img.shields.io/npm/v/@iosio/capsule.svg?style=flat-square" /><img src="https://img.shields.io/bundlephobia/minzip/@iosio/capsule@4.0.0.svg?style=flat-square" />
+<img src="https://img.shields.io/circleci/project/github/iosio/capsule.svg?style=flat-square" /><img src="https://img.shields.io/npm/v/@iosio/capsule.svg?style=flat-square" /><img src="https://img.shields.io/bundlephobia/minzip/@iosio/capsule@4.0.5.svg?style=flat-square" />
 
 > Simple global state and convenience tool for React.
 
 ## Key Features
 
 - Shared centralized state and logic.
-- 2KB minified + gzipped.
+- ~3KB minified + gzipped.
 - No dispatching and no reducers!
-- As a bonus, capsule exports a simple, ultra light, 1-2 level nested Router component, Link component and a slim routing API for an extra 1.28KB. See the [routing docs](https://github.com/iosio/capsule/blob/master/docs/routing/README.md) for more info.
+- As a bonus, capsule includes a simple, ultra light, 1-2 level nested Router component, Link component and a slim routing API. See the [routing docs](https://github.com/iosio/capsule/blob/master/docs/routing/README.md) for more info.
 
 ## Installation 
 

@@ -31,9 +31,9 @@ component updates with the correct values when logic and action functions are fi
             value: 'initial',
             foobar: ''
         },
-        logic: (this_actions, collection) => {
+        logic: (selfActions, extras) => {
 
-            expect(this_actions).toMatchObject({
+            expect(selfActions).toMatchObject({
                 set: {
                     count: expect.any(Function),
                     value: expect.any(Function),
@@ -48,7 +48,7 @@ component updates with the correct values when logic and action functions are fi
                 getState: expect.any(Function)
             });
 
-            expect(collection).toMatchObject({
+            expect(extras).toMatchObject({
                 actions: {
                     myCap1: {
                         set: {
@@ -84,10 +84,10 @@ component updates with the correct values when logic and action functions are fi
 
             return {
                 componentReady: () => {
-                    this_actions.set.foobar('baz')
+                    selfActions.set.foobar('baz')
                 },
                 logicTest: (val) => {
-                    this_actions.set.value(val)
+                    selfActions.set.value(val)
                 }
             }
 

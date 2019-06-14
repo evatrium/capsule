@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import {createCapsule} from "../src/createCapsule";
 import {createRouting} from "../src/createRouting";
 
-import {render, fireEvent, queryByAttribute} from '@testing-library/react';
+import {render, fireEvent} from '@testing-library/react';
 import ReactDom from 'react-dom/test-utils';
 
 
@@ -21,8 +21,6 @@ const {
     pathSwitch,
 } = createRouting(Capsule);
 
-
-const getById = queryByAttribute.bind(null, 'id');
 
 const {getLocation} = routing;
 

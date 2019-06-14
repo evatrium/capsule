@@ -1,4 +1,5 @@
 import {createCapsule} from "./createCapsule";
+import {createRouting} from "./createRouting";
 
 const {
     CapsuleProvider,
@@ -7,9 +8,21 @@ const {
     connect
 } = createCapsule();
 
+const {
+    Router,
+    Linkage,
+    routing,
+    pathSwitch
+} = createRouting(Capsule);
+
 export {
     CapsuleProvider,
     Capsule,
     events,
     connect,
+
+    Router,
+    Linkage,
+    routing,
+    pathSwitch
 };

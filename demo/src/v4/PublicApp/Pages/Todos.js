@@ -1,5 +1,5 @@
 import React from 'react';
-import {Capsule, useCapsule} from "../../../../../src";
+import {Capsule} from "../../../../../src";
 import {removeItemFromObjArrById} from "@iosio/utils/lib/removeItemFromObjArrById";
 import {filterObjArrByProp} from "@iosio/utils/lib/filterObjArrByProp";
 

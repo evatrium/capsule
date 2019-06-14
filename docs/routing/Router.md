@@ -8,8 +8,7 @@ Routes are simply defined by a key:value pathMap object, where the key is a stri
 ```js
 //Root.js
 import React from 'react';
-import {CapsuleProvider} from '@iosio/capsule';
-import {Router} from '@iosio/capsule/lib/routing';
+import {CapsuleProvider, Router} from '@iosio/capsule';
 
 import {HomePage} from './Home';
 import {ProfilePage} from './Profile';
@@ -85,7 +84,7 @@ Finally, create the root Router. Be sure to include the 'root' prop on the Route
 ```js
 //Root.js
 import React from 'react';
-import {Router} from '@iosio/capsule/lib/routing';
+import {Router} from '@iosio/capsule';
 
 import {PublicApp} from './devisions/PublicApp';
 import {AdminApp} from './devisions/AdminApp';

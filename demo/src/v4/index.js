@@ -1,9 +1,8 @@
 import './styles.css';
 import React from 'react'
 import {render} from 'react-dom';
-import {Router} from "../../../src/routing";
 import "./mainCapsule";
-import {CapsuleProvider, Capsule} from '../../../src'
+import {CapsuleProvider, Capsule, Router} from '../../../src'
 
 import {lazyLoader} from "./utils/lazyLoader";
 

@@ -1,6 +1,5 @@
 import React from "react";
-import {Capsule} from '../../../../src';
-import {Router, Linkage} from "../../../../src/routing";
+import {Capsule, Router, Linkage} from '../../../../src';
 import {lazyLoader} from "../utils/lazyLoader";
 
 const AdminHome = lazyLoader(() => import('./Pages/AdminHome'));

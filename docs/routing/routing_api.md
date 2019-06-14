@@ -1,7 +1,7 @@
 # routing
 
 ```js
-import {routing} from '@iosio/capsule/lib/routing';
+import {routing} from '@iosio/capsule';
 
 route('/detail', {id:3});
 ```

@@ -1,6 +1,5 @@
 import React from "react";
-import {Capsule} from "../../../../src";
-import {Router} from "../../../../src/routing";
+import {Router} from "../../../../src";
 import {lazyLoader} from "../utils/lazyLoader";
 import './logic/dataCapsule';
 
@@ -21,13 +20,10 @@ const pathMap = {
     '/todos': Todos,
 };
 
-console.log(typeof Nav)
 
 export default () => (
-    //<>
     <React.Fragment>
         <Nav/>
         <Router noMatch={'/'} pathMap={pathMap}/>
     </React.Fragment>
-    //</>
 );
