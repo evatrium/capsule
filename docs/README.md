@@ -1,5 +1,5 @@
 - Start with the basics: [capsule_basics](https://github.com/iosio/capsule/tree/master/docs/basics) 
-- Alternative Capsule arguments [alternative_arguments](https://github.com/iosio/capsule/tree/master/docs/alternative_arguments)
+- Alternative Capsule arguments [alternative_arguments](https://github.com/iosio/capsule/blob/master/docs/alternative_arguments.md)
 - Familiarize with [routing](https://github.com/iosio/capsule/tree/master/docs/routing)
 - Check out the [extras](https://github.com/iosio/capsule/blob/master/docs/extras.md)
 - scope out the [demo](https://github.com/iosio/capsule/tree/master/demo/src)
