@@ -105,7 +105,7 @@ export const App = Capsule({
 
 ##### Capsule if flexible 
 ```js
-//demonstrating returned actions if logic is omitted
+//demonstrating returned actions if logic property is omitted
 const myTodoActions = Capsule({
     name: 'myTodos',
     initialState: {
@@ -121,7 +121,20 @@ const getSetTodos = async () => {
   merge({fetching: false, list});
 }
 ```
-
+##### Alternative arguments 
+See [Alternative Arguments](https://github.com/iosio/capsule/blob/master/docs/alternative_arguments.md) for more info.
+```js
+export const myTodoLogic = Capsule('myTodos',
+    {fetching: false, list: []},
+    ({set, merge}) => ({
+        getSetTodoList: async () => {
+            set.fetching(true);
+            const list = await client.getTodos();
+            merge({fetching: false, list});
+        }
+    })
+)();
+```
 ### License
 
 [MIT]
