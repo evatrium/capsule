@@ -22,7 +22,7 @@ and then will assume each following argument to be in the required order as its 
 ```js
 Capsule('foobar', //name
   { count: 0, asdf: 'xyz' }, //initial state
-  ({merge})=>({ increment: merge(state=>({ count: state.count+1 }) }), //logic
+  ({ merge })=>({ increment: merge(state=>({ count: state.count+1 }) }), //logic
   {foobar: 'count'}, //map state
   {foobar:'increment'}, //map logic
   {foobar: 'set'} // map actions
