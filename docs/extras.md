@@ -8,10 +8,9 @@ Capsule({
         const signIn = () => {
             selfActions.set.loggedIn(true)
         };
-        //...
+    
         return { 
             signIn,
-            //...
         };
     },
     ...
