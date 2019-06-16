@@ -59,13 +59,11 @@ export const createRouting = (Capsule) => {
                         lastPathname = loc.pathname;
                     };
                 hist.listen((loc, type) => {
-                    if ((loc.url !== lastUrl)) {
-                        type === 'replace'
-                            //wait till the router figures itself out during a history replace
-                            ? setTimeout(() => {
-                                updateLocation(loc)
-                            }) : updateLocation(loc);
-                    }
+                    type === 'replace'
+                        //wait till the router figures itself out during a history replace
+                        ? setTimeout(() => {
+                            updateLocation(loc)
+                        }) : updateLocation(loc);
                 });
                 return hist//{ route, getLocation, listen, goBack, goForward, replace, getParams }
             }
